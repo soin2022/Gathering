@@ -23,6 +23,7 @@ public class DeptController {
 		List<Dept1>list = deptDao.selectList();
 		
 		return list;
+	
 	}
 
 	 */
@@ -36,3 +37,5 @@ public class DeptController {
 	
 	
 }
+
+// sh test
