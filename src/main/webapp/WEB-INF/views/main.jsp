@@ -25,7 +25,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container ">
-            <a class="navbar-brand" href="-메인.html">게더링(Gathering)</a>
+            <a class="navbar-brand" href="main">게더링(Gathering)</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
                     class="navbar-toggler-icon"></span></button>
@@ -34,12 +34,12 @@
                 <ul class="navbar-nav ">
                     <li class="nav-item"><a class="nav-link" href="-모임만들기.html">모임 만들기</a></li>
                     <li class="nav-item"><a class="nav-link" href="-활동중인 모임.html">활동중인 모임</a></li>
-                    <li class="nav-item"><a class="nav-link" href="-Q&A리스트.html">Q&A 게시판</a></li>
-                    <li class="nav-item"><a class="nav-link" href="-공지사항 리스트.html">공지사항</a></li>
+                    <li class="nav-item"><a class="nav-link" href="qna/qnaList">Q&A 게시판</a></li>
+                    <li class="nav-item"><a class="nav-link" href="notice/noticeList">공지사항</a></li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="-회원가입폼.html">Sign Up</a></li>
-                    <li class="nav-item"><a class="nav-link" href="-로그인.html">Log In</a></li>
+                    <li class="nav-item"><a class="nav-link" href="user/join">Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="user/login">Log In</a></li>
                 </ul>
             </div>
         </div>
@@ -85,7 +85,7 @@
                     <div class="p-5">
                         <h2 class="display-4">무엇이든 물어보세요</h2>
                        
-                        <a class="btn btn-primary btn-xl rounded-pill mt-3" href="-Q&A리스트.html">Q&A게시판</a>
+                        <a class="btn btn-primary btn-xl rounded-pill mt-3" href="qna/qnaList">Q&A게시판</a>
                     </div>
                 </div>
             </div>
@@ -103,7 +103,7 @@
                     <div class="p-5">
                         <h2 class="display-4">확인해주세요</h2>
                         
-                        <a class="btn btn-primary btn-xl rounded-pill mt-3" href="-공지사항 리스트.html">공지사항</a>
+                        <a class="btn btn-primary btn-xl rounded-pill mt-3" href="notice/noticeList">공지사항</a>
                     </div>
                 </div>
             </div>
