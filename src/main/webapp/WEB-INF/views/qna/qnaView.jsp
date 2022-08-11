@@ -26,28 +26,7 @@
 </head>
 
 <body id="page-top">
-    <!-- Nav바 구간-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container ">
-            <a class="navbar-brand" href="#page-top">게더링(Gathering)</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
-                    class="navbar-toggler-icon"></span></button>
-
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ">
-                    <li class="nav-item"><a class="nav-link" href="#!">모임 만들기</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">활동중인 모임</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Q&A 게시판</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">공지사항</a></li>
-                </ul>
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#!">Sign Up</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Log In</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <%@ include file="/WEB-INF/views/navibar.jsp" %>
 
     <!--사이드바 시작구간-->
     <div class="container-fluid">
@@ -198,12 +177,7 @@
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
 </body>
-<!-- Footer-->
-<footer class="py-5 bg-light" >
-    <div class="container px-5">
-        <p class="m-0 text-center text-black small">Copyright &copy; Your Website 2022</p>
-    </div>
-   </footer>
+<%@ include file="/WEB-INF/views/footer.jsp" %>
    
    
    <script type="text/javascript">

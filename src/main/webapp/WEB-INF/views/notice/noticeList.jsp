@@ -36,31 +36,7 @@
 </head>
 
 <body id="page-top">
-	<!-- Nav바 구간-->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<div class="container ">
-			<a class="navbar-brand" href="#page-top">게더링(Gathering)</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-				aria-controls="navbarResponsive" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ">
-					<li class="nav-item"><a class="nav-link" href="#!">모임 만들기</a></li>
-					<li class="nav-item"><a class="nav-link" href="#!">활동중인 모임</a></li>
-					<li class="nav-item"><a class="nav-link" href="#!">Q&A 게시판</a></li>
-					<li class="nav-item"><a class="nav-link" href="#!">공지사항</a></li>
-				</ul>
-				<ul class="navbar-nav ms-auto">
-					<li class="nav-item"><a class="nav-link" href="#!">Sign Up</a></li>
-					<li class="nav-item"><a class="nav-link" href="#!">Log In</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+	<%@ include file="/WEB-INF/views/navibar.jsp" %>
 
 
 	<!--메인구간 -->
@@ -96,7 +72,7 @@
 					<div class="col">
 						<!-- 유저타입이 (0 관리자?) 일때만 등록 버튼 생김 -->
 						<c:choose>
-							<c:when test="${login.user_type==0 }">
+							<c:when test="${user.user_type==0 }">
 								<button type="button" class="btn btn-outline-primary"
 									style="float: right; margin-right: 10px"
 									onclick="location='/notice/noticeForm';">등록</button>
@@ -211,13 +187,7 @@
 	</form>
 
 
-	<!-- Footer-->
-	<footer class="py-5 bg-light">
-		<div class="container px-5">
-			<p class="m-0 text-center text-black small">Copyright &copy; Your
-				Website 2022</p>
-		</div>
-	</footer>
+	<%@ include file="/WEB-INF/views/footer.jsp" %>
 	<!-- Bootstrap core JS-->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
