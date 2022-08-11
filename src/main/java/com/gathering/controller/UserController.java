@@ -1,16 +1,19 @@
 package com.gathering.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gathering.dto.UserInfoVO;
 import com.gathering.service.UserService;
 
-@SessionAttributes("user")
+@SessionAttributes("login")
 @Controller
 public class UserController {
 
@@ -38,16 +41,16 @@ public class UserController {
 	
 
 	@PostMapping("user/loginForm")
-	public String loginAction(UserInfoVO vo, Model model) {
+	public String loginAction(UserInfoVO vo, Model model ,HttpSession session,RedirectAttributes redirectAttr) {
 		UserInfoVO user = userService.getUser(vo);
 		System.out.println(user);
 		if(user == null) {
 			//아이디 없음
-			return "main";
+			return "/user/join";
 		} else {
 			if(user.getPassword().equals(user.getPassword())){
 				//정상로그인
-				model.addAttribute("user", user);
+				session.setAttribute("login", user);
 				return "redirect:/main";
 				
 			} else {

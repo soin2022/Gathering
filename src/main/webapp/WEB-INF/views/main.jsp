@@ -37,10 +37,14 @@
                     <li class="nav-item"><a class="nav-link" href="qna/qnaList">Q&A 게시판</a></li>
                     <li class="nav-item"><a class="nav-link" href="notice/noticeList">공지사항</a></li>
                 </ul>
+                
+                
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="user/join">Sign Up</a></li>
+                  
+                    <li class="nav-item"><a class="nav-link" href="user/join">아이디</a></li>
                     <li class="nav-item"><a class="nav-link" href="user/login">Log In</a></li>
                 </ul>
+                
             </div>
         </div>
     </nav>
