@@ -102,10 +102,12 @@
                     <div class="group">
                         <label for="id" class="label">아이디</label>
                         <input type="text" id="user_id" name="user_id" class="input" placeholder="아이디">
+                        <h6>${sessionScope.message}</h6>
                     </div>
                     <div class="group">
                         <label for="pw" class="label">비밀번호</label>
                         <input type="password" id="password" name="password" class="input" placeholder="비밀번호">
+                        
                     </div>
                     <div class="buttonEx">
                         <div class="group">

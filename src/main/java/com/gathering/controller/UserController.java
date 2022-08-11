@@ -5,7 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.gathering.dto.UserInfoVO;
 import com.gathering.service.UserService;
@@ -43,6 +46,7 @@ public class UserController {
 		System.out.println(user);
 		if(user == null) {
 			//아이디 없음
+			model.addAttribute("message", "ID가 존재하지 않습니다.");
 			return "main";
 		} else {
 			if(user.getPassword().equals(user.getPassword())){
@@ -51,12 +55,21 @@ public class UserController {
 				return "redirect:/main";
 				
 			} else {
+				model.addAttribute("message", "비밀번호`가 일치하지 않습니다.");
 				return "";
 			}
 		}
 		
 		
 	}
+	
+	// 로그아웃 처리
+		@GetMapping("/logout")
+		public String logout(SessionStatus status) {
+			
+				status.setComplete(); 	//현재 세션을 종료
+				return "redirect:main";
+		}
 	
 	
 }
