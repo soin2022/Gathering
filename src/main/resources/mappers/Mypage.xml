@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gathering.mapper.MypageMapper">
+    
+    <!-- 회원정보수정 -->
+	<update id="updateUser" parameterType="com.gathering.dto.UserInfoVO">
+		UPDATE user_info SET password=#{password}, email=#{email}, phone=#{phone}, address=#{address} WHERE user_id=#{user_id}
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="deleteUser" parameterType="com.gathering.dto.UserInfoVO">
+		DELETE FROM user_info WHERE user_id=#{user_id} AND password=#{password}
+	</delete>    
+   
+   
+      
+    
+</mapper>

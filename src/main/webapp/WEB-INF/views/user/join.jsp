@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,227 +26,233 @@
 </head>
 
 <body id="page-top">
-    <!-- Nav¹Ù ±¸°£-->
+    <!-- Navë°” êµ¬ê°„-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container ">
-            <a class="navbar-brand" href="/main">°Ô´õ¸µ(Gathering)</a>
+            <a class="navbar-brand" href="/main">ê²Œë”ë§(Gathering)</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
                     class="navbar-toggler-icon"></span></button>
 
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ">
-                    <li class="nav-item"><a class="nav-link" href="#!">¸ğÀÓ ¸¸µé±â</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">È°µ¿ÁßÀÎ ¸ğÀÓ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Q&A °Ô½ÃÆÇ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">°øÁö»çÇ×</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">ëª¨ì„ ë§Œë“¤ê¸°</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">í™œë™ì¤‘ì¸ ëª¨ì„</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/qna/qnaList">Q&A ê²Œì‹œíŒ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/notice/noticeList">ê³µì§€ì‚¬í•­</a></li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#!">Sign Up</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Log In</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/join">Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/login">Log In</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     
 
-            <!--¸ŞÀÎ±¸°£ -->
+            <!--ë©”ì¸êµ¬ê°„ -->
             <div class="col-12">
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
 
 
 
-                <h2 style="padding-top:5%">È¸¿ø°¡ÀÔ</h2>
+                <h2 style="padding-top:5%">íšŒì›ê°€ì…</h2>
 
 
-                <!-- È¸¿ø°¡ÀÔ Æû-->
+                <!-- íšŒì›ê°€ì… í¼-->
 
-                <form class="container row" style="float: none; margin:100 auto;">
+                <form action="joinForm" id="joinForm" method="post" class="container row" style="float: none; margin:100 auto;">
                     
                     <div class="mb-3">
-                        <!--È¸¿øID-->
+                        <!--íšŒì›ID-->
                         <div class="row mb-2">
-                            <label for="input_user_id" class="col-sm-2 col-form-label">È¸¿øID</label>
+                            <label for="user_id" class="col-sm-2 col-form-label">íšŒì›ID</label>
 
                             <div class="col-auto">
-                                <input type="text" class="form-control" id="input_user_id" placeholder="È¸¿øID">
+                                <input type="text" class="form-control" id="user_id" name="user_id" placeholder="íšŒì›ID" autocomplete="off">
+                                <input type="hidden" id="reid" name="reid">
                             </div>
                             <div class="col-auto">
-                                <button type="button" class="btn btn-primary">Áßº¹Ã¼Å©</button>
+                                <button type="button" class="btn btn-primary" onclick="idcheck()">ì¤‘ë³µì²´í¬</button>
                             </div>
                         </div>
-                        <!--ºñ¹Ğ¹øÈ£-->
+                        <!--ë¹„ë°€ë²ˆí˜¸-->
                         <div class="row mb-2">
-                            <label for="input_password" class="col-sm-2 col-form-label">ºñ¹Ğ¹øÈ£</label>
+                            <label for="password" class="col-sm-2 col-form-label">ë¹„ë°€ë²ˆí˜¸</label>
                             <div class="col-auto">
-                                <input type="password" class="form-control" id="input_password" placeholder="ºñ¹Ğ¹øÈ£">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="ë¹„ë°€ë²ˆí˜¸">
                             </div>
                         </div>
-                        <!--ºñ¹Ğ¹øÈ£È®ÀÎ-->
+                        <!--ë¹„ë°€ë²ˆí˜¸í™•ì¸-->
                         <div class="row mb-2">
-                            <label for="input_password_check" class="col-sm-2 col-form-label">ºñ¹Ğ¹øÈ£È®ÀÎ</label>
+                            <label for="password_check" class="col-sm-2 col-form-label">ë¹„ë°€ë²ˆí˜¸í™•ì¸</label>
                             <div class="col-auto">
-                                <input type="password" class="form-control" id="input_password_check"
-                                    placeholder="ºñ¹Ğ¹øÈ£È®ÀÎ">
+                                <input type="password" class="form-control" id="password_check" name="password_check" placeholder="ë¹„ë°€ë²ˆí˜¸í™•ì¸">
                             </div>
                         </div>
-                        <!--ÀÌ¸§-->
+                        <!--ì´ë¦„-->
                         <div class="row mb-2">
-                            <label for="input_name" class="col-sm-2 col-form-label">ÀÌ¸§</label>
+                            <label for="name" class="col-sm-2 col-form-label">ì´ë¦„</label>
                             <div class="col-auto">
-                                <input type="text" class="form-control" id="input_name" placeholder="ÀÌ¸§">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="ì´ë¦„" autocomplete="off">
                             </div>
                         </div>
-                        <!--´Ğ³×ÀÓ-->
+                        <!--ë‹‰ë„¤ì„-->
                         <div class="row mb-2">
-                            <label for="input_nickname" class="col-sm-2 col-form-label">´Ğ³×ÀÓ</label>
+                            <label for="nickname" class="col-sm-2 col-form-label">ë‹‰ë„¤ì„</label>
                             <div class="col-auto">
-                                <input type="text" class="form-control" id="input_nickname" placeholder="´Ğ³×ÀÓ">
+                                <input type="text" class="form-control" id="nickname" name="nickname" placeholder="ë‹‰ë„¤ì„" autocomplete="off">
                             </div>
                         </div>
-                        <!--¼ºº°-->
+                        <!--ì„±ë³„-->
                         <div class="row mb-2">
 
-                            <label for="input_gender" class="col-sm-2 col-form-label">¼ºº°</label>
+                            <label for="gender" class="col-sm-2 col-form-label">ì„±ë³„</label>
                             <div class="col-auto">
                                 <div class="row" style="padding-left:10px;">
                                     <div class="form-check col-auto py-2">
-                                        <input class="form-check-input" type="radio" name="input_gender"
-                                            id="input_gender" value="1" checked>³²ÀÚ
+                                        <input class="form-check-input" type="radio" name="gender" id="gender" value="1" checked>ë‚¨ì
                                     </div>
                                     <div class="form-check col-auto py-2">
-                                        <input class="form-check-input" type="radio" name="input_gender"
-                                            id="input_gender" value="2">¿©ÀÚ
+                                        <input class="form-check-input" type="radio" name="gender" id="gender" value="2">ì—¬ì
                                     </div>
                                     <div class="form-check col-auto py-2">
-                                        <input class="form-check-input" type="radio" name="input_gender"
-                                            id="input_gender" value="0">¼±ÅÃ¾ÈÇÔ
+                                        <input class="form-check-input" type="radio" name="gender" id="gender" value="0">ì„ íƒì•ˆí•¨
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!--»ı³â¿ùÀÏ-->
+                        <!--ìƒë…„ì›”ì¼-->
                         <div class="row mb-2">
-                            <label for="input_yob" class="col-sm-2 col-form-label">»ı³â¿ùÀÏ</label>
+                            <label for="birthday" class="col-sm-2 col-form-label">ìƒë…„ì›”ì¼</label>
                             <div class="col-auto">
-                                <input type="text" class="form-control" id="input_yob" placeholder="³âµµ">
+                                <input type="text" class="form-control" id="year" name="birthday" placeholder="ë…„ë„" autocomplete="off">
                             </div>
                             <div class="col-auto">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected value="1">1¿ù</option>
-                                    <option value="2">2¿ù</option>
-                                    <option value="3">3¿ù</option>
-                                    <option value="4">4¿ù</option>
-                                    <option value="5">5¿ù</option>
-                                    <option value="6">6¿ù</option>
-                                    <option value="7">7¿ù</option>
-                                    <option value="8">8¿ù</option>
-                                    <option value="9">9¿ù</option>
-                                    <option value="10">10¿ù</option>
-                                    <option value="11">11¿ù</option>
-                                    <option value="12">12¿ù</option>
+                                <select class="form-select" id="month" name="birthday">
+                                    <option selected value="01">1ì›”</option>
+                                    <option value="02">2ì›”</option>
+                                    <option value="03">3ì›”</option>
+                                    <option value="04">4ì›”</option>
+                                    <option value="05">5ì›”</option>
+                                    <option value="06">6ì›”</option>
+                                    <option value="07">7ì›”</option>
+                                    <option value="08">8ì›”</option>
+                                    <option value="09">9ì›”</option>
+                                    <option value="10">10ì›”</option>
+                                    <option value="11">11ì›”</option>
+                                    <option value="12">12ì›”</option>
                                 </select>
                             </div>
                             <div class="col-auto">
-                                <input type="text" class="form-control" id="input_dob" placeholder="ÀÏ">
+                                <input type="text" class="form-control" id="date" name="birthday" maxlength="2" placeholder="ì¼" autocomplete="off">
                             </div>
 
                         </div>
-                        <!--ÀÌ¸ŞÀÏ-->
+                        <!--ì´ë©”ì¼-->
                         <div class="row mb-2">
-                            <label for="input_email" class="col-sm-2 col-form-label">ÀÌ¸ŞÀÏ</label>
+                            <label for="email1" class="col-sm-2 col-form-label">ì´ë©”ì¼</label>
                             <div class="col-auto">
-                                <input type="text" class="form-control" id="input_email" placeholder="ÀÌ¸ŞÀÏ">
+                                <input type="text" class="form-control" id="email1" placeholder="ì´ë©”ì¼" autocomplete="off">
                             </div>
                             @
                             <div class="col-auto">
-                                <input type="text" class="form-control" id="input_email">
+                                <input type="text" class="form-control" id="email2" autocomplete="off">
                             </div>
                             <div class="col-auto">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected value="1">naver.com</option>
-                                    <option value="2">nate.com</option>
-                                    <option value="3">gmail.com</option>
-                                    <option value="4">daum.net</option>
-                                    <option value="5">Á÷Á¢ÀÔ·Â</option>
-
-                                </select>
+                                <select class="form-select" id="email3">
+                                    <option selected value="">ì§ì ‘ì…ë ¥</option>
+                                    <option value="naver.com">naver.com</option>
+                                    <option value="nate.com">nate.com</option> 
+                                    <option value="gmail.com">gmail.com</option>
+                                    <option value="daum.net">daum.net</option>
+								</select>
                             </div>
+                            <input type="hidden" name="email" id="email">
                         </div>
-                        <!--ÀüÈ­¹øÈ£-->
+                        
+                        <!--ì „í™”ë²ˆí˜¸-->
                         <div class="row mb-2">
-                            <label for="input_phone" class="col-sm-2 col-form-label">ÀüÈ­¹øÈ£</label>
+                            <label for="phone1" class="col-sm-2 col-form-label">ì „í™”ë²ˆí˜¸</label>
                             <div class="col-2">
-                                <input type="text" class="form-control" id="input_phone">
+                                <input type="text" class="form-control" id="phone1" maxlength="3" autocomplete="off">
                             </div>
 
                             <div class="col-2">
-                                <input type="text" class="form-control" id="input_phone">
+                                <input type="text" class="form-control" id="phone2" maxlength="4" autocomplete="off">
                             </div>
                             <div class="col-2">
-                                <input type="text" class="form-control" id="input_phone">
+                                <input type="text" class="form-control" id="phone3" maxlength="4" autocomplete="off">
                             </div>
+                            <input type="hidden" name="phone" id="phone">
                         </div>
-                        <!--ÁÖ¼Ò-->
+                        
+                        <!--ì£¼ì†Œ-->
                         <div class="row mb-2">
-                            <label for="input_address1" class="col-sm-2 col-form-label">ÁÖ¼Ò</label>
+                            <label for="address" class="col-sm-2 col-form-label">ì£¼ì†Œ</label>
                             <div class="col-auto">
-                                <input type="text" name="address" id="address" size="50">
-                                <input class="btn btn-primary" type="button" value="ÁÖ¼ÒÃ£±â" onclick="kakaopost()">
+                                <input type="text" name="address" id="address" size="50" readonly>
+                                <input class="btn btn-primary" type="button" value="ì£¼ì†Œì°¾ê¸°" onclick="kakaopost()">
                             </div>
                         </div> 
-                            <!--°ü½ÉºĞ¾ß-->
+                        
+                        
+                        
+                            <!--ê´€ì‹¬ë¶„ì•¼-->
                             <div class="row my-3">
-                                <label for="input_user_interest" class="col-sm-2 col-form-label">°ü½ÉºĞ¾ß</label>
+                                <label for="user_interest" class="col-sm-2 col-form-label">ê´€ì‹¬ë¶„ì•¼</label>
                                 <div class="container col">
                                     <div class="row row-cols-3">
 
                                         <div class="col-5">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckChecked1">
-                                            <label class="form-check-label" for="flexCheckChecked1">
-                                                ½ºÆ÷Ã÷
+                                            <input class="form-check-input" type="checkbox" value="ìŠ¤í¬ì¸ " id="check1" name="category1[]">
+                                            <label class="form-check-label" for="check1">
+                                                ìŠ¤í¬ì¸ 
                                             </label>
                                         </div>
                                         <div class="col-5">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckChecked2">
-                                            <label class="form-check-label" for="flexCheckChecked2">
-                                                À½¾Ç
+                                            <input class="form-check-input" type="checkbox" value="ìŒì•…" id="check2" name="category1[]">
+                                            <label class="form-check-label" for="check2">
+                                                ìŒì•…
                                             </label>
                                         </div>
                                         <div class="col-5">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckChecked3">
-                                            <label class="form-check-label" for="flexCheckChecked3">
-                                                ¹®È­
+                                            <input class="form-check-input" type="checkbox" value="ì—¬í–‰" id="check3" name="category1[]">
+                                            <label class="form-check-label" for="check3">
+                                                ì—¬í–‰
                                             </label>
                                         </div>
                                         <div class="col-5">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckChecked4">
-                                            <label class="form-check-label" for="flexCheckChecked4">
-                                                ºÀ»çÈ°µ¿
+                                            <input class="form-check-input" type="checkbox" value="ë¬¸í™”" id="check4" name="category1[]">
+                                            <label class="form-check-label" for="check4">
+                                                ë¬¸í™”
                                             </label>
                                         </div>
                                         <div class="col-5">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckChecked5">
-                                            <label class="form-check-label" for="flexCheckChecked5">
-                                                ¹İ·Áµ¿¹°
+                                            <input class="form-check-input" type="checkbox" value="ë´‰ì‚¬í™œë™" id="check5" name="category1[]">
+                                            <label class="form-check-label" for="check5">
+                                                ë´‰ì‚¬í™œë™
                                             </label>
                                         </div>
-
+										<div class="col-5">
+                                            <input class="form-check-input" type="checkbox" value="ë°˜ë ¤ë™ë¬¼" id="check6" name="category1">
+                                            <label class="form-check-label" for="check6">
+                                                ë°˜ë ¤ë™ë¬¼
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            
+                            <!-- ìœ ì €íƒ€ì… 1 -->
+                            <input type="hidden" name="user_type" value="1">
+                            
                             <div class="row">
                                 <div class="col text-center">
-                                    <input class="btn btn-primary" style="margin-right: 10px;" type="submit"
-                                        value="°¡ÀÔÇÏ±â">
-                                    <button class="btn btn-primary" type="button">Ãë¼Ò</button>
+                                    <input class="btn btn-primary" style="margin-right: 10px;" type="button" value="ê°€ì…í•˜ê¸°" onclick="go_save()">
+                                    <button class="btn btn-primary" type="button" onclick="location.href='/main'">ì·¨ì†Œ</button>
                                 </div>
                             </div>
 
@@ -269,38 +275,38 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
-    <!--autoload=false ÆÄ¶ó¹ÌÅÍ¸¦ ÀÌ¿ëÇÏ¿© ÀÚµ¿À¸·Î ·ÎµùµÇ´Â °ÍÀ» ¸·½À´Ï´Ù.-->
-    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
-    <!--Ä«Ä«¿À Áöµµ,ÁÖ¼Ò-->
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <!--autoload=false íŒŒë¼ë¯¸í„°ë¥¼ ì´ìš©í•˜ì—¬ ìë™ìœ¼ë¡œ ë¡œë”©ë˜ëŠ” ê²ƒì„ ë§‰ìŠµë‹ˆë‹¤.-->
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false" charset="UTF-8"></script>
+    <!--ì¹´ì¹´ì˜¤ ì§€ë„,ì£¼ì†Œ-->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" charset="UTF-8"></script>
     <script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6a81e3b1d414024f75344e4e8fc907b8&libraries=services"></script>
-    <!--¹öÆ°Å¬¸¯½Ã Áöµµ¿¡ Ç¥½Ã-->
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6a81e3b1d414024f75344e4e8fc907b8&libraries=services" charset="UTF-8"></script>
+    <!--ë²„íŠ¼í´ë¦­ì‹œ ì§€ë„ì— í‘œì‹œ-->
     <script>
-        var mapContainer = document.getElementById('map'), // Áöµµ¸¦ Ç¥½ÃÇÒ div 
+        var mapContainer = document.getElementById('map'), // ì§€ë„ë¥¼ í‘œì‹œí•  div 
             mapOption = {
-                center: new kakao.maps.LatLng(33.450701, 126.570667), // ÁöµµÀÇ Áß½ÉÁÂÇ¥
-                level: 3 // ÁöµµÀÇ È®´ë ·¹º§
+                center: new kakao.maps.LatLng(33.450701, 126.570667), // ì§€ë„ì˜ ì¤‘ì‹¬ì¢Œí‘œ
+                level: 3 // ì§€ë„ì˜ í™•ëŒ€ ë ˆë²¨
             };
 
 
         $('#searchBtn').click(function () {
-            // ¹öÆ°À» clickÇßÀ»¶§
+            // ë²„íŠ¼ì„ clickí–ˆì„ë•Œ
 
-            // Áöµµ¸¦ »ı¼ºÇÕ´Ï´Ù    
+            // ì§€ë„ë¥¼ ìƒì„±í•©ë‹ˆë‹¤    
             var map = new kakao.maps.Map(mapContainer, mapOption);
 
-            // ÁÖ¼Ò-ÁÂÇ¥ º¯È¯ °´Ã¼¸¦ »ı¼ºÇÕ´Ï´Ù
+            // ì£¼ì†Œ-ì¢Œí‘œ ë³€í™˜ ê°ì²´ë¥¼ ìƒì„±í•©ë‹ˆë‹¤
             var geocoder = new kakao.maps.services.Geocoder();
 
-            // ÁÖ¼Ò·Î ÁÂÇ¥¸¦ °Ë»öÇÕ´Ï´Ù
+            // ì£¼ì†Œë¡œ ì¢Œí‘œë¥¼ ê²€ìƒ‰í•©ë‹ˆë‹¤
             geocoder.addressSearch($('#address').val(), function (result, status) {
 
-                // Á¤»óÀûÀ¸·Î °Ë»öÀÌ ¿Ï·áµÆÀ¸¸é 
+                // ì •ìƒì ìœ¼ë¡œ ê²€ìƒ‰ì´ ì™„ë£Œëìœ¼ë©´ 
                 if (status === kakao.maps.services.Status.OK) {
                     var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-                    // ÃßÃâÇÑ ÁÂÇ¥¸¦ ÅëÇØ µµ·Î¸í ÁÖ¼Ò ÃßÃâ
+                    // ì¶”ì¶œí•œ ì¢Œí‘œë¥¼ í†µí•´ ë„ë¡œëª… ì£¼ì†Œ ì¶”ì¶œ
                     let lat = result[0].y;
                     let lng = result[0].x;
                     getAddr(lat, lng);
@@ -310,33 +316,33 @@
                         let coord = new kakao.maps.LatLng(lat, lng);
                         let callback = function (result, status) {
                             if (status === kakao.maps.services.Status.OK) {
-                                // ÃßÃâÇÑ µµ·Î¸í ÁÖ¼Ò¸¦ ÇØ´ç inputÀÇ value°ªÀ¸·Î Àû¿ë
+                                // ì¶”ì¶œí•œ ë„ë¡œëª… ì£¼ì†Œë¥¼ í•´ë‹¹ inputì˜ valueê°’ìœ¼ë¡œ ì ìš©
                                 $('#address').val(result[0].road_address.address_name);
                             }
                         }
                         geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
                     }
 
-                    // °á°ú°ªÀ¸·Î ¹ŞÀº À§Ä¡¸¦ ¸¶Ä¿·Î Ç¥½ÃÇÕ´Ï´Ù
+                    // ê²°ê³¼ê°’ìœ¼ë¡œ ë°›ì€ ìœ„ì¹˜ë¥¼ ë§ˆì»¤ë¡œ í‘œì‹œí•©ë‹ˆë‹¤
                     var marker = new kakao.maps.Marker({
                         map: map,
                         position: coords
                     });
 
-                    // ÀÎÆ÷À©µµ¿ì·Î Àå¼Ò¿¡ ´ëÇÑ ¼³¸íÀ» Ç¥½ÃÇÕ´Ï´Ù
+                    // ì¸í¬ìœˆë„ìš°ë¡œ ì¥ì†Œì— ëŒ€í•œ ì„¤ëª…ì„ í‘œì‹œí•©ë‹ˆë‹¤
                     var infowindow = new kakao.maps.InfoWindow({
-                        content: '<div style="width:150px;text-align:center;padding:6px 0;">Á¤¸ğ</div>'
+                        content: '<div style="width:150px;text-align:center;padding:6px 0;">ì •ëª¨</div>'
                     });
                     infowindow.open(map, marker);
 
-                    // ÁöµµÀÇ Áß½ÉÀ» °á°ú°ªÀ¸·Î ¹ŞÀº À§Ä¡·Î ÀÌµ¿½ÃÅµ´Ï´Ù
+                    // ì§€ë„ì˜ ì¤‘ì‹¬ì„ ê²°ê³¼ê°’ìœ¼ë¡œ ë°›ì€ ìœ„ì¹˜ë¡œ ì´ë™ì‹œí‚µë‹ˆë‹¤
                     map.setCenter(coords);
                 }
             });
         });
 
     </script>
-    <!-- ¿ìÆíÃ£±â ÇÔ¼ö -->
+    <!-- ìš°í¸ì°¾ê¸° í•¨ìˆ˜ -->
     <script>
         function kakaopost() {
             new daum.Postcode({
@@ -347,8 +353,18 @@
             }).open();
         }
     </script>
-    <!--Ä«Ä«¿À Áöµµ ±¸Çö ½ºÅ©¸³Æ® ³¡-->
-
+    
+    <!-- join ìŠ¤í¬ë¦½íŠ¸ -->
+	<script type="text/javascript" src="../js/join.js" charset="UTF-8"></script>
+	
+	<!-- ì´ë©”ì¼ ì…ë ¥ jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script>
+		$("#email3").change(function(){
+			$("#email2").val($("#email3").val());
+		});
+	</script>
+	
 </body>
 
 </html>

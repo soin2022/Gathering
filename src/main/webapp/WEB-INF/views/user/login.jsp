@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>·Î±×ÀÎÈ­¸é</title>
+    <title>ë¡œê·¸ì¸í™”ë©´</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -21,72 +21,27 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/login.css" />
-    
-    <!-- ¹İÀÀÇü ¸Ş´º¹Ù -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-    
-    <!-- Ä«Ä«¿À ·Î±×ÀÎ api -->
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-	<script>
-	Kakao.init('a4f98e94bb6351142553b84533405d82'); //¹ß±Ş¹ŞÀº Å° Áß javascriptÅ°¸¦ »ç¿ëÇØÁØ´Ù.
-	console.log(Kakao.isInitialized()); // sdkÃÊ±âÈ­¿©ºÎÆÇ´Ü
-	//Ä«Ä«¿À·Î±×ÀÎ
-	function kakaoLogin() {
-	    Kakao.Auth.login({
-	      success: function (response) {
-	        Kakao.API.request({
-	          url: '/v2/user/me',
-	          success: function (response) {
-	        	  console.log(response)
-	          },
-	          fail: function (error) {
-	            console.log(error)
-	          },
-	        })
-	      },
-	      fail: function (error) {
-	        console.log(error)
-	      },
-	    })
-	  }
-	//Ä«Ä«¿À·Î±×¾Æ¿ô  
-	function kakaoLogout() {
-	    if (Kakao.Auth.getAccessToken()) {
-	      Kakao.API.request({
-	        url: '/v1/user/unlink',
-	        success: function (response) {
-	        	console.log(response)
-	        },
-	        fail: function (error) {
-	          console.log(error)
-	        },
-	      })
-	      Kakao.Auth.setAccessToken(undefined)
-	    }
-	  }  
-	</script>
 </head>
+
 <body id="page-top">
  <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container ">
-            <a class="navbar-brand" href="/main">°Ô´õ¸µ(Gathering)</a>
+            <a class="navbar-brand" href="/main">ê²Œë”ë§(Gathering)</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
                     class="navbar-toggler-icon"></span></button>
 
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ">
-                    <li class="nav-item"><a class="nav-link" href="#!">¸ğÀÓ ¸¸µé±â</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">È°µ¿ÁßÀÎ ¸ğÀÓ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Q&A °Ô½ÃÆÇ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">°øÁö»çÇ×</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">ëª¨ì„ ë§Œë“¤ê¸°</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">í™œë™ì¤‘ì¸ ëª¨ì„</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/qna/qnaList">Q&A ê²Œì‹œíŒ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/notice/noticeList">ê³µì§€ì‚¬í•­</a></li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#!">Sign Up</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Log In</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/join">Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/login">Log In</a></li>
                 </ul>
             </div>
         </div>
@@ -95,29 +50,28 @@
  
     <div class="login-wrap">
         <div class="login-html">
-            <h1>·Î±×ÀÎ</h1>
-            <form action="loginForm" name="loginForm" method="post">
+            <h1>ë¡œê·¸ì¸</h1>
+            <form action="loginForm" name="loginForm" id="loginForm" method="post">
             <div class="login-form">
                 <div class="sign-up-htm">
                     <div class="group">
-                        <label for="id" class="label">¾ÆÀÌµğ</label>
-                        <input type="text" id="user_id" name="user_id" class="input" placeholder="¾ÆÀÌµğ">
-                        <h6>${sessionScope.message}</h6>
+
+                        <label for="user_id" class="label">ì•„ì´ë””</label>
+                        <input type="text" id="user_id" name="user_id" class="input" placeholder="ì•„ì´ë””" autocomplete="off">
                     </div>
                     <div class="group">
-                        <label for="pw" class="label">ºñ¹Ğ¹øÈ£</label>
-                        <input type="password" id="password" name="password" class="input" placeholder="ºñ¹Ğ¹øÈ£">
-                        
+                        <label for="password" class="label">ë¹„ë°€ë²ˆí˜¸</label>
+                        <input type="password" id="password" name="password" class="input" placeholder="ë¹„ë°€ë²ˆí˜¸">
+
                     </div>
                     <div class="buttonEx">
                         <div class="group">
-                            <input type="submit" class="button" value="·Î±×ÀÎ"><br>
-                              
+                            <input type="button" class="button" value="ë¡œê·¸ì¸" onclick="login()"><br>
+							<div style="text-align: center; color:red"><span>${message}</span></div>
                         </div>
-                       
-                        <div class="find">
-                            <a href="-¾ÆÀÌµğºñ¹øÃ£±â(ÆË¾÷).html" class="left">¾ÆÀÌµğ | ºñ¹Ğ¹øÈ£ Ã£±â</a>
-                          
+					                       
+                        <div style="text-align:center;">
+                            <input type="button" class="find" onclick="findUserInfoView()" value="ì•„ì´ë”” | ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°" style="border:none; background:none;">
                         </div>
                     </div>  
                 </div>
@@ -125,7 +79,7 @@
                     <div class="under">
                        
                         <div>
-                        <input type="button" class="button" onclick="" value="È¸¿ø°¡ÀÔ">
+                        <input type="button" class="button" onclick="location.href='/user/join'" value="íšŒì›ê°€ì…">
                         </div>
                     </div>
                 </div>
@@ -142,8 +96,9 @@
    </footer>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="js/scripts.js"></script>
+
+<!-- login ìŠ¤í¬ë¦½íŠ¸ -->
+<script type="text/javascript" src="../js/login.js" charset="UTF-8"></script>
     
 </body>
 </html>

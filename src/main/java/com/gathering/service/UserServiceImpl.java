@@ -18,4 +18,21 @@ public class UserServiceImpl implements UserService {
 		return userMapper.getUser(user);
 	}
 
+	@Override
+	public void insertUser(UserInfoVO user) {
+		userMapper.insertUser(user);
+	}
+
+
+	@Override
+	public UserInfoVO findId(UserInfoVO user) {
+		
+		return userMapper.findId(user);
+	}
+
+	@Override
+	public void createTempPassword(UserInfoVO user) {
+		userMapper.createTempPassword(user);
+	}
+
 }
