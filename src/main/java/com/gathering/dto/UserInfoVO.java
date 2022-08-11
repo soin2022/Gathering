@@ -1,9 +1,10 @@
 package com.gathering.dto;
 
+
 import lombok.Data;
 
 @Data
-public class Dept1 {
+public class UserInfoVO {
 	private String user_id ; 
 	private String password ; 
 	private String name ; 

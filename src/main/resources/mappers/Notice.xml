@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gathering.mapper.NoticeMapper">
+
+
+
+	<!-- 공지사항 리스트 조회 -->
+
+	<!-- <select id="getNoticeList" resultType="com.gathering.dto.NoticeVO" 
+		parameterType="com.gathering.dto.NoticeVO"> <![CDATA[ SELECT *FROM notice 
+		]]> </select> -->
+
+	<!-- 검색 조건문 -->
+	<sql id="criteria">
+		<trim prefix="AND (" suffix=")" prefixOverrides="OR">
+			<foreach collection="typeArr" item="type">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+
+	</sql>
+
+
+	<!-- 게시물 목록(페이징) -->
+	<select id="getListPaging"
+		resultType="com.gathering.dto.NoticeVO">
+    
+    <![CDATA[
+        
+        select notice_seq,user_id,title,content,cnt,regdate,filename from(
+        
+                select  rownum  as rn, notice_seq,user_id,title,content,cnt,regdate,filename
+                  
+                from notice where rownum <= #{pageNum} * #{amount}
+                  ]]>
+		<if test="keyword != null">
+			<include refid="criteria"></include>
+		</if>
+		
+    
+    <![CDATA[
+                )
+        where rn > (#{pageNum} -1) * #{amount} ORDER BY notice_seq DESC
+    
+    ]]>
+
+	</select>
+
+
+	<!-- 공지사항 등록하기 -->
+	<insert id="InsertNotice"
+		parameterType="com.gathering.dto.NoticeVO">
+		INSERT INTO
+		notice(notice_seq,user_id,title,content,cnt,regdate,filename)
+
+		VALUES(notice_seq.NEXTVAL,'aaaa',#{title},#{content},0,sysdate,null)
+
+	</insert>
+
+
+	<!-- 공지사항 상세보기 -->
+	<select id="getNotice" resultType="com.gathering.dto.NoticeVO">
+
+		select * from notice where
+		notice_seq = #{notice_seq}
+
+	</select>
+
+
+	<!-- 공지사항 수정하기 -->
+	<update id="updateNotice"
+		parameterType="com.gathering.dto.NoticeVO">
+		<![CDATA[
+		update notice set title = #{title}, content = #{content} where notice_seq =#{notice_seq}
+		]]>
+	</update>
+
+	<!-- 공지사항 삭제하기 -->
+	<delete id="deleteNotice"
+		parameterType="com.gathering.dto.NoticeVO">
+		DELETE
+		from
+		notice
+		WHERE
+		notice_seq=#{notice_seq}
+
+	</delete>
+
+
+	<!-- 게시물 총 개숫 -->
+	<select id="getTotal" resultType="int">
+
+		select count(*) from notice
+
+		<if test="keyword != null">
+
+			where notice_seq > 0
+			<include refid="criteria"></include>
+
+		</if>
+
+	</select>
+
+	<!-- 게시물 목록(페이징) -->
+	<select id="sortlist" resultType="com.gathering.dto.NoticeVO">
+    
+    <![CDATA[
+        
+        select notice_seq,user_id,title,content,cnt,regdate,filename from(
+        
+                select  rownum  as rn, notice_seq,user_id,title,content,cnt,regdate,filename
+                  
+                from notice where rownum <= #{pageNum} * #{amount} 
+                  ]]>
+		<if test="keyword != null">
+			<include refid="criteria"></include>
+		</if>
+		
+    
+    <![CDATA[
+                )
+        where rn > (#{pageNum} -1) * #{amount} <choose>
+    <when test='order != null and order != ""'>
+        ORDER BY sysdate 
+    </when>
+    <otherwise>
+        ORDER BY notice_seq
+    </otherwise>
+</choose>
+    
+    ]]>
+
+	</select>
+
+	<!-- 이미지파일 등록하기 -->
+	<insert id="InsertNewImage"
+		parameterType="com.gathering.dto.NoticeVO">
+		<foreach item="item" collection="list" open="INSERT ALL"
+			separator="" close="SELECT * FROM DUAL">
+			INTO files(file_seq,notice_seq,filename) values
+			(#{item.file_seq},#{item.notice_seq},#{item.filename})
+
+		</foreach>
+
+	</insert>
+	
+	<!-- 이미지 번호 불러오기 -->
+	<select id="selectNewImageFileNO" resultType="int">
+	<![CDATA[
+		SELECT nvl(max(notice_seq),0) from files
+	]]>
+	</select>
+
+</mapper>
