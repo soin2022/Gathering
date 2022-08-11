@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -27,31 +27,39 @@
 </head>
 
 <body id="page-top">
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- NavπŸ ±∏∞£-->
+       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container ">
-            <a class="navbar-brand" href="main">Í≤åÎçîÎßÅ(Gathering)</a>
+            <a class="navbar-brand" href="main">∞‘¥ı∏µ(Gathering)</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
                     class="navbar-toggler-icon"></span></button>
 
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ">
-                    <li class="nav-item"><a class="nav-link" href="-Î™®ÏûÑÎßåÎì§Í∏∞.html">Î™®ÏûÑ ÎßåÎì§Í∏∞</a></li>
-                    <li class="nav-item"><a class="nav-link" href="-ÌôúÎèôÏ§ëÏù∏ Î™®ÏûÑ.html">ÌôúÎèôÏ§ëÏù∏ Î™®ÏûÑ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="qna/qnaList">Q&A Í≤åÏãúÌåê</a></li>
-                    <li class="nav-item"><a class="nav-link" href="notice/noticeList">Í≥µÏßÄÏÇ¨Ìï≠</a></li>
+                    <li class="nav-item"><a class="nav-link" href="-∏¿”∏∏µÈ±‚.html">∏¿” ∏∏µÈ±‚</a></li>
+                    <li class="nav-item"><a class="nav-link" href="-»∞µø¡ﬂ¿Œ ∏¿”.html">»∞µø¡ﬂ¿Œ ∏¿”</a></li>
+                    <li class="nav-item"><a class="nav-link" href="qnaList">Q&A ∞‘Ω√∆«</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/notice/noticeList">∞¯¡ˆªÁ«◊</a></li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="user/join">Sign Up</a></li>
-                    <li class="nav-item"><a class="nav-link" href="user/login">Log In</a></li>
+                <c:choose>
+       				<c:when test="${empty sessionScope.user}">
+	                    <li class="nav-item"><a class="nav-link" href="user/join">Sign Up</a></li>
+	                    <li class="nav-item"><a class="nav-link" href="user/login">Log In</a></li>
+                    </c:when>
+                    <c:otherwise>
+	                    <li class="nav-item"><a class="nav-link" href="user/join">Mypage </a></li>
+	                    <li class="nav-item"><a class="nav-link" href="/logout">Log out</a></li>
+	                </c:otherwise>
+	             </c:choose>
                 </ul>
             </div>
         </div>
     </nav>
 
 
-    <!--ÏÇ¨Ïù¥ÎìúÎ∞î ÏãúÏûëÍµ¨Í∞Ñ-->
+    <!--ªÁ¿ÃµÂπŸ Ω√¿€±∏∞£-->
     <div class="container-fluid">
         <div class="row">
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
@@ -61,34 +69,33 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/qna/frequentlyQna">
                                 <span data-feather="file"></span>
-                                ÏûêÏ£º Î¨ªÎäî ÏßàÎ¨∏
+                                ¿⁄¡÷ πØ¥¬ ¡˙πÆ
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"  href="/qna/myQnaList">
                                 <span data-feather="shopping-cart"></span>
-                                ÎÇòÏùò ÏßàÎ¨∏
+                                ≥™¿« ¡˙πÆ
                             </a>
-                        </li>
+                        </li>                    
                     </ul>
                 </div>
             </nav>
-            
-  			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-    		<!-- Î©îÏù∏Íµ¨Í∞Ñ -->
+    
+          <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    		<!-- ∏ﬁ¿Œ±∏∞£ -->
     		<form id="moveForm" method="get">
-				<!-- Ï†ïÎ≥¥ Ï†ÄÏû•Ïö© ÌûàÎì† -->
+				<!-- ¡§∫∏ ¿˙¿ÂøÎ »˜µÁ -->
 				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
 				<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
 				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
 				<input type="hidden" name="type" value="${pageMaker.cri.type }">
 			</form>
-		
- 
-                <h2 style="padding-top:5%">Q&AÍ≤åÏãúÌåê</h2> 
+
+                <h2 style="padding-top:5%">≥™¿« ¡˙πÆ</h2> 
                     <div class="row mb-2 align-items-center">
                         <div class="col">
-                        <button type="button" class="btn btn-outline-primary" style="float:right; margin-right:10px" onclick="location.href='/qnaInsertForm'">Î¨∏ÏùòÌïòÍ∏∞</button>
+                        <button type="button" class="btn btn-outline-primary" style="float:right; margin-right:10px" onclick="location.href='/qnaInsertForm'">πÆ¿««œ±‚</button>
                         </div>    
                     </div>
 
@@ -97,20 +104,21 @@
                         <thead>
                             <tr >
                                 
-                                <th scope="col" style="text-align:center">Î≤àÌò∏</th>
-                                <th scope="col" style="width:50%; text-align: center;">Ï†úÎ™©</th>
-                                <th scope="col" style="text-align:center">ÏûëÏÑ±Ïûê</th>
-                                <th scope="col" style="text-align:center">ÏûëÏÑ±Ïùº</th>
-                                <th scope="col" style="text-align:center">Ï°∞ÌöåÏàò</th>
-                                <th scope="col" style="text-align:center">Í≥µÍ∞úÏó¨Î∂Ä</th>
+                                <th scope="col" style="text-align:center">π¯»£</th>
+                                <th scope="col" style="width:50%; text-align: center;">¡¶∏Ò</th>
+                                <th scope="col" style="text-align:center">¿€º∫¿⁄</th>
+                                <th scope="col" style="text-align:center">¿€º∫¿œ</th>
+                                <th scope="col" style="text-align:center">¡∂»∏ºˆ</th>
+                                <th scope="col" style="text-align:center">∞¯∞≥ø©∫Œ</th>
                             
                             </tr>
                         </thead>
-                     
                         <tbody>
+                        
                            <c:forEach items="${qnaList}"  var="qnaVO">
-                            <!--Í≥µÍ∞ú/ÎπÑÍ≥µÍ∞ú Ïó¨Î∂Ä Ï≤¥ÌÅ¨ÌïòÎäî ÏûêÎ∞îÏä§ÌÅ¨Î¶ΩÌä∏ ÌïÑÏöî-->
-                         
+                           	<c:if test="${sessionScope.user.user_id eq qnaVO.user_id }">
+                            <!--∞¯∞≥/∫Ò∞¯∞≥ ø©∫Œ √º≈©«œ¥¬ ¿⁄πŸΩ∫≈©∏≥∆Æ « ø‰-->
+                         	
                            	 <tr style="cursor:pointer" onclick="location.href='qna_view?qna_seq=${qnaVO.qna_seq}'">
                         
                                 <td style="text-align:center"> ${qnaVO.qna_seq} </td>
@@ -120,12 +128,14 @@
                                 <td style="text-align:center">${qnaVO.cnt}</td>
                                 <td style="text-align:center">${qnaVO.security}</td>
                             </tr> 
+                          </c:if>
                          </c:forEach>
+                         
                         </tbody>         
                     </table>
                 </div>
 
-				<!--  Í≤ÄÏÉâÎ≤ÑÌäº Íµ¨Í∞Ñ -->
+                	<!--  ∞Àªˆπˆ∆∞ ±∏∞£ -->
 			
              
                     <div class="row mb-3 align-items-center justify-content-center">
@@ -134,21 +144,21 @@
                                 <option value=""
 									<c:out value="${pageMaker.cri.type == null?'selected':'' }"/>>--</option>
 								<option value="T"
-									<c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }"/>>Ï†úÎ™©</option>
+									<c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }"/>>¡¶∏Ò</option>
 								<option value="C"
-									<c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }"/>>ÎÇ¥Ïö©</option>
+									<c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }"/>>≥ªøÎ</option>
                             </select>
                         </div>
                         <div class="col-2">
                             <input type="text" class="form-control" name="keyword" value="${pageMaker.cri.keyword}">
                         </div>
                         <div class="col-2">
-                            <button class="btn btn-primary" type="button">Í≤ÄÏÉâ</button>
+                            <button class="btn btn-primary" type="button">∞Àªˆ</button>
                         </div>
                     </div>
 				
 				
-                <!--ÌéòÏù¥Ïßï-->
+                <!--∆‰¿Ã¬°-->
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
                     <c:if test="${pageMaker.prev}">
@@ -187,7 +197,7 @@
     <script src="js/scripts.js"></script>
     
     
-    <!-- Í≤ÄÏÉâÍ∏∞Îä• ÏûêÎ∞îÏä§ÌÅ¨Î¶ΩÌä∏ -->
+    <!-- ∞Àªˆ±‚¥… ¿⁄πŸΩ∫≈©∏≥∆Æ -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -208,7 +218,7 @@
 		}
 	</script>
 
-	<!-- ÌéòÏù¥ÏßÄ Îì±Î°ù ÏàòÏ†ï Ïä§ÌÅ¨Î¶ΩÌä∏ -->
+	<!-- ∆‰¿Ã¡ˆ µÓ∑œ ºˆ¡§ Ω∫≈©∏≥∆Æ -->
 	<script>
 		let moveForm = $("#moveForm");
 
@@ -241,12 +251,12 @@
 			let keyword = $(".col-2 input[name='keyword']").val();
 
 			if (!type) {
-				alert("Í≤ÄÏÉâ Ï¢ÖÎ•òÎ•º ÏÑ†ÌÉùÌïòÏÑ∏Ïöî.");
+				alert("∞Àªˆ ¡æ∑˘∏¶ º±≈√«œººø‰.");
 				return false;
 			}
 
 			if (!keyword) {
-				alert("ÌÇ§ÏõåÎìúÎ•º ÏûÖÎ†•ÌïòÏÑ∏Ïöî.");
+				alert("≈∞øˆµÂ∏¶ ¿‘∑¬«œººø‰.");
 				return false;
 			}
 
@@ -256,7 +266,5 @@
 			moveForm.submit();
 		});
 	</script>
-
-</body>
 
 </html>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -22,32 +24,11 @@
 </head>
 
 <body id="page-top">
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container ">
-            <a class="navbar-brand" href="main">게더링(Gathering)</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
-                    class="navbar-toggler-icon"></span></button>
 
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ">
-                    <li class="nav-item"><a class="nav-link" href="-모임만들기.html">모임 만들기</a></li>
-                    <li class="nav-item"><a class="nav-link" href="-활동중인 모임.html">활동중인 모임</a></li>
-                    <li class="nav-item"><a class="nav-link" href="qna/qnaList">Q&A 게시판</a></li>
-                    <li class="nav-item"><a class="nav-link" href="notice/noticeList">공지사항</a></li>
-                </ul>
-                
-                
-                <ul class="navbar-nav ms-auto">
-                  
-                    <li class="nav-item"><a class="nav-link" href="user/join">아이디</a></li>
-                    <li class="nav-item"><a class="nav-link" href="user/login">Log In</a></li>
-                </ul>
-                
-            </div>
-        </div>
-    </nav>
+    
+    <%@ include file="/WEB-INF/views/navibar.jsp" %>
+    
+
     <!-- Header-->
     <header class="masthead text-start text-white">
         <div class="masthead-content">
@@ -89,7 +70,7 @@
                     <div class="p-5">
                         <h2 class="display-4">무엇이든 물어보세요</h2>
                        
-                        <a class="btn btn-primary btn-xl rounded-pill mt-3" href="qna/qnaList">Q&A게시판</a>
+                        <a class="btn btn-primary btn-xl rounded-pill mt-3" href="/qna/qnaList">Q&A게시판</a>
                     </div>
                 </div>
             </div>
@@ -107,18 +88,15 @@
                     <div class="p-5">
                         <h2 class="display-4">확인해주세요</h2>
                         
-                        <a class="btn btn-primary btn-xl rounded-pill mt-3" href="notice/noticeList">공지사항</a>
+                        <a class="btn btn-primary btn-xl rounded-pill mt-3" href="/notice/noticeList">공지사항</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-     <!-- Footer-->
-   <footer class="py-5 bg-light" >
-    <div class="container px-5">
-        <p class="m-0 text-center text-black small">Copyright &copy; Your Website 2022</p>
-    </div>
-   </footer>
+   
+    <%@ include file="/WEB-INF/views/footer.jsp" %>
+   
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
