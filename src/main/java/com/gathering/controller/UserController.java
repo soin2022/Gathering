@@ -115,9 +115,7 @@ public class UserController {
 		return "/user/findUserInfo";
 	}
 	
-	
-	
-	
+
 	// 이메일, 비밀번호로 아이디 찾기
 	@PostMapping("/user/findId")
 	public String findId(UserInfoVO vo, Model model) {
