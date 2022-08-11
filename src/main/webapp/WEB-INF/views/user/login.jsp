@@ -55,12 +55,14 @@
             <div class="login-form">
                 <div class="sign-up-htm">
                     <div class="group">
+
                         <label for="user_id" class="label">아이디</label>
                         <input type="text" id="user_id" name="user_id" class="input" placeholder="아이디" autocomplete="off">
                     </div>
                     <div class="group">
                         <label for="password" class="label">비밀번호</label>
                         <input type="password" id="password" name="password" class="input" placeholder="비밀번호">
+
                     </div>
                     <div class="buttonEx">
                         <div class="group">

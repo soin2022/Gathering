@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -77,14 +78,17 @@ public class UserController {
 		
 		if(user != null) {
 			if(vo.getPassword().equals(user.getPassword())){
+
 				//정상로그인
 				model.addAttribute("user", user);
 				System.out.println("[로그인성공]" +user);
 				return "redirect:/main";
 				
 			} else {
+
 				model.addAttribute("message", "비밀번호를 다시 확인해주세요.");
 				return "/user/login";
+
 			}
 			
 		} else {
@@ -110,6 +114,14 @@ public class UserController {
 	public String findUserInfoView() {
 		return "/user/findUserInfo";
 	}
+	
+	// 로그아웃 처리
+		@GetMapping("/logout")
+		public String logout(SessionStatus status) {
+			
+				status.setComplete(); 	//현재 세션을 종료
+				return "redirect:main";
+		}
 	
 	
 	
