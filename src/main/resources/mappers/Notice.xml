@@ -54,7 +54,7 @@
     
     <![CDATA[
                 )
-        where rn > (#{pageNum} -1) * #{amount} ORDER BY notice_seq ASC
+        where rn > (#{pageNum} -1) * #{amount} ORDER BY notice_seq DESC
     
     ]]>
 

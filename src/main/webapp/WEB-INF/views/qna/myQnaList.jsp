@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="utf-8" />
@@ -27,39 +27,11 @@
 </head>
 
 <body id="page-top">
-    <!-- NavπŸ ±∏∞£-->
-       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container ">
-            <a class="navbar-brand" href="main">∞‘¥ı∏µ(Gathering)</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
-                    class="navbar-toggler-icon"></span></button>
-
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ">
-                    <li class="nav-item"><a class="nav-link" href="-∏¿”∏∏µÈ±‚.html">∏¿” ∏∏µÈ±‚</a></li>
-                    <li class="nav-item"><a class="nav-link" href="-»∞µø¡ﬂ¿Œ ∏¿”.html">»∞µø¡ﬂ¿Œ ∏¿”</a></li>
-                    <li class="nav-item"><a class="nav-link" href="qnaList">Q&A ∞‘Ω√∆«</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/notice/noticeList">∞¯¡ˆªÁ«◊</a></li>
-                </ul>
-                <ul class="navbar-nav ms-auto">
-                <c:choose>
-       				<c:when test="${empty sessionScope.user}">
-	                    <li class="nav-item"><a class="nav-link" href="user/join">Sign Up</a></li>
-	                    <li class="nav-item"><a class="nav-link" href="user/login">Log In</a></li>
-                    </c:when>
-                    <c:otherwise>
-	                    <li class="nav-item"><a class="nav-link" href="user/join">Mypage </a></li>
-	                    <li class="nav-item"><a class="nav-link" href="/logout">Log out</a></li>
-	                </c:otherwise>
-	             </c:choose>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    
+    <%@ include file="/WEB-INF/views/navibar.jsp" %>
 
 
-    <!--ªÁ¿ÃµÂπŸ Ω√¿€±∏∞£-->
+    <!--ÏÇ¨Ïù¥ÎìúÎ∞î ÏãúÏûëÍµ¨Í∞Ñ-->
     <div class="container-fluid">
         <div class="row">
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
@@ -69,13 +41,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/qna/frequentlyQna">
                                 <span data-feather="file"></span>
-                                ¿⁄¡÷ πØ¥¬ ¡˙πÆ
+                                ÏûêÏ£º Î¨ªÎäî ÏßàÎ¨∏
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"  href="/qna/myQnaList">
                                 <span data-feather="shopping-cart"></span>
-                                ≥™¿« ¡˙πÆ
+                                ÎÇòÏùò ÏßàÎ¨∏
                             </a>
                         </li>                    
                     </ul>
@@ -83,19 +55,19 @@
             </nav>
     
           <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-    		<!-- ∏ﬁ¿Œ±∏∞£ -->
+    		<!-- Î©îÏù∏Íµ¨Í∞Ñ -->
     		<form id="moveForm" method="get">
-				<!-- ¡§∫∏ ¿˙¿ÂøÎ »˜µÁ -->
+				<!-- Ï†ïÎ≥¥ Ï†ÄÏû•Ïö© ÌûàÎì† -->
 				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
 				<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
 				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
 				<input type="hidden" name="type" value="${pageMaker.cri.type }">
 			</form>
 
-                <h2 style="padding-top:5%">≥™¿« ¡˙πÆ</h2> 
+                <h2 style="padding-top:5%">ÎÇòÏùò ÏßàÎ¨∏</h2> 
                     <div class="row mb-2 align-items-center">
                         <div class="col">
-                        <button type="button" class="btn btn-outline-primary" style="float:right; margin-right:10px" onclick="location.href='/qnaInsertForm'">πÆ¿««œ±‚</button>
+                        <button type="button" class="btn btn-outline-primary" style="float:right; margin-right:10px" onclick="location.href='/qnaInsertForm'">Î¨∏ÏùòÌïòÍ∏∞</button>
                         </div>    
                     </div>
 
@@ -104,12 +76,12 @@
                         <thead>
                             <tr >
                                 
-                                <th scope="col" style="text-align:center">π¯»£</th>
-                                <th scope="col" style="width:50%; text-align: center;">¡¶∏Ò</th>
-                                <th scope="col" style="text-align:center">¿€º∫¿⁄</th>
-                                <th scope="col" style="text-align:center">¿€º∫¿œ</th>
-                                <th scope="col" style="text-align:center">¡∂»∏ºˆ</th>
-                                <th scope="col" style="text-align:center">∞¯∞≥ø©∫Œ</th>
+                                <th scope="col" style="text-align:center">Î≤àÌò∏</th>
+                                <th scope="col" style="width:50%; text-align: center;">Ï†úÎ™©</th>
+                                <th scope="col" style="text-align:center">ÏûëÏÑ±Ïûê</th>
+                                <th scope="col" style="text-align:center">ÏûëÏÑ±Ïùº</th>
+                                <th scope="col" style="text-align:center">Ï°∞ÌöåÏàò</th>
+                                <th scope="col" style="text-align:center">Í≥µÍ∞úÏó¨Î∂Ä</th>
                             
                             </tr>
                         </thead>
@@ -117,7 +89,7 @@
                         
                            <c:forEach items="${qnaList}"  var="qnaVO">
                            	<c:if test="${sessionScope.user.user_id eq qnaVO.user_id }">
-                            <!--∞¯∞≥/∫Ò∞¯∞≥ ø©∫Œ √º≈©«œ¥¬ ¿⁄πŸΩ∫≈©∏≥∆Æ « ø‰-->
+                            <!--Í≥µÍ∞ú/ÎπÑÍ≥µÍ∞ú Ïó¨Î∂Ä Ï≤¥ÌÅ¨ÌïòÎäî ÏûêÎ∞îÏä§ÌÅ¨Î¶ΩÌä∏ ÌïÑÏöî-->
                          	
                            	 <tr style="cursor:pointer" onclick="location.href='qna_view?qna_seq=${qnaVO.qna_seq}'">
                         
@@ -135,7 +107,7 @@
                     </table>
                 </div>
 
-                	<!--  ∞Àªˆπˆ∆∞ ±∏∞£ -->
+                	<!--  Í≤ÄÏÉâÎ≤ÑÌäº Íµ¨Í∞Ñ -->
 			
              
                     <div class="row mb-3 align-items-center justify-content-center">
@@ -144,21 +116,21 @@
                                 <option value=""
 									<c:out value="${pageMaker.cri.type == null?'selected':'' }"/>>--</option>
 								<option value="T"
-									<c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }"/>>¡¶∏Ò</option>
+									<c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }"/>>Ï†úÎ™©</option>
 								<option value="C"
-									<c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }"/>>≥ªøÎ</option>
+									<c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }"/>>ÎÇ¥Ïö©</option>
                             </select>
                         </div>
                         <div class="col-2">
                             <input type="text" class="form-control" name="keyword" value="${pageMaker.cri.keyword}">
                         </div>
                         <div class="col-2">
-                            <button class="btn btn-primary" type="button">∞Àªˆ</button>
+                            <button class="btn btn-primary" type="button">Í≤ÄÏÉâ</button>
                         </div>
                     </div>
 				
 				
-                <!--∆‰¿Ã¬°-->
+                <!--ÌéòÏù¥Ïßï-->
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
                     <c:if test="${pageMaker.prev}">
@@ -185,19 +157,14 @@
             </div>
 		</div>
 
-    <!-- Footer-->
-   <footer class="py-5 bg-light" >
-    <div class="container px-5">
-        <p class="m-0 text-center text-black small">Copyright &copy; Your Website 2022</p>
-    </div>
-   </footer>
+   <%@ include file="/WEB-INF/views/footer.jsp" %>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
     
     
-    <!-- ∞Àªˆ±‚¥… ¿⁄πŸΩ∫≈©∏≥∆Æ -->
+    <!-- Í≤ÄÏÉâÍ∏∞Îä• ÏûêÎ∞îÏä§ÌÅ¨Î¶ΩÌä∏ -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -218,7 +185,7 @@
 		}
 	</script>
 
-	<!-- ∆‰¿Ã¡ˆ µÓ∑œ ºˆ¡§ Ω∫≈©∏≥∆Æ -->
+	<!-- ÌéòÏù¥ÏßÄ Îì±Î°ù ÏàòÏ†ï Ïä§ÌÅ¨Î¶ΩÌä∏ -->
 	<script>
 		let moveForm = $("#moveForm");
 
@@ -251,12 +218,12 @@
 			let keyword = $(".col-2 input[name='keyword']").val();
 
 			if (!type) {
-				alert("∞Àªˆ ¡æ∑˘∏¶ º±≈√«œººø‰.");
+				alert("Í≤ÄÏÉâ Ï¢ÖÎ•òÎ•º ÏÑ†ÌÉùÌïòÏÑ∏Ïöî.");
 				return false;
 			}
 
 			if (!keyword) {
-				alert("≈∞øˆµÂ∏¶ ¿‘∑¬«œººø‰.");
+				alert("ÌÇ§ÏõåÎìúÎ•º ÏûÖÎ†•ÌïòÏÑ∏Ïöî.");
 				return false;
 			}
 
