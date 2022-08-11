@@ -1,176 +1,303 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>One Page Wonder - Start Bootstrap Template</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
-        rel="stylesheet" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../css/styles.css" rel="stylesheet" />
-    
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>One Page Wonder - Start Bootstrap Template</title>
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- Google fonts-->
+<link
+	href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
+	rel="stylesheet" />
+<link
+	href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+	rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="../css/styles.css" rel="stylesheet" />
+
+<style>
+.active {
+	background-color: #cdd5ec;
+}
+</style>
+
 
 </head>
 
 <body id="page-top">
-    <!-- NavπŸ ±∏∞£-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container ">
-            <a class="navbar-brand" href="/main">∞‘¥ı∏µ(Gathering)</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
-                    class="navbar-toggler-icon"></span></button>
+	<!-- NavÎ∞î Íµ¨Í∞Ñ-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container ">
+			<a class="navbar-brand" href="#page-top">Í≤åÎçîÎßÅ(Gathering)</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ">
-                    <li class="nav-item"><a class="nav-link" href="#!">∏¿” ∏∏µÈ±‚</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">»∞µø¡ﬂ¿Œ ∏¿”</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Q&A ∞‘Ω√∆«</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">∞¯¡ˆªÁ«◊</a></li>
-                </ul>
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#!">Sign Up</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Log In</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    
-
-            <!--∏ﬁ¿Œ±∏∞£ -->
-            <div class="col-10">
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ">
+					<li class="nav-item"><a class="nav-link" href="#!">Î™®ÏûÑ ÎßåÎì§Í∏∞</a></li>
+					<li class="nav-item"><a class="nav-link" href="#!">ÌôúÎèôÏ§ëÏù∏ Î™®ÏûÑ</a></li>
+					<li class="nav-item"><a class="nav-link" href="#!">Q&A Í≤åÏãúÌåê</a></li>
+					<li class="nav-item"><a class="nav-link" href="#!">Í≥µÏßÄÏÇ¨Ìï≠</a></li>
+				</ul>
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item"><a class="nav-link" href="#!">Sign Up</a></li>
+					<li class="nav-item"><a class="nav-link" href="#!">Log In</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
 
-                
-                
-                <h2 style="padding-top:5%">øÓøµ¿⁄∞¯¡ˆªÁ«◊</h2> 
-                    
-                    <div class="row mb-2 align-items-center">
-                        <div class="col-2">
-                            <select class="form-select form-select-md">
-                                <option selected value="1">√÷Ω≈º¯</option>
-                                <option value="2">ø¿∑°µ»º¯</option>
-                                <option value="3">¡∂»∏ºˆº¯</option>
-                            </select>
-                        </div>  
-                        <div class="col">
-                        <button type="button" class="btn btn-outline-primary" style="float:right; margin-right:10px">µÓ∑œ</button>
-                        </div>    
-                    </div>
-                    
-                
+	<!--Î©îÏù∏Íµ¨Í∞Ñ -->
+
+	<form id="moveForm" method="get">
+		<!-- Ï†ïÎ≥¥ Ï†ÄÏû•Ïö© ÌûàÎì† -->
+		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+		<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+		<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
+		<input type="hidden" name="type" value="${pageMaker.cri.type }">
+	</form>
+	<form method="get" id="moveForm" action="/notice/noticeList">
 
 
-                <div class="table-responsive">
-                    <table class="table table-striped table-sm">
-                        <thead>
-                            <tr>
-                                <th scope="col" style="text-align:center">π¯»£</th>
-                                <th scope="col" style="width:50%; text-align: center;">¡¶∏Ò</th>
-                                <th scope="col" style="text-align:center">¿€º∫¿œ</th>
-                                <th scope="col" style="text-align:center">¡∂»∏ºˆ</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1,001</td>
-                                <td>random</td>
-                                <td>data</td>                                
-                                <td>text</td>
-                            </tr>
-                            <tr>
-                                <td>1,002</td>
-                                <td>placeholder</td>
-                                <td>irrelevant</td>                                
-                                <td>layout</td>
-                            </tr>
-                            <tr>
-                                <td>1,003</td>
-                                <td>data</td>
-                                <td>rich</td>                                
-                                <td>tabular</td>
-                            </tr>
-                            <tr>
-                                <td>1,003</td>
-                                <td>information</td>
-                                <td>placeholder</td>                               
-                                <td>data</td>
-                            </tr>
-                            <tr>
-                                <td>1,004</td>
-                                <td>text</td>
-                                <td>random</td>
-                                <td>layout</td>                              
-                            </tr>
-                            
-                        </tbody>
-                    </table>
-                </div>
+		<div class="col-10">
+			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
-                <div class="row mb-3 align-items-center justify-content-center">
-                    
-                        <div class="col-2" style="margin-left: 10%;">
-                            <select class="form-select form-select-md">
-                                <option selected value="1">¡¶∏Ò</option>
-                                <option value="2">≥ªøÎ</option>
-                            </select>
-                        </div>
-                        <div class="col-2">
-                            <input type="text" class="form-control" id="∏”∂Û¿˚≥ƒæ∆¿Ãµ">
-                        </div>
-                        <div class="col-2">
-                            <button class="btn btn-primary" type="button">∞Àªˆ</button>
-                        </div>
-                    
-                </div>
-                
-                <!--∆‰¿Ã¬°-->
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                          <span aria-hidden="true">&laquo;</span>
-                        </a>
-                      </li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                          <span aria-hidden="true">&raquo;</span>
-                        </a>
-                      </li>
-                    </ul>
-                </nav>
-                
+				<h2 style="padding-top: 5%">Ïö¥ÏòÅÏûêÍ≥µÏßÄÏÇ¨Ìï≠</h2>
 
-            </div>
-            </main>
-        </div>
-    </div>
+				<div class="row mb-2 align-items-center-between my-3">
+					<div class="col-5" id="product_order_list">
+						
+							
 
-    <!-- Footer-->
-   <footer class="py-5 bg-light" >
-    <div class="container px-5">
-        <p class="m-0 text-center text-black small">Copyright &copy; Your Website 2022</p>
-    </div>
-   </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+<div class="list_sort">
+    <a href="#name_basic" class="sortable" >Ï†úÎ™©</a>
+    <a href="#tag2" class="sortable" >Î∂ÑÎ•ò</a>
+    <a href="#creat_place2" class="sortable" >Ï£ºÏÜå</a>
+</div>
+						
+					</div>
+
+					<div class="col">
+						<!-- Ïú†Ï†ÄÌÉÄÏûÖÏù¥ (0 Í¥ÄÎ¶¨Ïûê?) ÏùºÎïåÎßå Îì±Î°ù Î≤ÑÌäº ÏÉùÍπÄ -->
+						<c:choose>
+							<c:when test="${login.user_type==0 }">
+								<button type="button" class="btn btn-outline-primary"
+									style="float: right; margin-right: 10px"
+									onclick="location='/notice/noticeForm';">Îì±Î°ù</button>
+							</c:when>
+						</c:choose>
+					</div>
+
+				</div>
+
+
+				<!-- ÌÖåÏù¥Î∏î Îç∞Ïù¥ÌÑ∞ ÏãúÏûëÍµ¨Í∞Ñ -->
+				<div class="table-responsive">
+					<table class="table table-striped table-sm">
+						<thead>
+							<tr>
+								<th scope="col" style="text-align: center">Î≤àÌò∏</th>
+								<th scope="col" style="width: 50%; text-align: center;">Ï†úÎ™©</th>
+								<th scope="col" style="text-align: center">ÏûëÏÑ±Ïùº</th>
+								<th scope="col" style="text-align: center">Ï°∞ÌöåÏàò</th>
+
+							</tr>
+						</thead>
+						<tbody class="listData">
+							<c:forEach var="list" items="${noticeList}">
+								<tr>
+									<td scope="col" style="text-align: center"><c:out
+											value="${list.notice_seq}" /></td>
+									<td scope="col" style="text-align: center"><a class="move"
+										href='<c:out value="${list.notice_seq}" />'> <c:out
+												value="${list.title}" />
+									</a></td>
+									<td scope="col" style="text-align: center"><c:out
+											value="${list.regdate}" /></td>
+									<td scope="col" style="text-align: center"><c:out
+											value="${list.cnt}" /></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+
+					<!--------ÌéòÏù¥ÏßÄ Î≤ÑÌäº Í¥ÄÎ†® Íµ¨Í∞Ñ  ÏãúÏûë---------->
+
+					<div class="search_wrap"></div>
+
+					<div class="col-sm-12 col-md-7">
+						<div class="dataTables_paginate paging_simple_numbers">
+
+							<ul id="pageInfo" class="pagination">
+
+
+								<!------- Ïù¥Ï†ÑÌéòÏù¥ÏßÄ Î≤ÑÌäº ---------->
+								<c:if test="${pageMaker.prev}">
+									<li class="paginate_button page-item previous"><a
+										href="${pageMaker.startPage-1}">Previous</a></li>
+								</c:if>
+
+
+								<!------- Ïù¥Ï†ÑÌéòÏù¥ÏßÄ Î≤ÑÌäº ---------->
+								<c:forEach var="num" begin="${pageMaker.startPage}"
+									end="${pageMaker.endPage}">
+									<li
+										class="paginate_button page-item ${pageMaker.cri.pageNum == num ? "active":"" }"><a
+										href="${num}">${num}</a></li>
+								</c:forEach>
+
+
+								<!------- Ïù¥Ï†ÑÌéòÏù¥ÏßÄ Î≤ÑÌäº ---------->
+								<c:if test="${pageMaker.next}">
+									<li class="paginate_button page-item next"><a
+										href="${pageMaker.endPage + 1 }">Next</a></li>
+								</c:if>
+
+							</ul>
+
+						</div>
+					</div>
+					<!-- ÌéòÏù¥ÏßÄ Î≤ÑÌäº Í¥ÄÎ†® Íµ¨Í∞Ñ ÎÅù -->
+
+				</div>
+				<!-- ÌÖåÏù¥Î∏î Îç∞Ïù¥ÌÑ∞ ÎÅùÍµ¨Í∞Ñ -->
+
+
+
+
+
+
+				<!-- Í≤ÄÏÉâ Î≤ÑÌäº Í∏∞Îä• Íµ¨Í∞Ñ  -->
+				<div class="row mb-3 align-items-center justify-content-center">
+
+					<div class="col-2" style="margin-left: 10%;"></div>
+
+					<div class="search_wrap">
+						<div class="search_area">
+							<select name="type">
+								<option value=""
+									<c:out value="${pageMaker.cri.type == null?'selected':'' }"/>>--</option>
+								<option value="T"
+									<c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }"/>>Ï†úÎ™©</option>
+								<option value="C"
+									<c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }"/>>ÎÇ¥Ïö©</option>
+
+							</select> <input type="text" name="keyword"
+								value="${pageMaker.cri.keyword}">
+							<button>Search</button>
+						</div>
+					</div>
+
+
+				</div>
+		</div>
+
+	</form>
+
+
+	<!-- Footer-->
+	<footer class="py-5 bg-light">
+		<div class="container px-5">
+			<p class="m-0 text-center text-black small">Copyright &copy; Your
+				Website 2022</p>
+		</div>
+	</footer>
+	<!-- Bootstrap core JS-->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Core theme JS-->
+	<script src="js/scripts.js"></script>
+
+	<!-- Ajax -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Í≤ÄÏÉâÍ∏∞Îä• ÏûêÎ∞îÏä§ÌÅ¨Î¶ΩÌä∏ -->
+	<script>
+		$(document).ready(function() {
+
+			var msg = "${msg}";
+
+			if (msg != "") {
+				alert(msg);
+			}
+
+		});
+
+		function fn_search() {
+			$("#listForm").submit();
+			return false;
+		}
+	</script>
+
+	<!-- ÌéòÏù¥ÏßÄ Îì±Î°ù ÏàòÏ†ï Ïä§ÌÅ¨Î¶ΩÌä∏ -->
+	<script>
+		let moveForm = $("#moveForm");
+
+		$(".move")
+				.on(
+						"click",
+						function(e) {
+							e.preventDefault();
+
+							moveForm
+									.append("<input type='hidden' name='notice_seq' value='"
+											+ $(this).attr("href") + "'>");
+							moveForm.attr("action", "/notice/noticeDetail");
+							moveForm.submit();
+						});
+
+		$(".pagination a").on("click", function(e) {
+
+			e.preventDefault();
+			moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+			moveForm.attr("action", "/notice/noticeList");
+			moveForm.submit();
+
+		});
+
+		$(".search_area button").on("click", function(e) {
+			e.preventDefault();
+
+			let type = $(".search_area select").val();
+			let keyword = $(".search_area input[name='keyword']").val();
+
+			if (!type) {
+				alert("Í≤ÄÏÉâ Ï¢ÖÎ•òÎ•º ÏÑ†ÌÉùÌïòÏÑ∏Ïöî.");
+				return false;
+			}
+
+			if (!keyword) {
+				alert("ÌÇ§ÏõåÎìúÎ•º ÏûÖÎ†•ÌïòÏÑ∏Ïöî.");
+				return false;
+			}
+
+			moveForm.find("input[name='type']").val(type);
+			moveForm.find("input[name='keyword']").val(keyword);
+			moveForm.find("input[name='pageNum']").val(1);
+			moveForm.submit();
+		});
+	</script>
+	
+	
+
+
 </body>
 
 </html>

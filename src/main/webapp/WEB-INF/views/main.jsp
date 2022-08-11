@@ -24,9 +24,11 @@
 </head>
 
 <body id="page-top">
+
     
     <%@ include file="/WEB-INF/views/navibar.jsp" %>
     
+
     <!-- Header-->
     <header class="masthead text-start text-white">
         <div class="masthead-content">
