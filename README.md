@@ -18,3 +18,15 @@ file:///c:/GatheringFileSave/
 보류맨
 모임앨범, 수다 관련
 모임 수다방, 모임앨범, 앨범 댓글, 앨범 사진첨부, 
+
+
+
+
+
+--컬럼 변경 
+ALTER TABLE group_info ADD kind VARCHAR2(20);
+
+--컬럼 속성 변경
+ALTER TABLE group_info MODIFY brief VARCHAR2(100);
+
+commit;
