@@ -14,8 +14,8 @@
 
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ">
-                    <li class="nav-item"><a class="nav-link" href="-모임만들기.html">모임 만들기</a></li>
-                    <li class="nav-item"><a class="nav-link" href="-활동중인 모임.html">활동중인 모임</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/group/createGroup">모임 만들기</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/group/groupList">활동중인 모임</a></li>
                     <li class="nav-item"><a class="nav-link" href="/qna/qnaList">Q&A 게시판</a></li>
                     <li class="nav-item"><a class="nav-link" href="/notice/noticeList">공지사항</a></li>
                 </ul>

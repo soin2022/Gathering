@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gathering.mapper.GroupMapper">
+    
+    <!-- 모임이름 중복체크 -->
+    <select id="getGroupByGroupName" parameterType="com.gathering.dto.GroupInfoVO" resultType="com.gathering.dto.GroupInfoVO">
+        SELECT * FROM group_info WHERE group_name=#{group_name}
+    </select>
+    
+    <!-- 모임 만들기 -->
+    <insert id="createNewGroup" parameterType="com.gathering.dto.GroupInfoVO">
+    	INSERT INTO group_info VALUES(group_seq.NEXTVAL, #{group_name}, #{brief}, #{detail}, #{kind}, #{region}, #{member_limit})
+    </insert> 
+    <insert id="insertCrewLeader" parameterType="com.gathering.dto.CrewVO">
+    	INSERT INTO crew VALUES(crew_seq.NEXTVAL, #{user_id}, #{group_seq}, #{crew_image}, #{crew_brief}, #{type})
+    </insert>
+    
+    
+    
+    <!-- 모임리스트 전체(검색, 페이징 포함) -->
+    <sql id="criteria">
+		<trim prefix="AND (" suffix=")" prefixOverrides="OR">
+			<foreach collection="typeArr" item="type">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	<!-- 페이징부분 -->
+	<select id="getGroupListPaging" resultType="com.gathering.dto.GroupInfoVO">
+    
+    <![CDATA[
+       		 SELECT * FROM(
+        
+             SELECT  rownum  as rn, group_seq, group_name, brief, detail, kind, region, member_limit FROM group_info WHERE rownum <= #{pageNum} * #{amount}
+                  ]]>
+			<if test="keyword != null">
+				<include refid="criteria"></include>
+			</if>
+	    <![CDATA[
+	                )
+	        WHERE rn > (#{pageNum} -1) * #{amount} ORDER BY group_seq DESC
+	    ]]>
+	</select>
+	
+	
+	<!-- 모임리스트 총 갯수 -->
+	<select id="getTotalCount" resultType="int">
+		select count(*) from group_info
+		<if test="keyword != null">
+			where group_seq > 0
+			<include refid="criteria"></include>
+		</if>
+	</select>
+    
+    
+    
+</mapper>

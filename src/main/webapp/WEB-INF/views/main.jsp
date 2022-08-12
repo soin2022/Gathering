@@ -35,7 +35,7 @@
             <div class="container px-5" id="box1">
                 <h1 class="masthead-heading mb-0 ">새로운 모임을 만들어보세요!</h1>
 
-                <a class="btn btn-primary btn-xl rounded-pill mt-3" href="-모임만들기.html">모임만들기</a>
+                <a class="btn btn-primary btn-xl rounded-pill mt-3" href="/group/createGroup">모임만들기</a>
             </div>
 
         </div>
@@ -53,7 +53,7 @@
                     <div class="p-5">
                         <h2 class="display-4">현재 활동중인 모임을 둘러보세요!</h2>
                         
-                        <a class="btn btn-primary btn-xl rounded-pill mt-3" href="-활동중인 모임.html">활동중인 모임</a>
+                        <a class="btn btn-primary btn-xl rounded-pill mt-3" href="/group/groupList">활동중인 모임</a>
                     </div>
                 </div>
             </div>

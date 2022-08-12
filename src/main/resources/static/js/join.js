@@ -1,6 +1,6 @@
 function idcheck(){
     if(document.getElementById("user_id").value==""){
-        alert("아이디를 입력해 주세요.")
+        alert("아이디를 입력해 주세요.");
         document.getElementById("user_id").focus();
         return false;
     }
