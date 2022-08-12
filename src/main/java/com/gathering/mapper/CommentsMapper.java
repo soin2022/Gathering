@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gathering.dto.CommentsVO;
+import com.gathering.dto.QnaVO;
 import com.gathering.paging.Criteria;
 
 @Mapper

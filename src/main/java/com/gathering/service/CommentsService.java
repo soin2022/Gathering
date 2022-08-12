@@ -3,6 +3,7 @@ package com.gathering.service;
 import java.util.List;
 
 import com.gathering.dto.CommentsVO;
+import com.gathering.dto.QnaVO;
 import com.gathering.paging.Criteria;
 
 public interface CommentsService {

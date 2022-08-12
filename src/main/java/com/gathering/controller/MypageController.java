@@ -68,7 +68,7 @@ public class MypageController {
 			mypageService.deleteUser(vo);
 			status.setComplete();
 			
-			return "/mypage/alert";
+			return "/alerts/deleteUserAlert";
 		} else {
 			model.addAttribute("message", "아이디 또는 비밀번호가 틀렸습니다.");
 			return "/mypage/deleteUser";

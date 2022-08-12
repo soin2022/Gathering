@@ -6,8 +6,8 @@
     
     <!--  Qna 댓글 작성 -->
      <insert id="insertComment" parameterType="com.gathering.dto.CommentsVO" >
-      INSERT INTO comments(comment_seq, qna_seq, user_id, content, regDate) 
-         VALUES(product_comment_seq.NEXTVAL, #{qna_seq}, #{user_id}, #{content}, #{regDate})
+      INSERT INTO comments(comment_seq, qna_seq, user_id, content) 
+         VALUES(comment_seq.NEXTVAL, #{qna_seq}, #{user_id}, #{content})
   	 </insert>
 
 	<!-- Qna댓글  총 개숫 -->
@@ -16,8 +16,8 @@
 	</select>
 
 	<!--  Qna 댓글 리스트  -->
-   <select id="commentList" parameterType="int" resultType="com.gathering.dto.CommentsVO">
-      SELECT * FROM comments WHERE comment_seq=#{comment_seq} ORDER BY regDate DESC
+   <select id="commentList"  resultType="com.gathering.dto.CommentsVO">
+      SELECT * FROM comments WHERE qna_seq=#{qna_seq} ORDER BY regDate DESC
    </select>
    
    <!-- Qna댓글 페이징 -->
