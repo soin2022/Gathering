@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
         rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="..css/styles.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
 
 </head>
 
@@ -36,39 +37,40 @@
             <!--메인구간 -->
             <div class="col-10">
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+					
+				<form id="moveForm" method="get">
+				<!-- 정보 저장용 히든 -->
+				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+				<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
+				<input type="hidden" name="type" value="${pageMaker.cri.type }">
+				</form>
+			
+                <h2 style="padding-top:5%">모임리스트</h2>
 
-                <h2 style="padding-top:5%">${모임리스트}</h2>
 
 
-
-
-                    <!--카테고리 검색창-->
-                    <form>
-                    <div class="row mt-3">
-                        <div class="col-10">
-                        <div class="input-group">
-                            <select name="job" class="btn btn-outline-success ">
-                                <option value="">카테고리1</option>
-                                <option value="학생">학생</option>
-                                <option value="회사원">회사원</option>
-                                <option value="기타">기타</option>
+	                                 
+			
+             		<!--  검색버튼 구간 -->
+                    <div class="row mb-3 align-items-center justify-content-center">
+                        <div class="col-4" style="margin-left: 10%;">
+                            <select class="form-select form-select-md" name="type">
+                                <option value=""
+									<c:out value="${pageMaker.cri.type == null?'selected':'' }"/>>--</option>
+								<option value="T"
+									<c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }"/>>제목</option>
+								<option value="C"
+									<c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }"/>>내용</option>
                             </select>
-                            <select name="job" class="btn btn-outline-success mx-2">
-                                <option value="">카테고리2</option>
-                                <option value="학생">학생</option>
-                                <option value="회사원">회사원</option>
-                                <option value="기타">기타</option>
-                            </select>
-                           
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            
-                                <button class="btn btn-outline-success" type="submit">Search</button>
-                            
                         </div>
+                        <div class="col-4">
+                            <input type="text" class="form-control" name="keyword" value="${pageMaker.cri.keyword}">
                         </div>
-
+                        <div class="col-2">
+                            <button class="btn btn-primary" type="button">검색</button>
+                        </div>
                     </div>
-                    </form>  
                 
 
 
@@ -76,7 +78,7 @@
                 <div class="row mb-2 pt-5">
                     <div class="col">
                           
-                        <button type="button" class="btn btn-primary" style="float:right">모임만들기</button>
+                        <button type="button" class="btn btn-primary" style="float:right" onclick="location.href='/group/createGroup'">모임만들기</button>
                     </div>       
                 </div>
 
@@ -87,55 +89,48 @@
                 <!--모임리스트-->
                
                 <div class="row g-4 pb-5 pt-2 row-cols-1 row-cols-lg-3">
-                    <!--<블록-->
-                    <div class="feature col-lg-3 border rounded py-4 m-2" style="cursor: pointer" onclick="location.href='https://www.Google.com'"> <!--누르면 모임상세로-->
+                    
+                    <!-- <<<<<<모임카드 -->
+                    <c:forEach items="${groupList}" var="group">
+                    <div class="feature col-lg-3 border rounded py-4 m-2" style="cursor: pointer" onclick="location.href='/group/groupDetail?group_seq=${group.group_seq}'"> <!--누르면 모임상세로-->
                         <div class="form-check">
-                           
+                           <!-- 관심있는 모임에서 체크버튼있는 자리 -->
                         </div>
-                        <h2>${모임이름}</h2>
-                        <p>${간단소개} 우리는 헬창입니다. 각오하세요</p>
-                        <div class="text-muted">서울/강남구</div>
-                        <div class="row mb-3 text-center">
-                            <div class="col-4 text-muted ">30명</div>    
-                        </div>
-                        
+                        <h2>${group.group_name}</h2>
+                        <p>${group.brief}</p>
+                        	<div class="text-muted">${group.region}</div>
+                            <div class="col-4 text-muted ">${group.kind}</div>    
+                            <div class="col-4 text-muted ">${group.member_limit}</div>    
                     </div>
-                    <!--블록>-->
-                    <!--<블록-->
-                    <div class="feature col-lg-3 border rounded py-4 m-2" style="cursor: pointer" onclick="location.href='https://www.Google.com'"> <!--누르면 모임상세로-->
-                        <div class="form-check">
-                           
-                        </div>
-                        <h2>${모임이름}</h2>
-                        <p>${간단소개} 우리는 헬창입니다. 각오하세요</p>
-                        <div class="text-muted">서울/강남구</div>
-                        <div class="row mb-3 text-center">
-                            <div class="col-4 text-muted ">30명</div>    
-                        </div>
-                        
-                    </div>
-                    <!--블록>-->
+                    </c:forEach>
+                    <!-- 모임카드>>>>>>> -->
+                    
                     
                 </div>
 
 			    <!--페이징-->
-			    <nav aria-label="Page navigation example">
-			        <ul class="pagination justify-content-center">
-			        <li class="page-item">
-			            <a class="page-link" href="#" aria-label="Previous">
-			            <span aria-hidden="true">&laquo;</span>
-			            </a>
-			        </li>
-			        <li class="page-item"><a class="page-link" href="#">1</a></li>
-			        <li class="page-item"><a class="page-link" href="#">2</a></li>
-			        <li class="page-item"><a class="page-link" href="#">3</a></li>
-			        <li class="page-item">
-			            <a class="page-link" href="#" aria-label="Next">
-			            <span aria-hidden="true">&raquo;</span>
-			            </a>
-			        </li>
-			        </ul>
-			    </nav>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                    <c:if test="${pageMaker.prev}">
+                      <li class="page-item">
+                        <a class="page-link" href="${pageMaker.startPage-1}" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      </c:if>
+                      <c:forEach var="num" begin="${pageMaker.startPage}"
+									end="${pageMaker.endPage}">
+                      <li class="page-item" ${pageMaker.cri.pageNum == num ? "active":"" }><a class="page-link" href="${num}">${num}</a></li>
+                      </c:forEach>
+                      <c:if test="${pageMaker.next}">
+                      <li class="page-item">
+                        <a class="page-link" href="${pageMaker.endPage + 1 }" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                      </c:if>
+                    </ul>
+                </nav>
 
                 
 
@@ -161,6 +156,79 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
+    
+    <!-- 검색기능 자바스크립트 -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script>
+		$(document).ready(function() {
+
+			var msg = "${msg}";
+
+			if (msg != "") {
+				alert(msg);
+			}
+
+		});
+
+		function fn_search() {
+			$("#listForm").submit();
+			return false;
+		}
+	</script>
+
+	<!-- 페이지 등록 수정 스크립트 -->
+	<script>
+		let moveForm = $("#moveForm");
+
+		$(".move")
+				.on(
+						"click",
+						function(e) {
+							e.preventDefault();
+
+							moveForm
+									.append("<input type='hidden' name='group_seq' value='"
+											+ $(this).attr("href") + "'>");
+							moveForm.attr("action", "/qna/qnaView");
+							moveForm.submit();
+						});
+
+		$(".pagination a").on("click", function(e) {
+
+			e.preventDefault();
+			moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+			moveForm.attr("action", "/group/groupList");
+			moveForm.submit();
+
+		});
+
+		$(".col-2 button").on("click", function(e) {
+			e.preventDefault();
+
+			let type = $(".col-2 select").val();
+			let keyword = $(".col-2 input[name='keyword']").val();
+
+			if (!type) {
+				alert("검색 종류를 선택하세요.");
+				return false;
+			}
+
+			if (!keyword) {
+				alert("키워드를 입력하세요.");
+				return false;
+			}
+
+			moveForm.find("input[name='type']").val(type);
+			moveForm.find("input[name='keyword']").val(keyword);
+			moveForm.find("input[name='pageNum']").val(1);
+			moveForm.submit();
+		});
+	</script>
+    
+    
+    
 </body>
 
 </html>
