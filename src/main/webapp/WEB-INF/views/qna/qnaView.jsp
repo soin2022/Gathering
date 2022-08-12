@@ -22,7 +22,7 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../css/styles.css" rel="stylesheet" />
     <script type="text/javascript" src="../js/qna.js"></script>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -54,7 +54,7 @@
             </nav>
     
 
-            <!--메인구간 -->
+             <!--메인구간 -->
             
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
        			
@@ -92,73 +92,71 @@
                                     <div class="container my-5 mx-2">
                                         <p>${qnaVO.content}</p>
                                     </div>
-                                </td>
-                                
+                                </td>                              
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr></tr>
                         </tfoot>   
-                            
+                       			 
                                 <table class="table table-sm">
                                     <tbody>
-                                        <c:forEach items="${commentsList}"  var="commentsList">
+                                    	
+                                    	<!--사용자용 댓글리스트 출력-->
+                                    	<c:if test="${sessionScope.user.user_type == 1 }">
                                         <tr>
-                                            <th scope="col" style="text-align:center">운영자(${commentsList.user_id })</th>
-                                            <th scope="col" style="width:50%;">${commentsList.content }</th>
-                                            <th scope="col" style="text-align:center">${commentsList.regDate}</th>
-                                        </tr>
-                                        </c:forEach>
-                                        <!--관리자한테만 보이는 답변입력 칸-->
+                                            <th>     	
+                                            	 <form id="commentForm" name="commentListForm" method="post">
+	                                            	<div id="commentList">
+		                                            	 <input type="hidden" name="qna_seq" value="${qnaVO.qna_seq}" />
+		                                            	 <input type="hidden" id="qna_seq" name="qna_seq" value="${qnaVO.qna_seq }" />
+	        										</div>
+        										</form>
+                                            </th>
+                                        </tr> 
+                                       </c:if>
+                                          
+                                        <!--관리자용 댓글리스트 출력-->
                                         <c:if test="${sessionScope.user.user_type == 0 }">
+                                        
                                         <tr>
+                                            <th>     	
+                                            	 <form id="commentListForm" name="commentListForm" method="post">
+	                                            	<div id="commentList">
+	        										</div>
+        										</form>
+                                            </th>
+                                        </tr>  
+                                        
+                                        <!--관리자한테만 보이는 답변입력 칸-->
+                                        <tr>                                    	
                                             <td colspan="3">
+                                            <form name="commentForm" id="commentForm" method="post">
                                                 <div class="row my-3 align-items-center justify-content-center">
                                                     <div class="col-2" style="text-align:right;">
                                                         <label for="comments" class="form-label">답변작성</label>
                                                     </div>   
-                                                    <form id="commentForm">
+                                               
                                                     <div class="col-6">
-                                                        <textarea class="form-control" id="comments" rows="4" style="resize:none;"></textarea>
+                                                    	<input type="hidden" name="qna_seq" value="${qnaVO.qna_seq}" />
+                                                        <textarea class="form-control" id="content" name="content" rows="4" style="resize:none;"></textarea>
                                                     </div>
-                                                    <div class="col-2">    
-                                                        <input class="btn btn-primary" type="button" value="등록" id="insert">
+                                                    <div class="col-2">         	
+                                                        <input class="btn btn-primary" onClick="save_comment('${qnaVO.qna_seq}')" type="button" value="등록" id="insert">
+                                                        <input type="hidden" id="qna_seq " name="qna_seq " value="${qnaVO.qna_seq }" />
                                                     </div>
-                                                    </form>     
-                                                    </div>
-                                                </div>
+                                                   </div>
+                                            </form>  
                                             </td>
-                                        </tr>
-                                       </c:if>             
+                                        </tr>                  
+                                       </c:if>    
+                                        
                                     </tbody>                                 
                                     <tfoot>                             
                                         <tr></tr>
                                     </tfoot>
-                                </table>    
-                                
-                                <!--페이징-->
-				                <nav aria-label="Page navigation example">
-				                    <ul class="pagination justify-content-center">
-				                    <c:if test="${pageMaker.prev}">
-				                      <li class="page-item">
-				                        <a class="page-link" href="${pageMaker.startPage-1}" aria-label="Previous">
-				                          <span aria-hidden="true">&laquo;</span>
-				                        </a>
-				                      </li>
-				                      </c:if>
-				                      <c:forEach var="num" begin="${pageMaker.startPage}"
-													end="${pageMaker.endPage}">
-				                      <li class="page-item" ${pageMaker.cri.pageNum == num ? "active":"" }><a class="page-link" href="${num}">${num}</a></li>
-				                      </c:forEach>
-				                      <c:if test="${pageMaker.next}">
-				                      <li class="page-item">
-				                        <a class="page-link" href="${pageMaker.endPage + 1 }" aria-label="Next">
-				                          <span aria-hidden="true">&raquo;</span>
-				                        </a>
-				                      </li>
-				                      </c:if>
-				                    </ul>
-				                </nav>
+                            	    </table> 
+                                  
 				                    </table>
 				                </div>
 
@@ -181,63 +179,120 @@
    
    
    <script type="text/javascript">
-	   
-		$(document).ready(function() {
-	
-			var msg = "${msg}";
-	
-			if (msg != "") {
-				alert(msg);
-			}
-	
-		});
-
-   
-   
-   
-		let moveForm = $("#moveForm");
-
-		$(".pagination a").on("click", function(e) {
-
-			e.preventDefault();
-			moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-			moveForm.attr("action", "/commnets_list");
-			moveForm.submit();
-		});
-
-			moveForm.find("input[name='pageNum']").val(1);
-			moveForm.submit();
-		});
 		
+   		//문의사항상세 로딩시에 해당 댓글목록 조회하여 출력
+		$(document).ready(function() {
+
+				getCommentList();
+	
+	
+		});
+
 		
 		/*
-		** 댓글등록
+		** 댓글리스트
 		*/
-		$(".btn btn-primary").on("click", function(e) {
-			e.preventDefault();
+function  getCommentList() {
 			
 			$.ajax({
-				type:'POST',
-				url:'/comments_insert',
-				data:$("#commentForm").serialize(), 	//아이디가 #아래인 폼을 읽어서 그안의 파라메타id들을 읽어서 위에 url로 보내겠다.
+				type:'GET',
+				url:'/commnets_list',
+				dataType: 'json',
+				data:$("#commentForm").serialize(),	//아이디가 #아래인 폼을 읽어서 그안의 파라메타id들을 읽어서 위에 url로 보내겠다.
+				contentType: 'application/x-www-form-urlencoded; charset=utf-8',
 				success: function(data) {
-					if (data=='success') {	// 상품평 등록 성공
-							// 상품평 목록 요청함수 호출
-						$("#comments").val("");
-					} else if (data=='fail') {
-						alert("상품평 등록이 실패하였습니다. 다시 시도해 주세요.");
-					} else if (data=='not_logedin') {
-						alert("상품평 등록은 로그인이 필요합니다.");
-					}
+					
+						var commentList = data.commentList;	
+						showHTML(commentList);
 				},
-				error: function(request, status, error) {
-					alert("error:" + error);
-				}
+						error: function() {
+								alert("댓글 목록을 조회하지 못했습니다.")
+					}
 			});
 		}
+		
+function showHTML(commentList) {
+	var html = "";
+	var p_html = "";
 	
+	if (commentList.length > 0) {
+		// 댓글의 각 항목별로 HTML 생성
+		   $.each(commentList, function(index, item){
+		         html += "<div>";
+		         html += "<div id=\"comment_item\"> <strong>운영자(<b style='color:red'>" + item.user_id + "</b>)답변 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>";
+		         html += item.content+"</div>";
+		         html += "<span id=\"write_date\">" + displayTime(item.regDate) + "</span><br>";
+		         html += "</div>";
+		      });      		
 		
+		}else { // 조회된 댓글이 없을 경우
+			html += "<div>";
+			html += "<h5>등록된 답변이 없습니다.</h5>";
+			html += "</div>";
+		}
+		// 댓글 목록 출력
+		$("#commentList").html(html);
 		
+	}
+	
+	
+	
+//댓글 등록 시간 설정
+function displayTime(timeValue) {
+		var today = new Date();
+		
+		// 현재시간에서 댓글등록시간을 빼줌
+		var timeGap = today.getTime() - timeValue;
+		
+		// timeValue를 Date객체로 변환
+		var dateObj = new Date(timeValue);
+		
+		// timeGap이 24시간 이내인지 판단
+		if (timeGap < (1000 * 60 * 60 * 24)) {  // 시, 분, 초를 구함
+			var hh = dateObj.getHours();
+			var mi = dateObj.getMinutes();
+			var ss = dateObj.getSeconds();
+			
+			//return hh + ':' + mi + ':' + ss;
+			return [(hh>9 ? '':'0')+hh, ':', (mi>9 ? '':'0')+mi, ':', 
+				    (ss>9 ? '':'0')+ss].join('');
+		} else {
+			var yy = dateObj.getFullYear();
+			var mm = dateObj.getMonth() + 1;
+			var dd = dateObj.getDate();
+			
+			//return yy + "-" + mm + "-" + dd;
+			return [yy, '/', (mm>9 ? '':'0')+mm, '/', (dd>9 ? '':'0')+dd].join('');
+		}
+	}
+		
+
+
+//댓글등록 (운영자용)
+function save_comment(qna_seq) {
+	$.ajax({
+		type:'POST',
+		url:'/comments_insert',
+		data:$("#commentForm").serialize(), 	//아이디가 #아래인 폼을 읽어서 그안의 파라메타id들을 읽어서 위에 url로 보내겠다.
+		success: function(data) {
+			if (data=='success') {	// 상품평 등록 성공
+				getCommentList(); 	// 상품평 목록 요청함수 호출
+				$("#content").val("");
+			} else if (data=='fail') {
+				alert("댓글등록이 실패하였습니다. 다시 시도해 주세요.");
+			} else if (data=='not_logedin') {
+				alert("댓글등록은 로그인이 필요합니다.");
+			}
+		},
+		error: function(request, status, error) {
+			alert("error:" + error);
+		}
+	});
+}
+
+
+
+
 		
 		
 	</script>

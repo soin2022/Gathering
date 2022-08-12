@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gathering.dto.CommentsVO;
+import com.gathering.dto.QnaVO;
 import com.gathering.mapper.CommentsMapper;
 import com.gathering.paging.Criteria;
 
