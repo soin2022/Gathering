@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class GroupNoticeVO {
+
 	
 	private int group_notice_seq;
 	private int group_seq;
@@ -18,5 +19,5 @@ public class GroupNoticeVO {
 	private String jungmo_place;
 	private int cnt;
 	
-
 }
+

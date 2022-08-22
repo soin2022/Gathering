@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +62,6 @@
                     </ul>
 
 
-                    </ul>
                 </div>
             </nav>
 
@@ -70,13 +69,33 @@
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 
-                <h2 style="padding-top:5%">{헬창모임}</h2>
+                <h2 style="padding-top:5%">${group.group_name}</h2>
 
                 
                 <div class="row mb-2">
                     <div class="col">
-                        <button type="button" class="btn btn-outline-primary" style="float:right">가입하기</button>
-                        <button type="button" class="btn btn-outline-primary" style="float:right; margin-right:10px">찜하기</button>  
+                    	
+                    	<c:choose>
+	                    	<c:when test="${result == 1}">
+	                        	<button type="button" class="btn btn-outline-primary" style="float:right" onclick="location.href='/group/joinGroup?group_seq=${group.group_seq}'">가입하기</button>
+	                        </c:when>
+	                        <c:otherwise>
+	                        	<c:if test="${joinedCrew.type eq '2'}">
+	                        	<button type="button" class="btn btn-outline-primary" style="float:right" onclick="location.href='/group/outGroup?group_seq=${group.group_seq}'">탈퇴하기</button>
+	                        	</c:if>
+	                        </c:otherwise>
+                        </c:choose>
+                        
+                        <c:if test="${result == 1}">
+							<c:choose>
+							<c:when test="${check eq 'checked'}">                        	
+                        	<button type="button" class="btn btn-outline-primary" style="float:right; margin-right:10px" onclick="location.href='/group/deleteInterest?group_seq=${group.group_seq}'">찜삭제</button>
+                        	</c:when>
+                        	<c:otherwise>
+                        	<button type="button" class="btn btn-outline-primary" style="float:right; margin-right:10px" onclick="location.href='/group/addInterest?group_seq=${group.group_seq}'">찜하기</button>
+                        	</c:otherwise>
+                        	</c:choose>
+                        </c:if>
                     </div>       
                 </div>
                 
@@ -90,20 +109,12 @@
                     <!-- 모임공지 상세 내용-->
 
                     <div class="col-8" style="padding-top: 10px; line-height: 3;">
-                      <p>{서울/강남}<br>{운동/쇠질}</p>
+                      <p>${group.region}<br>${group.kind}</p>
                       <hr>
-                      <p>간단소개 블라블라</p>
+                      <p>${group.brief}</p>
                       <hr>
                       
-                      <p>상세소개상세소개
-                         상세소개상세소개상세소개상세소개
-                         상세소개 
-                         상세소개상세소개
-                         상세소개상세소개상세소개상세소개
-                         상세소개
-                         상세소개상세소개
-                         상세소개상세소개상세소개상세소개
-                         상세소개</p>
+                      <p>${group.detail}</p>
                       <br>
                       <hr>
                       
@@ -111,13 +122,13 @@
                       <!--클릭하면 해당 공지 상세로 이동하게-->
                       <h4>정모현황</h4>
                       <table class="table table-hover">
-                        
                         <tbody>
+                        <c:forEach items="${jungmoList}" var="jungmo">
                           <tr>
                             <td>{수요일 19:00}</td>
-                            <td>{정모제목}</td>
-                            <td>{모임지역}</td>
-                            <td>{참석자수: 10/30명}</td>
+                            <td>${jungmo.title}</td>
+                            <td>${jungmo.jungmo_place}</td>
+                            <td></td>
                           </tr>
                           <tr>
                             <td>수요일 19:00</td>
@@ -131,6 +142,7 @@
                             <td>{모임지역}</td>
                             <td>{참석자수: 10/30명}</td>
                           </tr>
+                        </c:forEach>
                         </tbody>
                       </table>
                       
@@ -138,11 +150,11 @@
                       <table class="table">
                         
                         <tbody>
+                        <c:forEach items="${crewList}" var="crew">
                           <tr>
-                            <td><img class="img-fluid rounded-circle" src="images/profile.jpg" style="width: 70px; height: 70px; margin-right:10px">{김종국(김헬창)}</td>
-                            
+                            <td><img class="img-fluid rounded-circle" src="/images/${crew.crew_image}" style="width: 70px; height: 70px; margin-right:10px">${crew.nickname}</td>
                           </tr>
-                          
+                        </c:forEach>
                         </tbody>
                       </table>    
                    
@@ -151,8 +163,10 @@
                    
                    
                     <div class="col-12">
-                      <button type="submit" class="btn btn-primary">모임수정</button><!--모임장만-->
-                      <button type="submit" class="btn btn-primary">모임삭제</button><!--모임장만-->
+                    <c:if test="${joinedCrew.type eq '1'}">
+                      <button type="button" class="btn btn-primary" onclick="location.href='/group/updateGroupInfo?group_seq=${group.group_seq}'">모임수정</button><!--모임장만-->
+                      <button type="button" class="btn btn-primary" onclick="location.href='/group/deleteGroupInfo?group_seq=${group.group_seq}'">모임삭제</button><!--모임장만-->
+                    </c:if>
                     </div>
                 
                  
@@ -167,6 +181,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
+    <!-- group 스크립트 -->
+	<script type="text/javascript" src="../js/group.js" charset="UTF-8"></script>
+    
+    
+    
 </body>
 
 </html>

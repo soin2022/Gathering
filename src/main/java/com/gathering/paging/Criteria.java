@@ -21,9 +21,8 @@ public class Criteria {
     private String[] typeArr;
     
     private int group_seq;
-    
 
-	public int getGroup_seq() {
+    public int getGroup_seq() {
 		return group_seq;
 	}
 

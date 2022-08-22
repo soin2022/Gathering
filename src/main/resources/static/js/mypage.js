@@ -47,3 +47,37 @@ function deleteUser(){
         document.getElementById("userDeleteForm").submit();
     }
 }
+
+
+function deleteInterestGroup(){
+    var count = 0;
+
+    // 삭제할 항목이 하나인 경우
+    if(document.formm.group_seq.length == undefined){
+        if(document.formm.group_seq.checked == true){
+            count++;
+        }
+    }
+
+    // 삭제할 항목이 2개 이상인 경우
+    for(var i=0; i<document.formm.group_seq.length; i++){
+        if(document.formm.group_seq[i].checked == true){
+            count++;
+        }
+    }
+
+    // 삭제할 항목이 없는 경우
+    if(count == 0){
+        alert("삭제할 항목을 선택해 주세요.");
+    } else {
+        document.getElementById("theform").action="deleteInterest";
+        document.getElementById("theform").submit();
+    }
+    
+}
+
+
+
+
+
+

@@ -26,20 +26,24 @@
 </head>
 
 <body id="page-top">
-    
+    <!-- Nav바 구간-->
     <%@ include file="/WEB-INF/views/navibar.jsp" %>
     
             <!--메인구간 -->
             <div class="col-10">
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
-                <h2 style="padding-top:5%">모임장 인사</h2>
+                <h2 style="padding-top:5%"><strong>${group.group_name}</strong> 가입신청</h2>
 
-                <!--모임생성폼 복붙버전-->
-                <form class="container row mt-3" action="joinForLeader" method="post" enctype="multipart/form-data">
+                <!-- 입력 폼 -->
+                <form method="post" action="/group/joinGroup" enctype="multipart/form-data" class="container row mt-3">
             
                     <div class="mb-3">
-                        <input type="hidden" name="group_seq" value="${group_seq}">
+                        <!-- 히든 -->
+                        <input type="hidden" id="group_seq" name="group_seq" value="${group.group_seq}">
+                        <input type="hidden" id="user_id" name="user_id" value="${user.user_id}">
+                        
+                        
                         <!--자기소개-->
                         <div class="row mb-2">
                             <label for="crew_brief" class="col-sm-2 col-form-label">자기소개</label>
@@ -60,7 +64,7 @@
                         <div class="row">
                             <div class="col text-center">
                                 <input class="btn btn-primary" style="margin-right: 10px;" type="submit" value="가입">
-                                <button class="btn btn-primary" type="button">취소</button>
+                                <button class="btn btn-primary" type="button" onclick="history.back()">취소</button>
                             </div>
                         </div>
     
@@ -75,7 +79,8 @@
         </div>
     </div>
 
-     <%@ include file="/WEB-INF/views/footer.jsp" %>
+   <!-- Footer-->
+   <%@ include file="/WEB-INF/views/footer.jsp" %>
    
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -14,7 +14,31 @@
 		DELETE FROM user_info WHERE user_id=#{user_id} AND password=#{password}
 	</delete>    
    
-   
-      
+   	
+	<!-- 내가 만든모임의 고유넘버-->
+	<select id="getGroupSeqForOwnedGroup" parameterType="String" resultType="int">
+		SELECT group_seq FROM crew WHERE user_id=#{user_id} AND type='1'
+	</select>
+	<!-- 내가 가입한모임의 고유넘버 -->
+	<select id="getGroupSeqForJoinedGroup" parameterType="String" resultType="int">
+		SELECT group_seq FROM crew WHERE user_id=#{user_id} AND type='2'
+	</select>
+	<!-- 내가 찜한 모임의 고유넘버 -->
+	<select id="getGroupSeqForInterestGroup" parameterType="String" resultType="int">
+		SELECT group_seq FROM interest_group WHERE user_id=#{user_id}
+	</select>
+	
+	
+	<!-- 마이페이지용 모임리스트 -->
+	<select id="getGroupListForMypage" resultType="com.gathering.dto.GroupInfoVO">
+    
+        
+             SELECT * FROM group_info WHERE group_seq=#{group_seq}
+	</select>
+	
+	<!--총 개숫--> 
+	<select id="getTotalGroupListForMypage" resultType="int">
+		SELECT count(*) FROM group_info WHERE group_seq=#{group_seq}
+	</select>	
     
 </mapper>

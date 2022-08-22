@@ -25,20 +25,20 @@
 </head>
 
 <body id="page-top">
+    <!-- Nav바 구간-->
+    <%@ include file="/WEB-INF/views/navibar.jsp" %>
     
-	<%@ include file="/WEB-INF/views/navibar.jsp" %>
-   
             <!--메인구간 -->
+            <div class="col-12">
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <h2 style="padding-top:5%">정말 삭제하시겠습니까??</h2>
 
-                <h2 style="padding-top:5%">정말 탈퇴하시겠습니까??</h2>
-    
+            
             <!-- 회원가입 폼-->
             
-            <form id="userDeleteForm" method="post" class="container row" style="float: none; margin:100 auto;">
-            
+            <form id="deleteGroupForm" method="post" class="container row" style="float: none; margin:100 auto;">
+            	<input type="hidden" name="group_seq" id="group_seq" value="${group.group_seq}">
                 <div class="mb-3">
-					                   
                     <!--회원ID-->
                     <div class="row mb-2">
                          <label for="user_id" class="col-sm-2 col-form-label">회원ID</label>
@@ -58,7 +58,7 @@
                    <div style="text-align: center; color:red"><span>${message}</span></div>
                     <div class="row">
                         <div class="col text-center">
-                            <input class="btn btn-primary" style="margin-right: 10px;" type="button" value="탈퇴" onclick="deleteUser()">
+                            <input class="btn btn-primary" style="margin-right: 10px;" type="button" value="삭제" onclick="deleteGroup()"><!--메인화면으로 이동-->
                             <button class="btn btn-primary" type="button" onclick="history.back()">취소</button>
                         </div>
                     </div>
@@ -69,21 +69,19 @@
 
             </main>
         </div>
+        </div>
     </div>
 
     <!-- Footer-->
-   <footer class="py-5 bg-light" >
-    <div class="container px-5">
-        <p class="m-0 text-center text-black small">Copyright &copy; Your Website 2022</p>
-    </div>
-   </footer>
+   	<%@ include file="/WEB-INF/views/footer.jsp" %>
+   
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
+    <!-- group 스크립트 -->
+	<script type="text/javascript" src="../js/group.js" charset="UTF-8"></script>
     
-     <!-- maypage 스크립트 -->
-	<script type="text/javascript" src="../js/mypage.js" charset="UTF-8"></script>
     
 </body>
 

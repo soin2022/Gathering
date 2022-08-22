@@ -39,25 +39,25 @@
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">
+                            <a class="nav-link active" aria-current="page" href="/mypage/interestGroupList">
                                 <span data-feather="home"></span>
                                 관심있는 모임
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/mypage/joinedGroup">
                                 <span data-feather="file"></span>
                                내가 가입한 모임
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/mypage/ownedGroup">
                                 <span data-feather="shopping-cart"></span>
                                 내가 만든 모임
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/mypage/myInfo">
                                 <span data-feather="users"></span>
                                 내 정보 관리
                             </a>
@@ -73,7 +73,7 @@
            
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
-                <h2 style="padding-top:5%">${title}회원정보수정</h2>
+                <h2 style="padding-top:5%">회원정보수정</h2>
 
             
             <!-- 회원가입 폼-->
@@ -196,7 +196,9 @@
                     <div class="row mb-2">
                         <label for="address" class="col-sm-2 col-form-label">주소</label>
                         <div class="col-auto">
-                            <input type="text" name="address" id="address" size="50" value="${sessionScope.user.address}" readonly>
+                            <input type="text" name="address" class="form-control" id="address" size="50" value="${sessionScope.user.address}" readonly>
+                        </div>
+                        <div class="col-auto">
                             <input class="btn btn-primary" type="button" value="주소찾기" onclick="kakaopost()">
                         </div>
                     </div>    
