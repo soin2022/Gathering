@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,14 +36,14 @@
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">
+                         <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/group/groupDetail?group_seq=${group.group_seq}">
                                 <span data-feather="home"></span>
                                 모임상세
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link"  style="cursor: pointer" onclick="location.href='/group/groupNoticeListView?group_seq=${group.group_seq}'">
+                             <a class="nav-link" href="/group/groupNoticeListView?group_seq=${group.group_seq}">
                                 <span data-feather="file"></span>
                                 모임공지
                             </a>
@@ -124,24 +125,14 @@
                       <table class="table table-hover">
                         <tbody>
                         <c:forEach items="${jungmoList}" var="jungmo">
-                          <tr>
-                            <td>{수요일 19:00}</td>
+                          <tr style="cursor:pointer" onclick="location.href='/group/groupNoticeViewAction?group_notice_seq=${jungmo.group_notice_seq}&group_seq=${jungmo.group_seq}'">
+                            <td>${fn:substring(jungmo.jungmo_date,0,10)}</td>
+                            <td>${fn:substring(jungmo.jungmo_date,11,16)}</td>
                             <td>${jungmo.title}</td>
                             <td>${jungmo.jungmo_place}</td>
                             <td></td>
                           </tr>
-                          <tr>
-                            <td>수요일 19:00</td>
-                            <td>하체조지는날</td>
-                            <td>서울/강남</td>
-                            <td>참석자수: 10/30명</td>
-                          </tr>
-                          <tr>
-                            <td>{수요일 19:00}</td>
-                            <td>{정모제목}</td>
-                            <td>{모임지역}</td>
-                            <td>{참석자수: 10/30명}</td>
-                          </tr>
+                         
                         </c:forEach>
                         </tbody>
                       </table>

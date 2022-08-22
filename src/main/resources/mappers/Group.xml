@@ -19,12 +19,11 @@
     
     <!-- 모임상세 -->
     <select id="getGroupDetail" parameterType="int" resultType="com.gathering.dto.GroupInfoVO">
-
     	SELECT * FROM group_info WHERE group_seq=#{group_seq}
     </select>
     <!-- 모임상세를 위한 정모정보 -->
     <select id="getGroupJungmo" parameterType="int" resultType="com.gathering.dto.GroupNoticeVO">
-    	SELECT * FROM group_notice WHERE group_seq=#{group_seq} AND type=#{'정모'} AND (jungmo_date >= SYSDATE)
+    	SELECT * FROM group_notice WHERE group_seq=#{group_seq} AND SUBSTR(jungmo_date, 1, INSTR(jungmo_date, 'T')-1) >= TO_CHAR(SYSDATE, 'yyyy-MM-dd')
     </select>
     <!-- 모임상세를 위한 회원정보 -->
     <select id="getGroupCrews" parameterType="int" resultType="com.gathering.dto.CrewInfoVIewVO">
