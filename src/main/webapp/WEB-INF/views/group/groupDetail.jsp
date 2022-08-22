@@ -42,7 +42,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link"  style="cursor: pointer" onclick="location.href='/group/groupNoticeListView?group_seq=${group.group_seq}'">
                                 <span data-feather="file"></span>
                                 모임공지
                             </a>

@@ -38,4 +38,56 @@ public class CommentsServiceImpl implements CommentsService {
 	public List<CommentsVO> commentListWithPaging(Criteria cri){
 		return commentsMapper.commentListWithPaging(cri);
 	}
+	
+	
+	@Override
+	public void deleteComment(int qna_seq){
+		commentsMapper.deleteComment(qna_seq);
+	}
+	
+	//------------ 그룹 공지 댓글 파트 ----------------//
+	
+	@Override
+	public int groupInsertComment(CommentsVO vo) {
+		return commentsMapper.groupInsertComment(vo);
+	}
+	
+	//댓글 총 갯수
+	@Override
+	public int groupGetTotal(Criteria cri) {
+		return commentsMapper.groupGetTotal(cri);
+	}
+	
+	//댓글 리스트
+	@Override
+	public List<CommentsVO> groupCommentList (int qna_seq) {
+		return commentsMapper.groupCommentList(qna_seq);
+	}
+	
+	//페이징 리스트
+	@Override
+	public List<CommentsVO> groupCommentListWithPaging(Criteria cri){
+		return commentsMapper.groupCommentListWithPaging(cri);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

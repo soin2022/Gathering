@@ -11,6 +11,7 @@ import com.gathering.paging.Criteria;
 
 public interface GroupService {
 
+
 	public GroupInfoVO getGroupByGroupName(GroupInfoVO vo);
 	
 	public void createNewGroup(GroupInfoVO vo);
@@ -46,3 +47,4 @@ public interface GroupService {
 	public void deleteInterestGroup(InterestGroupVO vo);
 
 }
+

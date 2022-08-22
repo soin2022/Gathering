@@ -7,13 +7,12 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gathering.dto.CommentsVO;
+import com.gathering.dto.GroupNoticeVO;
 import com.gathering.dto.QnaVO;
 import com.gathering.dto.UserInfoVO;
 import com.gathering.service.CommentsService;
@@ -63,5 +62,64 @@ public class CommentsController {
 	
 	
 	
+	//------------ 그룹 공지 댓글 파트 ----------------//
 	
+	
+	//댓글 저장
+	@PostMapping("/group_comments_insert")
+	public String GroupInsertQna(GroupNoticeVO gVo, CommentsVO vo, HttpSession session) {
+		
+		UserInfoVO user = (UserInfoVO)session.getAttribute("user");
+		
+		if(user== null) {
+				return "user/login";
+		} else {
+				vo.setUser_id(user.getUser_id());
+				vo.setGroup_notice_seq(gVo.getGroup_notice_seq());
+				
+				if(commentsService.groupInsertComment(vo) > 0) {
+		            return "success";
+		         } else {
+		            return "fail";
+		         }
+	  }
 }
+	
+	//리스트 
+	@GetMapping(value="/group_commnets_list", produces="application/json; charset=UTF-8")
+	public Map<String, Object> groupCommentsList(CommentsVO vo,  HttpSession session) {
+		
+		//화면으로 반환할 데이터를 저장할 Map 작성
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		// 상품에 대한 댓글 목록 조회
+		List<CommentsVO> commentList = commentsService.groupCommentList(vo.getGroup_notice_seq());
+
+		map.put("commentList", commentList);
+		
+		return map;
+			
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

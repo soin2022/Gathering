@@ -16,6 +16,7 @@ import com.gathering.paging.Criteria;
 @Service
 public class GroupServiceImpl implements GroupService {
 
+
 	@Autowired
 	private GroupMapper groupMapper;
 	
@@ -110,3 +111,4 @@ public class GroupServiceImpl implements GroupService {
 
 
 }
+

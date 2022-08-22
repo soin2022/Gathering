@@ -11,14 +11,15 @@
     
     <!-- 모임 만들기 -->
     <insert id="createNewGroup" parameterType="com.gathering.dto.GroupInfoVO">
-    	INSERT INTO group_info VALUES(group_seq.NEXTVAL, #{group_name}, #{brief}, #{detail}, #{kind}, #{region}, #{member_limit})
+       INSERT INTO group_info VALUES(group_seq.NEXTVAL, #{group_name}, #{brief}, #{detail}, #{kind}, #{region}, #{member_limit})
     </insert> 
     <insert id="insertCrewLeader" parameterType="com.gathering.dto.CrewVO">
-    	INSERT INTO crew VALUES(crew_seq.NEXTVAL, #{user_id}, #{group_seq}, #{crew_image}, #{crew_brief}, #{type})
+       INSERT INTO crew VALUES(crew_seq.NEXTVAL, #{user_id}, #{group_seq}, #{crew_image}, #{crew_brief}, #{type})
     </insert>
     
     <!-- 모임상세 -->
     <select id="getGroupDetail" parameterType="int" resultType="com.gathering.dto.GroupInfoVO">
+
     	SELECT * FROM group_info WHERE group_seq=#{group_seq}
     </select>
     <!-- 모임상세를 위한 정모정보 -->
@@ -30,6 +31,7 @@
 		SELECT * FROM crew_info_view WHERE group_seq=#{group_seq}
     </select>
 	
+
 
     
     
@@ -55,28 +57,31 @@
 	<select id="getGroupListPaging" resultType="com.gathering.dto.GroupInfoVO">
     
     <![CDATA[
-       		 SELECT * FROM(
+              SELECT * FROM(
         
              SELECT  rownum  as rn, group_seq, group_name, brief, detail, kind, region, member_limit FROM group_info WHERE rownum <= #{pageNum} * #{amount}
                   ]]>
-			<if test="keyword != null">
-				<include refid="criteria"></include>
-			</if>
-	    <![CDATA[
-	                )
-	        WHERE rn > (#{pageNum} -1) * #{amount} ORDER BY group_seq DESC
-	    ]]>
-	</select>
-	
-	
-	<!-- 모임리스트 총 갯수 -->
-	<select id="getTotalCount" resultType="int">
-		select count(*) from group_info
-		<if test="keyword != null">
-			where group_seq > 0
-			<include refid="criteria"></include>
-		</if>
-	</select>
+         <if test="keyword != null">
+            <include refid="criteria"></include>
+         </if>
+       <![CDATA[
+                   )
+           WHERE rn > (#{pageNum} -1) * #{amount} ORDER BY group_seq DESC
+       ]]>
+   </select>
+   
+   
+   <!-- 모임리스트 총 갯수 -->
+   <select id="getTotalCount" resultType="int">
+      select count(*) from group_info
+      <if test="keyword != null">
+         where group_seq > 0
+         <include refid="criteria"></include>
+      </if>
+   </select>
+    
+    
+    
     
     
     <!-- 모임가입하기 -->

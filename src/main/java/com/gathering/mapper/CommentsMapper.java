@@ -23,6 +23,44 @@ public interface CommentsMapper {
 	// Qna 페이징 리스트
 	public List<CommentsVO> commentListWithPaging(Criteria cri);
 	
+	public void deleteComment(int qna_seq);
+	
+	
+	
+	
+	//------------ 그룹 공지 댓글 파트 ----------------//
+	
+	
+	// 댓글 작성
+	public int groupInsertComment(CommentsVO vo);
+	
+	//댓글 총 갯수
+	public int groupGetTotal(Criteria cri);
+	
+	//댓글 리스트
+	public List<CommentsVO> groupCommentList (int qna_seq);
+	
+	// 페이징 리스트
+	public List<CommentsVO> groupCommentListWithPaging(Criteria cri);
+	
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

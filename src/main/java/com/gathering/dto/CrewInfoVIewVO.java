@@ -13,3 +13,4 @@ public class CrewInfoVIewVO {
 	private int group_seq;
 	
 }
+

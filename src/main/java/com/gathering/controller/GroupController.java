@@ -175,6 +175,7 @@ public class GroupController {
 			return "/group/joinGroup";
 		}
 	}
+
 	
 	// 모임 가입하기
 	@PostMapping("/group/joinGroup")

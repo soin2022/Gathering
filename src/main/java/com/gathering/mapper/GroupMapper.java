@@ -59,3 +59,4 @@ public interface GroupMapper {
 	public void deleteInterestGroup(InterestGroupVO vo);
 	
 }
+

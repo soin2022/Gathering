@@ -16,6 +16,7 @@ import com.gathering.dto.QnaVO;
 import com.gathering.dto.UserInfoVO;
 import com.gathering.paging.Criteria;
 import com.gathering.paging.PageMakerDTO;
+import com.gathering.service.CommentsService;
 import com.gathering.service.QnaService;
 
 @Controller
@@ -24,6 +25,9 @@ public class QnaController {
 	
 	@Autowired
 	private QnaService qnaService;
+	
+	@Autowired
+	private CommentsService commentsService;
 	
 	/* Q&A 게시판 리스트(페이징, 검색 제외)
 	@GetMapping("/qna/qnaList")
@@ -71,7 +75,7 @@ public class QnaController {
 		UserInfoVO user= (UserInfoVO)session.getAttribute("user");
 		
 		if(user == null) {
-				return "user/login";
+			return "/alerts/mustLoginAlert";
 		} else {
 
 			List<QnaVO> qnaList = qnaService.getListPaging(cri);
@@ -96,7 +100,7 @@ public class QnaController {
 		UserInfoVO user= (UserInfoVO)session.getAttribute("user");
 		
 		if(user == null) {
-				return "user/login";
+			return "/alerts/mustLoginAlert";
 		} else {
 			
 				return "qna/qnaInsertForm"; 
@@ -110,7 +114,7 @@ public class QnaController {
 		UserInfoVO user = (UserInfoVO)session.getAttribute("user");
 		
 		if(user== null) {
-				return "user/login";
+			return "/alerts/mustLoginAlert";
 		} else {
 			
 				vo.setUser_id(user.getUser_id());
@@ -131,7 +135,7 @@ public class QnaController {
 			UserInfoVO user = (UserInfoVO)session.getAttribute("user");
 			
 			if(user== null) {
-				return "user/login";
+				return "/alerts/mustLoginAlert";
 					
 			} else if(qna.getPassword() != null){		//해당게시글 공개 or비공개 체크 
 				
@@ -185,7 +189,6 @@ public class QnaController {
 				model.addAttribute("qnaVO", qna);
 				return "qna/qnaView";
 				
-				
 			} else {
 				
 				model.addAttribute("message", "비밀번호가 일치하지 않습니다.");
@@ -201,7 +204,7 @@ public class QnaController {
 		UserInfoVO user= (UserInfoVO)session.getAttribute("user");
 		
 		if(user == null) {
-				return "user/login";
+			return "/alerts/mustLoginAlert";
 		} else {
 				
 				QnaVO qna = qnaService.getQnaView(vo.getQna_seq());
@@ -219,7 +222,7 @@ public class QnaController {
 		UserInfoVO user = (UserInfoVO)session.getAttribute("user");
 		
 		if(user== null) {
-				return "user/login";
+			return "/alerts/mustLoginAlert";
 		} else {
 			
 				vo.setUser_id(user.getUser_id());
@@ -239,7 +242,7 @@ public class QnaController {
 		UserInfoVO user= (UserInfoVO)session.getAttribute("user");
 		
 		if(user == null) {
-				return "user/login";
+			return "/alerts/mustLoginAlert";
 		} else {
 				
 				QnaVO qna = qnaService.getQnaView(vo.getQna_seq());
@@ -257,11 +260,12 @@ public class QnaController {
 		UserInfoVO user= (UserInfoVO)session.getAttribute("user");
 				
 		if(user == null) {
-				return "user/login";
+			return "/alerts/mustLoginAlert";
 		} else {
 			
 				if(user.getPassword().equals(pwd)) {	//로그인상태 사용자 비번과 입력비번값 비교
 	
+					commentsService.deleteComment(vo.getQna_seq());	//해당 문의글에 댓글이 묶여있음,, 댓글 먼저 삭제처리
 					qnaService.deleteQna(vo.getQna_seq());
 		
 					return  "redirect:qna/qnaList";

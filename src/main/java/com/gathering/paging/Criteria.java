@@ -2,6 +2,7 @@ package com.gathering.paging;
 
 import java.util.Arrays;
 
+
 public class Criteria {
 	 
 	/* 현재 페이지 */
@@ -20,7 +21,7 @@ public class Criteria {
     private String[] typeArr;
     
     private int group_seq;
-    
+
     public int getGroup_seq() {
 		return group_seq;
 	}
