@@ -61,7 +61,7 @@ public class GroupNoticeController {
 					return "/alerts/mustJoinAlert";				
 				} else {
 				*/	
-				///////////////////////////////////////
+				/////////////////////////////////////////
 				
 				GroupInfoVO group = groupService.getGroupDetail(vo.getGroup_seq());
 				model.addAttribute("group", group);
