@@ -37,14 +37,14 @@
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">
+                         <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/group/groupDetail?group_seq=${group.group_seq}">
                                 <span data-feather="home"></span>
                                 모임상세
                             </a>
                         </li>
                         <li class="nav-item">
-                             <a class="nav-link"  style="cursor: pointer" onclick="location.href='/group/groupNoticeListView?group_seq=${group.group_seq}'">
+                             <a class="nav-link" href="/group/groupNoticeListView?group_seq=${group.group_seq}">
                                 <span data-feather="file"></span>
                                 모임공지
                             </a>
