@@ -21,7 +21,11 @@
       DELETE group_notice WHERE group_notice_seq=#{group_notice_seq}
     </delete>
     
-
+  <!--  해당모임의 모임원 조회   -->
+    <select id="getCrewList"  resultType="com.gathering.dto.CrewInfoVIewVO">
+      SELECT * FROM crew_info_view WHERE group_seq=#{group_seq} AND user_id=#{user_id}
+    </select>
+     
 	
     <!-- GroupNoticeList (검색 )-->
     <sql id="criteria">

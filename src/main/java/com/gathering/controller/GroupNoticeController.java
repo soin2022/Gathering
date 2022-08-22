@@ -49,19 +49,17 @@ public class GroupNoticeController {
 				return "/alerts/mustLoginAlert";
 			} else {							
 				
-				List<CrewInfoVIewVO> crewList = groupService.getGroupCrews(vo.getGroup_seq());
-				model.addAttribute("crewList", crewList);
-				
-				////////////////////////////////////////
-				
-				System.out.println("<<<<<<<<<<<<<" + crewList.toString() + "----" + user.toString() + ">>>>>>" );
-	
-				/*해당 공지모임 접근 시, 크루가 아니면 접근 불가
-				if(crewList.contains(user.getUser_id()) == false) {
-					return "/alerts/mustJoinAlert";				
+				//해당모임에 가입하지 않은 사람은 해당 게시물에 접근할 수 없음
+				List<CrewInfoVIewVO> crew = groupNoticeService.getCrewList(vo.getGroup_seq(), user.getUser_id());
+				System.out.println("-------" + crew.toString() + "---------");
+				if(crew.isEmpty()) {
+					return "/alerts/mustJoinAlert";		
 				} else {
-				*/	
-				/////////////////////////////////////////
+					
+				// 해당모임에 가입된 사람이면 실행	
+				
+				List<CrewInfoVIewVO> crewList = groupService.getGroupCrews(vo.getGroup_seq());
+				model.addAttribute("crewList", crewList);	
 				
 				GroupInfoVO group = groupService.getGroupDetail(vo.getGroup_seq());
 				model.addAttribute("group", group);
@@ -87,7 +85,7 @@ public class GroupNoticeController {
 				return "/group/groupNoticeList";
 			}
 		}
-		
+		}	
 		
 	//그룹내 공지 등록페이지 이동
 		@GetMapping("/groupNoticeInsert")

@@ -4,7 +4,7 @@ package com.gathering.service;
 import java.util.HashMap;
 import java.util.List;
 
-
+import com.gathering.dto.CrewInfoVIewVO;
 import com.gathering.dto.GroupNoticeVO;
 import com.gathering.paging.Criteria;
 
@@ -29,5 +29,7 @@ public interface GroupNoticeService {
 		
 		//공지 삭제
 		public void deleteGroupNotice(int group_notice_seq);
+		
+		public List<CrewInfoVIewVO> getCrewList(int group_seq, String user_id);
 
 }

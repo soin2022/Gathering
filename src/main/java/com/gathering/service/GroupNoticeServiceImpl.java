@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gathering.dto.CrewInfoVIewVO;
 import com.gathering.dto.GroupInfoVO;
 import com.gathering.dto.GroupNoticeVO;
 import com.gathering.mapper.GroupNoticeMapper;
@@ -65,6 +66,13 @@ public class GroupNoticeServiceImpl implements GroupNoticeService {
 	public void deleteGroupNotice(int group_notice_seq) {
 		
 		groupNoticeMapper.deleteGroupNotice(group_notice_seq);
+	}
+
+
+	@Override
+	public List<CrewInfoVIewVO> getCrewList(int group_seq, String user_id) {
+		
+		return groupNoticeMapper.getCrewList(group_seq, user_id);
 	}
 	
 	
