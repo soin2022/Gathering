@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -118,7 +119,7 @@
 	                      <c:if test="${groupNotice.type eq '정모'}">
 	                      <div class="jungmo_detail">
 	                      <div>                     
-	                                 일 시 : ${groupNotice.jungmo_date}<br>
+	                                 일 시 : ${fn:substring(groupNotice.jungmo_date,0,10)}&nbsp; ${fn:substring(groupNotice.jungmo_date,11,16)}<br>
 	                           		 장 소 : <input type="text" name="address" id="address" size="50" style="border:none; background:white;"  value="${groupNotice.jungmo_place}" disabled> <br>
 	                      </div>
 	                      <div>
