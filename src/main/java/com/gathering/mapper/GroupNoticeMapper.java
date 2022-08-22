@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-
+import com.gathering.dto.CrewInfoVIewVO;
 import com.gathering.dto.GroupNoticeVO;
 import com.gathering.paging.Criteria;
 
@@ -35,4 +35,7 @@ public interface GroupNoticeMapper {
 	
 	//공지 삭제
 	public void deleteGroupNotice(int group_notice_seq);
+	
+	// 크루원 조회 
+	public List<CrewInfoVIewVO> getCrewList(int group_seq, String user_id);
 }
