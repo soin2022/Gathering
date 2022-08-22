@@ -11,7 +11,7 @@
     </select>
      
     
-    <!-- QnaList (페이징, 검색 포함)-->
+    <!-- QnaList (검색 )-->
     <sql id="criteria">
 		<trim prefix="AND (" suffix=")" prefixOverrides="OR">
 			<foreach collection="typeArr" item="type">

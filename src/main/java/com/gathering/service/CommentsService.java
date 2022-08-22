@@ -8,15 +8,33 @@ import com.gathering.paging.Criteria;
 
 public interface CommentsService {
 
-	int insertComment(CommentsVO vo);
+	public int insertComment(CommentsVO vo);
 
 	//Qna댓글 총 갯수
-	int getTotal(Criteria cri);
+	public int getTotal(Criteria cri);
 
 	//Qna댓글 리스트
-	List<CommentsVO> commentList(int qna_seq);
+	public List<CommentsVO> commentList(int qna_seq);
 
 	// Qna 페이징 리스트
-	List<CommentsVO> commentListWithPaging(Criteria cri);
+	public List<CommentsVO> commentListWithPaging(Criteria cri);
+	
+	
+	public void deleteComment(int qna_seq);
+	
+	
+	
+	//------------ 그룹 공지 댓글 파트 ----------------//
+	
+	public int groupInsertComment(CommentsVO vo);
+
+	//댓글 총 갯수
+	public int groupGetTotal(Criteria cri);
+
+	//댓글 리스트
+	public List<CommentsVO> groupCommentList(int qna_seq);
+
+	// 페이징 리스트
+	public List<CommentsVO> groupCommentListWithPaging(Criteria cri);
 
 }

@@ -2,6 +2,7 @@ package com.gathering.paging;
 
 import java.util.Arrays;
 
+
 public class Criteria {
 	 
 	/* 현재 페이지 */
@@ -19,7 +20,18 @@ public class Criteria {
     /* 검색 타입 배열 */
     private String[] typeArr;
     
-    /* 기본 생성자 -> 기봅 세팅 : pageNum = 1, amount = 10 */
+    private int group_seq;
+    
+
+	public int getGroup_seq() {
+		return group_seq;
+	}
+
+	public void setGroup_seq(int group_seq) {
+		this.group_seq = group_seq;
+	}
+
+	/* 기본 생성자 -> 기봅 세팅 : pageNum = 1, amount = 10 */
     public Criteria() {
         this(1,10);
     }

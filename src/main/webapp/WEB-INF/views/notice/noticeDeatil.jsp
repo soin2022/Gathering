@@ -1,200 +1,213 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-     
-     
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>One Page Wonder - Start Bootstrap Template</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
-        rel="stylesheet" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../css/styles.css" rel="stylesheet" />
-    
-
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>One Page Wonder - Start Bootstrap Template</title>
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- Google fonts-->
+<link
+	href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
+	rel="stylesheet" />
+<link
+	href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+	rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="../css/styles.css" rel="stylesheet" />
+<style type="text/css">
+</style>
 </head>
 
 <body id="page-top">
-     <%@ include file="/WEB-INF/views/navibar.jsp" %>
-
-            <!--∏ﬁ¿Œ±∏∞£ -->
-            
-            <div class="col-10">
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+	<%@ include file="/WEB-INF/views/navibar.jsp"%>
 
 
+	<!--Î©îÏù∏Íµ¨Í∞Ñ -->
 
-                
-                <h2 style="padding-top:5%">∞¯¡ˆªÁ«◊ªÛºº</h2>
-                    <div class="row mb-2">
-                        <div class="col">
-                            <a href="javascript:void(0);" class="btn btn-danger" onclick="deleteConfirm();">ªË¡¶</a>
-                            <a href="/notice/noticeUpdate?notice_seq=${noticeInfo.notice_seq }" class="btn btn-outline-primary" style="float:right">ºˆ¡§</a> 
-                        </div>       
-                    </div>
-                    
-                
+	<div class="col-10">
+		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
 
-                <div class="table-responsive">
-                    <table class="table table-sm">
-                        <thead>
-                            <tr>
+
+
+			<h2 style="padding-top: 5%">Í≥µÏßÄÏÇ¨Ìï≠ÏÉÅÏÑ∏</h2>
+			<div class="row mb-2">
+				<div class="col">
+					<c:choose>
+						<c:when test="${user.user_type==0 }">
+							<a href="javascript:void(0);" class="btn btn-outline-primary"
+								onclick="deleteConfirm(); " style="float: right">ÏÇ≠Ï†ú</a>
+							<a class="btn" id="modify_btn" style="float: right">ÏàòÏ†ï ÌïòÍ∏∞</a>
+						</c:when>
+					</c:choose>
+				</div>
+				<form id="infoForm" action="/notice/noticeUpdate" method="get">
+					<input type="hidden" id="notice_seq" name="notice_seq"
+						value='<c:out value="${noticeInfo.notice_seq}"/>'> <input
+						type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+					<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+					<input type="hidden" name="type" value="${cri.type }"> <input
+						type="hidden" name="keyword" value="${cri.keyword }">
+				</form>
+			</div>
+
+
+			<div class="table-responsive">
+
+				<table class="table table-sm">
+					<thead>
+						<tr>
 
 							<th scope="col"><input name="notice_seq" readonly="readonly"
 								value='<c:out value="${noticeInfo.notice_seq}"/>'></th>
-							 <th scope="col"><input name="title" readonly="readonly" value='<c:out value="${noticeInfo.title}"/>' ></th>
-                                 <th scope="col"><input name="cnt" readonly="readonly" value='<c:out value="${noticeInfo.cnt}"/>' ></th>
-                                 <th scope="col"><input name="cnt" readonly="readonly" value='<c:out value="${noticeInfo.regdate}"/>' ></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="height: auto;">
-                                <td colspan="4">
-                                    <div class="container my-5 mx-2">
-                                        <p>${noticeInfo.content}
-                                        <img src="logo/∞¯¡ˆªÁ«◊2_shop1_114752 (1).jpg" style="width: 625px; height:auto;">
-                                    </div>
-                                </td>
-                                
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr></tr>
-                        </tfoot>   
-                            
-                                <table class="table table-sm">
-                                    <tbody>
-                                        <tr>
-                                            <th scope="col" style="text-align:center"></th>
-                                            <th scope="col" style="width:50%;"></th>
-                                            <th scope="col" style="text-align:center"></th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="col" style="text-align:center"></th>
-                                            <th scope="col" style="width:50%;">}</th>
-                                            <th scope="col" style="text-align:center"></th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="col" style="text-align:center">¿Ãº¯Ω≈</th>
-                                            <th scope="col" style="width:50%;">ø¯±’ ∞≥Ω»¿Ω</th>
-                                            <th scope="col" style="text-align:center">1592.10.08</th>
-                                        </tr>
-                                        <!--¥Ò±€¿‘∑¬-->
-                                        <tr>
-                                            <td colspan="3">
-                                                <div class="row my-3 align-items-center justify-content-center">
-                                                    <div class="col-2" style="text-align:right;">
-                                                        <label for="comments" class="form-label">¥Ò±€¿€º∫</label>
-                                                    </div>    
-                                                    <div class="col-6">
-                                                        <textarea class="form-control" id="comments" rows="1" style="resize:none;"></textarea>
-                                                    </div>
-                                                    <div class="col-2">    
-                                                        <input class="btn btn-primary" type="button" value="¥Ò±€µÓ∑œ">
-                                                    </div>    
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                       
-                                        
-                                    </tbody>
-                                    
-                                    <tfoot>
-                                        
-                                        <tr></tr>
-                                    </tfoot>
-                                </table>    
-                                                          
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination justify-content-center">
-                                      <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                          <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                      </li>
-                                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                      <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                          <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                      </li>
-                                    </ul>
-                                </nav>
-                            
-                        
-                    </table>
-                </div>
-
-                <div class="row my-3">
-                    <div class="col text-center">
-                        <button class="btn btn-primary" type="button" onclick="location='/notice/noticeLi';">∞¯¡ˆ∏Ò∑œ</button>
-                    </div>
-                </div>
-                
-                
-                
-                
+							<th scope="col"><input name="title" readonly="readonly"
+								value='<c:out value="${noticeInfo.title}"/>'></th>
+							<th scope="col"><input name="cnt" readonly="readonly"
+								value='<c:out value="${noticeInfo.cnt}"/>'></th>
+							<th scope="col"><input name="cnt" readonly="readonly"
+								value='<c:out value="${noticeInfo.regdate}"/>'></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="height: auto;">
+							<td colspan="4">
 
 
-            </main>
-          
-        </div>
-        </div>
-    </div>
- <%@ include file="/WEB-INF/views/footer.jsp" %>
-    
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
+
+								<div class="container my-5 mx-2">
+									<p>${noticeInfo.content}
+									<div class="form_section">
+										
+										<div class="form_section_content">
+
+											<div id="uploadReslut"></div>
+										</div>
+									</div>
+								</div>
+							</td>
+
+						</tr>
 
 
-$(document).ready(function() {
+					</tbody>
+				</table>
+
+			</div>
+
+			<div class="row my-3">
+				<div class="col text-center">
+					<button class="btn btn-primary" type="button"
+						onclick="location='/notice/noticeList';">Í≥µÏßÄÎ™©Î°ù</button>
+				</div>
+			</div>
+
+
+		</main>
+
+	</div>
+
+
+	<%@ include file="/WEB-INF/views/footer.jsp"%>
+
+
+	<!-- Bootstrap core JS-->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Core theme JS-->
+	<script src="js/scripts.js"></script>
+	<!--  ajax -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+	<!-- ÏàòÏ†ïÏôÑÎ£å / ÏÇ≠Ï†úÏôÑÎ£å Ïä§ÌÅ¨Î¶ΩÌä∏  -->
+	<script>
+$(document).ready(function(){
+	/* Ïù¥ÎØ∏ÏßÄ Ï†ïÎ≥¥ Ìò∏Ï∂ú */
+	let notice_seq = '<c:out value="${noticeInfo.notice_seq}"/>';
+	let uploadReslut = $("#uploadReslut");
 	
-	var msg = "${msg}";
-	
-	if(msg != ""){
-		alert(msg);	
-	}
+	$.getJSON("/getAttachList", {notice_seq : notice_seq}, function(arr){	
+		
+		if(arr.length === 0){			
+			let str = "";
+			str += "<div id='result_card'>";
+			str += "<img src='../images/NoImage.png'>";
+			str += "</div>";
+			
+			uploadReslut.html(str);	
+			
+			
+			return;
+		}	
+		
+		
+		
+		
+		let str = "";
+		let obj = arr[0];
+		
+		let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+		str += "<div id='result_card'";
+		str += "data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "'";
+		str += ">";
+		str += "<img src='/display?fileName=" + fileCallPath +"'>";
+		str += "</div>";		
+		
+		uploadReslut.html(str);	
+		
+	});	
 	
 });
-
-
-function deleteConfirm(){
-	
-	if(!confirm("ªË¡¶ «œΩ√∞⁄Ω¿¥œ±Ó?")){
-		return false;
-	}else{
-		location.href="/notice/noticeList";
-	}
-}
-
 </script>
-</body>
-<!-- Footer-->
-<footer class="py-5 bg-light" >
-    <div class="container px-5">
-        <p class="m-0 text-center text-black small">Copyright &copy; Your Website 2022</p>
-    </div>
-   </footer>
 
+
+	<script>
+		
+	
+	
+	function deleteConfirm() {
+
+			if (!confirm("ÏÇ≠Ï†ú ÌïòÏãúÍ≤†ÏäµÎãàÍπå?")) {
+				return false;
+			} else {
+				location.href = "${pageContext.request.contextPath }/notice/delete?notice_seq=${noticeInfo.notice_seq}";
+			}
+
+		}
+	
+	<!-- ÏàòÏ†ï Ïä§ÌÅ¨Î¶ΩÌä∏ -->
+	
+		let form = $("#infoForm");
+
+		$("#list_btn").on("click", function(e) {
+			form.find("#bno").remove();
+			form.attr("action", "/notice/noticelist");
+			form.submit();
+		});
+
+		$("#modify_btn").on("click", function(e) {
+			form.attr("action", "/notice/noticeUpdate");
+			form.submit();
+		});
+				
+	</script>
+
+
+</body>
 </html>

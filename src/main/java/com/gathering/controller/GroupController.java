@@ -106,11 +106,12 @@ public class GroupController {
 	
 	
 	// 모임상세보기로 이동
-	@GetMapping("/group/groupDetail")
-	public void getGroupDetail() {
-		
-	}
-	
+   @GetMapping("/group/groupDetail")
+   public void getGroupDetail(@RequestParam("group_seq") int group_seq, Model model) {
+      model.addAttribute("group", groupService.getGroupDetail(group_seq));
+
+   }
+
 	
 	
 	
