@@ -28,3 +28,20 @@ ALTER TABLE group_info ADD kind VARCHAR2(20);
 ALTER TABLE group_info MODIFY brief VARCHAR2(100);
 
 commit;
+
+
+-- 테이블변경(group_notice)
+
+CREATE TABLE group_notice (
+	group_notice_seq	NUMBER PRIMARY KEY,
+	group_seq	        NUMBER,
+	type	            VARCHAR2(20),
+	title	            VARCHAR2(30),
+	content	            VARCHAR2(1000),
+	filename	        VARCHAR2(50),
+	regDate	            DATE DEFAULT SYSDATE,
+	jungmo_date	        VARCHAR2(50),
+	jungmo_place	    VARCHAR2(100),
+        cnt                 NUMBER default 0,
+    FOREIGN KEY(group_seq) REFERENCES group_info(group_seq)
+);
