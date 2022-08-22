@@ -173,9 +173,11 @@
                         <div class="row mb-2">
                             <label for="address" class="col-sm-2 col-form-label">주소</label>
                             <div class="col-auto">
-                                <input type="text" name="address" id="address" size="50" readonly>
-                                <input class="btn btn-primary" type="button" value="주소찾기" onclick="kakaopost()">
+                                <input type="text" class="form-control" name="address" id="address" size="50" readonly>
                             </div>
+                            <div class="col-auto">
+                                <input class="btn btn-primary" type="button" value="주소찾기" onclick="kakaopost()">
+                            </div>    
                         </div> 
                         
                         

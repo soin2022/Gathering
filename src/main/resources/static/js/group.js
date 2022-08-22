@@ -43,3 +43,22 @@ function createGroup(){
     }
   
 }
+
+
+function deleteGroup(){
+    if(document.getElementById("user_id").value==""){
+        alert("아이디를 입력해 주세요.");
+        document.getElementById("user_id").focus();
+        return false;
+    } else if(document.getElementById("password").value == ""){
+        alert("비밀번호를 입력해 주세요.");
+        document.getElementById("password").focus();
+        return false;
+    } else {
+        document.getElementById("deleteGroupForm").action="deleteGroupForm";
+        document.getElementById("deleteGroupForm").submit();
+    }
+}
+
+
+
