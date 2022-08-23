@@ -45,3 +45,6 @@ CREATE TABLE group_notice (
         cnt                 NUMBER default 0,
     FOREIGN KEY(group_seq) REFERENCES group_info(group_seq)
 );
+
+ALTER TABLE comments ADD suda_seq NUMBER;
+
