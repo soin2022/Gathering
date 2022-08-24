@@ -31,61 +31,69 @@
 
 <body id="page-top">
 
-	<%@ include file="/WEB-INF/views/navibar.jsp"%>
+   
+   <%@ include file="/WEB-INF/views/navibar.jsp" %>
+    
+    <div class="container-fluid">
+        <div class="row">
+            
+            <!--사이드바 시작구간-->
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                         <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/group/groupDetail?group_seq=${group.group_seq}">
+                                <span data-feather="home"></span>
+                                모임상세
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                             <a class="nav-link" href="/group/groupNoticeListView?group_seq=${group.group_seq}">
+                                <span data-feather="file"></span>
+                                모임공지
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/group/groupAlbum?group_seq=${group.group_seq}">
+                                <span data-feather="shopping-cart"></span>
+                                모임앨범
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/group/groupSuda?group_seq=${group.group_seq}">
+                                <span data-feather="users"></span>
+                                모임수다
+                            </a>
+                        </li>
+                    </ul>
 
-	<div class="container-fluid">
-		<div class="row">
 
-			<!--사이드바 시작구간-->
-			<nav id="sidebarMenu"
-				class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-				<div class="position-sticky pt-3">
-					<ul class="nav flex-column">
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page"
-							href="/group/groupDetail?group_seq=${group.group_seq}"> <span
-								data-feather="home"></span> 모임상세
-						</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="/group/groupNoticeListView?group_seq=${group.group_seq}">
-								<span data-feather="file"></span> 모임공지
-						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"> <span
-								data-feather="shopping-cart"></span> 모임앨범
-						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"> <span
-								data-feather="users"></span> 모임수다
-						</a></li>
-					</ul>
-				</div>
-			</nav>
+                </div>
+            </nav>
 
-			<!--메인구간 -->
+            <!--메인구간 -->
 
-			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                
+                <h2 style="padding-top:5%">${group.group_name}</h2>
 
-				<h2 style="padding-top: 5%">${group.group_name}</h2>
+                
+                <div class="row mb-2">
+                    <div class="col">
+                    	
+                    	<c:choose>
+	                    	<c:when test="${result == 1}">
+	                        	<button type="button" class="btn btn-outline-primary" style="float:right" onclick="location.href='/group/joinGroup?group_seq=${group.group_seq}'">가입하기</button>
+	                        </c:when>
+	                        <c:otherwise>
+	                        	<c:if test="${joinedCrew.type eq '2'}">
+	                        	<button type="button" class="btn btn-outline-primary" style="float:right" onclick="location.href='/group/outGroup?group_seq=${group.group_seq}'">탈퇴하기</button>
+	                        	</c:if>
+	                        </c:otherwise>
+                        </c:choose>
+                        
+                        <c:if test="${result == 1}">
 
-
-				<div class="row mb-2">
-					<div class="col">
-
-						<c:choose>
-							<c:when test="${result == 1}">
-								<button type="button" class="btn btn-outline-primary"
-									style="float: right"
-									onclick="location.href='/group/joinGroup?group_seq=${group.group_seq}'">가입하기</button>
-							</c:when>
-							<c:otherwise>
-								<c:if test="${joinedCrew.type eq '2'}">
-									<button type="button" class="btn btn-outline-primary"
-										style="float: right"
-										onclick="location.href='/group/outGroup?group_seq=${group.group_seq}'">탈퇴하기</button>
-								</c:if>
-							</c:otherwise>
-						</c:choose>
-
-						<c:if test="${result == 1}">
 							<c:choose>
 								<c:when test="${check eq 'checked'}">
 									<button type="button" class="btn btn-outline-primary"

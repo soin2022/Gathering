@@ -28,29 +28,34 @@
 
 <body id="page-top">
     <%@ include file="/WEB-INF/views/navibar.jsp" %>
+	
+   <!--사이드바 시작구간-->
+	<div class="container-fluid">
+		<div class="row">
+			<nav id="sidebarMenu"
+				class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+				<div class="position-sticky pt-3">
+					<ul class="nav flex-column">
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="#"> <span data-feather="home"></span>
+								모임상세
+						</a></li>
+						<li class="nav-item"><a class="nav-link" href="#"> <span
+								data-feather="file"></span> 모임공지
+						</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/group/groupAlbum?group_seq=${sudaVO.group_seq}"> <span data-feather="shopping-cart"></span>
+								모임앨범
+						</a></li>
+						<li class="nav-item"><a class="nav-link" href="/group/groupSuda?group_seq=${sudaVO.group_seq}"> <span
+								data-feather="users"></span> 모임수다
+						</a></li>
+					</ul>
 
-    <div class="container-fluid">
-        <div class="row">
-        
-        	<!--사이드바 시작구간-->
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">        
-                        <li class="nav-item">
-                            <a class="nav-link" href="/qna/frequentlyQna">
-                                <span data-feather="file"></span>
-                                자주 묻는 질문
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"  href="/qna/myQnaList">
-                                <span data-feather="shopping-cart"></span>
-                                나의 질문
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+
+					
+				</div>
+			</nav>
             
   			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     		<!-- 메인구간 -->
@@ -61,43 +66,50 @@
 				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
 				<input type="hidden" name="type" value="${pageMaker.cri.type }">
 			</form>
-
-                <h2 style="padding-top:5%">Q&A게시판</h2> 
+		
+ 			<form method="get" id="moveForm" action="/group/groupSuda">
+                <h2 style="padding-top:5%">수다방</h2> 
                     <div class="row mb-2 align-items-center">
                         <div class="col">
-                        <button type="button" class="btn btn-outline-primary" style="float:right; margin-right:10px" onclick="location.href='/qnaInsertForm'">문의하기</button>
+                        <button type="button" class="btn btn-outline-primary" style="float:right; margin-right:10px" onclick="location.href='/group/sudaForm?group_seq=${sudaVO.group_seq}'">글쓰기</button>
                         </div>    
                     </div>
 
                 <div class="table-responsive">
                     <table class="table table-hover table-striped table-sm">
                         <thead>
-                            <tr >                  
+                            <tr >
+                                
                                 <th scope="col" style="text-align:center">번호</th>
-                                <th scope="col" style="width:50%; text-align: center;">제목</th>
+                                <th scope="col" style="width:50%; text-align: center;">수다 주제</th>
                                 <th scope="col" style="text-align:center">작성자</th>
-                                <th scope="col" style="text-align:center">작성일</th>
-                                <th scope="col" style="text-align:center">조회수</th>
-                                <th scope="col" style="text-align:center">공개여부</th>       
+                               
+                                
+                            
                             </tr>
-                        </thead>       
+                        </thead>
+                     
                         <tbody>
-                           <c:forEach items="${qnaList}"  var="qnaVO">
-                           	 <tr style="cursor:pointer" onclick="location.href='qna_view?qna_seq=${qnaVO.qna_seq}'">              
-                                <td style="text-align:center"> ${qnaVO.qna_seq} </td>
-                                <td>${qnaVO.title}</td>
-                                <td style="text-align:center">${qnaVO.user_id}</td>                                
-                                <td style="text-align:center"><fmt:formatDate value="${qnaVO.regDate}" type="date"/></td>
-                                <td style="text-align:center">${qnaVO.cnt}</td>
-                                <td style="text-align:center">${qnaVO.security}</td>
+                           <c:forEach items="${sudaList}"  var="sudaVO">
+                           	
+                         
+                           	 <tr style="cursor:pointer" onclick="location.href='/sudaDetail?suda_seq=${sudaVO.suda_seq}'">
+                        		<td style="text-align:center"> ${sudaVO.suda_seq }</td>
+                                <td style="text-align:center"> ${sudaVO.content} </td>
+                              
+                                <td style="text-align:center">${sudaVO.user_id}</td>                                
+                                                              
                             </tr> 
                          </c:forEach>
                         </tbody>         
                     </table>
                 </div>
-
+					<input type="hidden" name="group_seq" value="${sudaVO.group_seq}">
+					<input type="hidden" name="content" value="${sudaVO.content }">
+					
 				<!--  검색버튼 구간 -->
 			
+             
                     <div class="row mb-3 align-items-center justify-content-center">
                         <div class="col-2" style="margin-left: 10%;">
                             <select class="form-select form-select-md" name="type">
@@ -116,7 +128,8 @@
                             <button class="btn btn-primary" type="button">검색</button>
                         </div>
                     </div>
-							
+				
+				
                 <!--페이징-->
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
@@ -140,17 +153,19 @@
                       </c:if>
                     </ul>
                 </nav>
+  			</form>
   			</main>
-          </div>
+            
+            </div>
+            
 		</div>
 
     <%@ include file="/WEB-INF/views/footer.jsp" %>
-    
-    
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
+    
     
     <!-- 검색기능 자바스크립트 -->
 	<script
@@ -184,9 +199,9 @@
 							e.preventDefault();
 
 							moveForm
-									.append("<input type='hidden' name='qna_seq' value='"
+									.append("<input type='hidden' name='' value='"
 											+ $(this).attr("href") + "'>");
-							moveForm.attr("action", "/qna/qnaView");
+							moveForm.attr("action", "/group/groupSuda");
 							moveForm.submit();
 						});
 
@@ -194,7 +209,7 @@
 
 			e.preventDefault();
 			moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-			moveForm.attr("action", "/qna/qnaList");
+			moveForm.attr("action", "/group/groupSuda");
 			moveForm.submit();
 
 		});

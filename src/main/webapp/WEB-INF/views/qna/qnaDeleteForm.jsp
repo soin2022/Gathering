@@ -28,32 +28,30 @@
     <%@ include file="/WEB-INF/views/navibar.jsp" %>
     
             <!--메인구간 -->
-            <div class="col-12">
+        <div class="col-12">
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <h2 style="padding-top:5%">사용자 비밀번호를 입력해주세요.</h2>
-
             		<div class="container my-3 mx-2">
 						  <!--Q&A비밀번호 확인-->
 						  <form action="/qnaDelete" method="post">
 						  	<input type="hidden" id="formm" name="qna_seq" value="${qnaVO.qna_seq}"/>
 						  <div class="row mb-2">
 						 	  <label for="input_user_id" class="col-sm-2 col-form-label">비밀번호</label>
-						    <div class="col-auto">
+						   <div class="col-auto">
 						        <input type="password" class="form-control" id="userPwd" name="userPwd" placeholder="비밀번호">
-						    </div>
-						    <div class="col-auto">
+						   </div>
+						   <div class="col-auto">
 						        <button type="submit" class="btn btn-primary">확인</button>
-						    </div>
+						   </div>
 						</div>
 						</form>
 						<span style="color:red">${message}</span>
 					</div>
             </main>
         </div>
-        </div>
-    </div>
 
       <%@ include file="/WEB-INF/views/footer.jsp" %>
+      
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->

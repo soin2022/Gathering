@@ -36,5 +36,25 @@ public interface CommentsService {
 
 	// 페이징 리스트
 	public List<CommentsVO> groupCommentListWithPaging(Criteria cri);
+	
+	
+	
+	//------------앨범 댓글-------------------------//
+	
+	//앨범 댓글 작성
+	 int AlbumInsertComment(CommentsVO commentsVO);
+
+	//앨범 댓글 리스트
+	List<CommentsVO> AlbumcommentList(int group_album_seq);
+	
+	
+	
+	//-----------수다 댓글 구간---------------------//
+	
+	//수다 댓글 작성
+	int SudaInsertComment(CommentsVO commentsVO);
+
+	//앨범 댓글 리스트
+	List<CommentsVO> SudacommentList(int group_seq);
 
 }

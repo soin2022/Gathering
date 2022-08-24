@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gathering.dto.CommentsVO;
 import com.gathering.dto.GroupNoticeVO;
 import com.gathering.dto.QnaVO;
+import com.gathering.dto.SudaVO;
 import com.gathering.dto.UserInfoVO;
 import com.gathering.service.CommentsService;
 
@@ -100,6 +101,90 @@ public class CommentsController {
 		return map;
 			
 	}
+	
+	
+	///앨범 댓글//
+	
+
+		//수다 댓글 저장
+		@PostMapping("/Album_comments_insert")
+		public String insertAlbum(SudaVO sudaVO, CommentsVO vo, HttpSession session) {
+			
+			UserInfoVO user = (UserInfoVO)session.getAttribute("user");
+			
+			if(user== null) {
+					return "user/login";
+			} else {
+					vo.setUser_id(user.getUser_id());
+					
+					vo.setGroup_album_seq(vo.getGroup_album_seq());
+					if(commentsService.AlbumInsertComment(vo) > 0) {
+			            return "success";
+			         } else {
+			            return "fail";
+			         }
+		  }
+	}
+		
+		//수다 리스트 
+		@GetMapping(value="/Album_commnets_list", produces="application/json; charset=UTF-8")
+		public Map<String, Object> AlbumcommentsList(CommentsVO vo,  HttpSession session) {
+			
+
+			//화면으로 반환할 데이터를 저장할 Map 작성
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			// 상품에 대한 댓글 목록 조회
+			List<CommentsVO> commentList = commentsService.AlbumcommentList(vo.getGroup_album_seq());
+
+			map.put("commentList", commentList);
+			
+			return map;
+				
+		}
+	
+
+	
+	///수다 댓글//
+	
+
+	//수다 댓글 저장
+	@PostMapping("/Suda_comments_insert")
+	public String insertSuda(SudaVO sudaVO, CommentsVO vo, HttpSession session) {
+		
+		UserInfoVO user = (UserInfoVO)session.getAttribute("user");
+		
+		if(user== null) {
+				return "user/login";
+		} else {
+				vo.setUser_id(user.getUser_id());
+				
+				vo.setSuda_seq(sudaVO.getSuda_seq());
+				if(commentsService.SudaInsertComment(vo) > 0) {
+		            return "success";
+		         } else {
+		            return "fail";
+		         }
+	  }
+}
+	
+	//수다 리스트 
+	@GetMapping(value="/Suda_commnets_list", produces="application/json; charset=UTF-8")
+	public Map<String, Object> SudacommentsList(CommentsVO vo,  HttpSession session) {
+		
+
+		//화면으로 반환할 데이터를 저장할 Map 작성
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		// 상품에 대한 댓글 목록 조회
+		List<CommentsVO> commentList = commentsService.SudacommentList(vo.getSuda_seq());
+
+		map.put("commentList", commentList);
+		
+		return map;
+			
+	}
+	
 }
 
 

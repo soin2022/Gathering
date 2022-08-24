@@ -1,40 +1,43 @@
 package com.gathering.dto;
 
-import org.springframework.web.multipart.MultipartFile;
+import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
 @Data
-public class NoticeVO  {
+public class NoticeVO {
 
 	private int notice_seq;
 	private String user_id;
 	private String title;
 	private String content;
 	private int cnt;
-	private String regdate;
-	private String filename;
-	private MultipartFile uploadFile;
+	private Date regdate;
+	
+	/* 이미지 정보 */
+	private List<FilesVO> imageList;
+	
 
-	//검색 
+	public List<FilesVO> getImageList() {
+		return imageList;
+	}
+
+	public void setImageList(List<FilesVO> imageList) {
+		this.imageList = imageList;
+	}
+
+	// 검색
 	private String searchKeyword;
-	
-	
+
 	public String getSearchKeyword() {
 		return searchKeyword;
 	}
+
 	public void setSearchKeyword(String searchKeyword) {
 		this.searchKeyword = searchKeyword;
 	}
-	 
+
 	
-	public MultipartFile getUploadFile() {
-		return uploadFile;
-	}
-	
-	public void setUploadFile(MultipartFile uploadFile) {
-		this.uploadFile = uploadFile;
-	}
-	
-	
+
 }

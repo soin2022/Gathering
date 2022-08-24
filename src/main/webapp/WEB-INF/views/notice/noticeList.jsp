@@ -54,18 +54,14 @@
 		<div class="col-10">
 			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
-				<h2 style="padding-top: 5%">운영자공지사항</h2>
+				<h2 style="padding-top: 5%">운영자 공지사항</h2>
 
 				<div class="row mb-2 align-items-center-between my-3">
 					<div class="col-5" id="product_order_list">
 						
 							
 
-<div class="list_sort">
-    <a href="#name_basic" class="sortable" >제목</a>
-    <a href="#tag2" class="sortable" >분류</a>
-    <a href="#creat_place2" class="sortable" >주소</a>
-</div>
+
 						
 					</div>
 
@@ -98,57 +94,41 @@
 						<tbody class="listData">
 							<c:forEach var="list" items="${noticeList}">
 								<tr>
-									<td scope="col" style="text-align: center"><c:out
-											value="${list.notice_seq}" /></td>
+									<td scope="col" style="text-align: center">
+									${list.notice_seq}</td>
 									<td scope="col" style="text-align: center"><a class="move"
-										href='<c:out value="${list.notice_seq}" />'> <c:out
-												value="${list.title}" />
-									</a></td>
-									<td scope="col" style="text-align: center"><c:out
-											value="${list.regdate}" /></td>
-									<td scope="col" style="text-align: center"><c:out
-											value="${list.cnt}" /></td>
+										href='${list.notice_seq}'> ${list.title} </a></td>
+									<td scope="col" style="text-align: center">
+									<fmt:formatDate value="${list.regdate}" type="date"/></td>
+									<td scope="col" style="text-align: center">${list.cnt}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 
-					<!--------페이지 버튼 관련 구간  시작---------->
-
-					<div class="search_wrap"></div>
-
-					<div class="col-sm-12 col-md-7">
-						<div class="dataTables_paginate paging_simple_numbers">
-
-							<ul id="pageInfo" class="pagination">
-
-
-								<!------- 이전페이지 버튼 ---------->
-								<c:if test="${pageMaker.prev}">
-									<li class="paginate_button page-item previous"><a
-										href="${pageMaker.startPage-1}">Previous</a></li>
-								</c:if>
-
-
-								<!------- 이전페이지 버튼 ---------->
-								<c:forEach var="num" begin="${pageMaker.startPage}"
+				 <!--페이징-->
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                    <c:if test="${pageMaker.prev}">
+                      <li class="page-item">
+                        <a class="page-link" href="${pageMaker.startPage-1}" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      </c:if>
+                      <c:forEach var="num" begin="${pageMaker.startPage}"
 									end="${pageMaker.endPage}">
-									<li
-										class="paginate_button page-item ${pageMaker.cri.pageNum == num ? "active":"" }"><a
-										href="${num}">${num}</a></li>
-								</c:forEach>
-
-
-								<!------- 이전페이지 버튼 ---------->
-								<c:if test="${pageMaker.next}">
-									<li class="paginate_button page-item next"><a
-										href="${pageMaker.endPage + 1 }">Next</a></li>
-								</c:if>
-
-							</ul>
-
-						</div>
-					</div>
+                      <li class="page-item" ${pageMaker.cri.pageNum == num ? "active":"" }><a class="page-link" href="${num}">${num}</a></li>
+                      </c:forEach>
+                      <c:if test="${pageMaker.next}">
+                      <li class="page-item">
+                        <a class="page-link" href="${pageMaker.endPage + 1 }" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                      </c:if>
+                    </ul>
+                </nav>
 					<!-- 페이지 버튼 관련 구간 끝 -->
 
 				</div>

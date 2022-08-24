@@ -18,7 +18,7 @@ public class CommentsVO {
 	private int group_album_seq;
 	private int qna_seq;
 	private String content;
-
+	private int suda_seq;
 	private Date regDate;
 
 }

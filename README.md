@@ -45,3 +45,17 @@ CREATE TABLE group_notice (
         cnt                 NUMBER default 0,
     FOREIGN KEY(group_seq) REFERENCES group_info(group_seq)
 );
+
+--테이블 변경 사항 (황정태)
+
+ALTER TABLE comments ADD suda_seq NUMBER;
+
+CREATE TABLE notice(
+notice_seq  NUMBER PRIMARY KEY,
+user_id     VARCHAR2(20),
+title       VARCHAR2(50),
+content     VARCHAR2(1000),
+cnt         NUMBER,
+FOREIGN KEY(user_id) REFERENCES user_info(user_id)
+);
+

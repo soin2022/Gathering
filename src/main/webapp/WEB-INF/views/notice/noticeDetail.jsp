@@ -51,7 +51,7 @@
 						<c:when test="${user.user_type==0 }">
 							<a href="javascript:void(0);" class="btn btn-outline-primary"
 								onclick="deleteConfirm(); " style="float: right">삭제</a>
-							<a class="btn" id="modify_btn" style="float: right">수정 하기</a>
+							<a class="btn btn-outline-primary" id="modify_btn" style="float: right">수정 하기</a>
 						</c:when>
 					</c:choose>
 				</div>
@@ -78,8 +78,7 @@
 								value='<c:out value="${noticeInfo.title}"/>'></th>
 							<th scope="col"><input name="cnt" readonly="readonly"
 								value='<c:out value="${noticeInfo.cnt}"/>'></th>
-							<th scope="col"><input name="cnt" readonly="readonly"
-								value='<c:out value="${noticeInfo.regdate}"/>'></th>
+							<th scope="col"><input name="cnt" readonly="readonly"	value='<fmt:formatDate value="${noticeInfo.regdate}" type="date"/>'></th>
 						</tr>
 					</thead>
 					<tbody>
