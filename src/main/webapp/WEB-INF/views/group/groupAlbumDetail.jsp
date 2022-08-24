@@ -52,12 +52,12 @@ c:hover:after {
 
 <body id="page-top">
 	
-	<h1>${albumInfo.title}</h1>
+	<div style="text-align : center;"><h1 style="margin:40px 40px;">${albumInfo.title}</h1></div>
 	
 
 	<div class="table-responsive">
-		<img class="card-img-top" src="/upload/${albumInfo.filename}"
-			style="width: 100px;">
+		<div style="text-align : center;"><img class="card-img-top" src="/upload/${albumInfo.filename}"
+			style="width: 400px;" ></div>
 		<table class="table table-sm">
 
 
@@ -109,6 +109,8 @@ c:hover:after {
 	</div>
 
 	<div class="row my-3">
+		 <!-- 삭제/수정 버튼 이거는 모임장한테만 보여지게 해야됨 -->
+		 
 		<div class="col text-center">
 			<a href="javascript:void(0);" class="btn btn-outline-primary"
 				onclick="updateConfirm(); " style="float: center">수정하러 가기</a>

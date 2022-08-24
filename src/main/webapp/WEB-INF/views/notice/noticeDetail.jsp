@@ -37,7 +37,7 @@
 
 
 	<!--메인구간 -->
-
+<div class="container-fluid">
 	<div class="col-10">
 		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
@@ -68,25 +68,29 @@
 
 			<div class="table-responsive">
 
-				<table class="table table-sm">
+				<table class="table table-striped table-sm">
+					<thead>
+							<tr>
+								<th scope="col" style="text-align: center">번호</th>
+								<th scope="col" style="width: 50%; text-align: center;">제목</th>
+								<th scope="col" style="text-align: center">작성일</th>
+								<th scope="col" style="text-align: center">조회수</th>
+
+							</tr>	
+						</thead>
+					
+					
 					<thead>
 						<tr>
-
-							<th scope="col"><input name="notice_seq" readonly="readonly"
-								value='<c:out value="${noticeInfo.notice_seq}"/>'></th>
-							<th scope="col"><input name="title" readonly="readonly"
-								value='<c:out value="${noticeInfo.title}"/>'></th>
-							<th scope="col"><input name="cnt" readonly="readonly"
-								value='<c:out value="${noticeInfo.cnt}"/>'></th>
-							<th scope="col"><input name="cnt" readonly="readonly"	value='<fmt:formatDate value="${noticeInfo.regdate}" type="date"/>'></th>
+							<th scope="col" style="text-align: center">${noticeInfo.notice_seq}</th>
+							<th scope="col" style="width: 50%; text-align: center;">${noticeInfo.title}</th>
+							<th scope="col" style="text-align: center"><fmt:formatDate value="${noticeInfo.regdate}" type="date"/></th>
+							<th scope="col" style="text-align: center">${noticeInfo.cnt}</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr style="height: auto;">
 							<td colspan="4">
-
-
-
 								<div class="container my-5 mx-2">
 									<p>${noticeInfo.content}
 									<div class="form_section">
@@ -118,7 +122,7 @@
 		</main>
 
 	</div>
-
+</div>
 
 	<%@ include file="/WEB-INF/views/footer.jsp"%>
 

@@ -51,13 +51,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/group/groupAlbum?group_seq=${group.group_seq}">
                                 <span data-feather="shopping-cart"></span>
                                 모임앨범
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/group/groupSuda?group_seq=${group.group_seq}">
                                 <span data-feather="users"></span>
                                 모임수다
                             </a>

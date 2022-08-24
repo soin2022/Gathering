@@ -49,7 +49,7 @@
 						<li class="nav-item"><a class="nav-link" href="/group/groupSuda"> <span
 								data-feather="users"></span> 모임수다
 						</a></li>
-					</ul>
+					
 
 
 					</ul>
@@ -64,13 +64,9 @@
                 <h2 style="padding-top:5%">수다방 만들기</h2>
 
 
-                <!-- 입력 폼-->
-
-                <form action="/insertSuda" class="container row" id="formm" name="formm" style="float: none; margin:100 auto;" method="post">
+				<form action="/insertSuda" id="formm" name="formm" method="post">
 				<input type="hidden" name="group_seq" value="${sudaVO.group_seq}">
-                        
-                                                
-
+			
                         <!--주제-->
                         <div class="row mb-2">
                             <label for="input_crew_notice_detail" class="col-sm-2 col-form-label">수다 주제</label>
@@ -80,7 +76,7 @@
                             </div>
                         </div>
  
-                   
+                   </form>
                    
                       
 
@@ -93,7 +89,7 @@
                             </div>
                         </div>
 
-                </form>
+                
             </main>
 
         </div>
