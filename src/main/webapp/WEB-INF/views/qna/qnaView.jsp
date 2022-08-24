@@ -28,13 +28,13 @@
 <body id="page-top">
     <%@ include file="/WEB-INF/views/navibar.jsp" %>
 
-    <!--사이드바 시작구간-->
     <div class="container-fluid">
         <div class="row">
+        
+           <!--사이드바 시작구간-->
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                 <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">
-                        
+                    <ul class="nav flex-column">             
                         <li class="nav-item">
                             <a class="nav-link"  href="/qna/frequentlyQna">
                                 <span data-feather="file"></span>
@@ -46,18 +46,13 @@
                                 <span data-feather="shopping-cart"></span>
                                 나의 질문
                             </a>
-                        </li>
-                       
-                    </ul>
+                        </li>     
                     </ul>
                 </div>
             </nav>
     
-
-             <!--메인구간 -->
-            
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-       			
+             <!--메인구간 -->      
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">			
        			<form id="moveForm" method="get">
 					<!-- 정보 저장용 히든 -->
 					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
@@ -66,14 +61,13 @@
        				
                 <h2 style="padding-top:5%">Q&A게시판</h2>
                     <div class="row mb-2">
-                        <div class="col">      
-                        
+                        <div class="col">       
                         	<!--  로그인가정, 세션값 id와 모델에 담은 id값 비교, 동일하면 버튼노출( 본인작성한것)  -->
                         	<c:if test="${sessionScope.user.user_id eq qnaVO.user_id}"  >        
                             <button type="button" class="btn btn-outline-primary" style="float:right" onclick="location.href='/qnaDeleteForm?qna_seq=${qnaVO.qna_seq}'">삭제</button>
                             <button type="button" class="btn btn-outline-primary" style="float:right; margin-right:10px" onclick="location.href='/qnaUpdateForm?qna_seq=${qnaVO.qna_seq}'">수정</button>  
-                        </div>
-                        </c:if>         
+                        	</c:if>   
+                        </div>                      
                     </div>
 
                 <div class="table-responsive">
@@ -95,70 +89,62 @@
                                 </td>                              
                             </tr>
                         </tbody>
-                        <tfoot>
-                            <tr></tr>
-                        </tfoot>   
-                       			 
-                                <table class="table table-sm">
-                                    <tbody>
-                                    	
-                                    	<!--사용자용 댓글리스트 출력-->
-                                    	<c:if test="${sessionScope.user.user_type == 1 }">
-                                        <tr>
-                                            <th>     	
-                                            	 <form id="commentForm" name="commentListForm" method="post">
-	                                            	<div id="commentList">
-		                                            	 <input type="hidden" name="qna_seq" value="${qnaVO.qna_seq}" />
-		                                            	 <input type="hidden" id="qna_seq" name="qna_seq" value="${qnaVO.qna_seq }" />
-	        										</div>
-        										</form>
-                                            </th>
-                                        </tr> 
-                                       </c:if>
-                                          
-                                        <!--관리자용 댓글리스트 출력-->
-                                        <c:if test="${sessionScope.user.user_type == 0 }">
-                                        
-                                        <tr>
-                                            <th>     	
-                                            	 <form id="commentListForm" name="commentListForm" method="post">
-	                                            	<div id="commentList">
-	        										</div>
-        										</form>
-                                            </th>
-                                        </tr>  
-                                        
-                                        <!--관리자한테만 보이는 답변입력 칸-->
-                                        <tr>                                    	
-                                            <td colspan="3">
-                                            <form name="commentForm" id="commentForm" method="post">
-                                                <div class="row my-3 align-items-center justify-content-center">
-                                                    <div class="col-2" style="text-align:right;">
-                                                        <label for="comments" class="form-label">답변작성</label>
-                                                    </div>   
-                                               
-                                                    <div class="col-6">
-                                                    	<input type="hidden" name="qna_seq" value="${qnaVO.qna_seq}" />
-                                                        <textarea class="form-control" id="content" name="content" rows="4" style="resize:none;"></textarea>
-                                                    </div>
-                                                    <div class="col-2">         	
-                                                        <input class="btn btn-primary" onClick="save_comment('${qnaVO.qna_seq}')" type="button" value="등록" id="insert">
-                                                        <input type="hidden" id="qna_seq " name="qna_seq " value="${qnaVO.qna_seq }" />
-                                                    </div>
-                                                   </div>
-                                            </form>  
-                                            </td>
-                                        </tr>                  
-                                       </c:if>    
-                                        
-                                    </tbody>                                 
-                                    <tfoot>                             
-                                        <tr></tr>
-                                    </tfoot>
-                            	    </table> 
-                                  
-				                    </table>
-				                </div>
+        			 
+                   <table class="table table-sm">
+                       <tbody>           	
+                       	<!--사용자용 댓글리스트 출력-->
+                       	<c:if test="${sessionScope.user.user_type == 1 }">
+                           <tr>
+                               <th>     	
+                               	 <form id="commentForm" name="commentListForm" method="post">
+                                	<div id="commentList">
+                                 	 <input type="hidden" name="qna_seq" value="${qnaVO.qna_seq}" />
+                                 	 <input type="hidden" id="qna_seq" name="qna_seq" value="${qnaVO.qna_seq }" />
+									 </div>
+								</form>
+                               </th>
+                           </tr> 
+                        </c:if>     
+                        <!--관리자용 댓글리스트 출력-->
+                        <c:if test="${sessionScope.user.user_type == 0 }">  
+                           <tr>
+                               <th>     	
+                               	 <form id="commentListForm" name="commentListForm" method="post">
+                                	<div id="commentList">
+									</div>
+								 </form>
+                               </th>
+                           </tr>  
+                           
+                           <!--관리자한테만 보이는 답변입력 칸-->
+                           <tr>                                    	
+                               <td colspan="3">
+                               <form name="commentForm" id="commentForm" method="post">
+                                   <div class="row my-3 align-items-center justify-content-center">
+                                       <div class="col-2" style="text-align:right;">
+                                           <label for="comments" class="form-label">답변작성</label>
+                                       </div>   
+                                       <div class="col-6">
+                                       	<input type="hidden" name="qna_seq" value="${qnaVO.qna_seq}" />
+                                           <textarea class="form-control" id="content" name="content" rows="4" style="resize:none;"></textarea>
+                                       </div>
+                                       <div class="col-2">         	
+                                           <input class="btn btn-primary" onClick="save_comment('${qnaVO.qna_seq}')" type="button" value="등록" id="insert">
+                                           <input type="hidden" id="qna_seq " name="qna_seq " value="${qnaVO.qna_seq }" />
+                                       </div>
+                                      </div>
+                               </form>  
+                               </td>
+                           </tr>                  
+                          </c:if>    
+                           
+                       </tbody>                                 
+                       <tfoot>                             
+                           <tr></tr>
+                       </tfoot>
+               	    </table>    
+				 </table>
+			</div>
 
                 <div class="row my-3">
                     <div class="col text-center">
@@ -169,12 +155,13 @@
         </div>
     </div>
 
-    
+
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
 </body>
+
 <%@ include file="/WEB-INF/views/footer.jsp" %>
    
    
@@ -185,9 +172,7 @@
 
 				getCommentList();
 	
-	
 		});
-
 		
 		/*
 		** 댓글리스트
@@ -289,13 +274,8 @@ function save_comment(qna_seq) {
 		}
 	});
 }
-
-
-
-
-		
+	
 		
 	</script>
-   
 
 </html>

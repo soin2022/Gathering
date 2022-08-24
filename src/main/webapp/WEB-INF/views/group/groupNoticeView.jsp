@@ -63,9 +63,6 @@
                             </a>
                         </li>
                     </ul>
-
-
-                    </ul>
                 </div>
             </nav>
 
@@ -97,7 +94,6 @@
                                 <th scope="col">조회수</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             <tr>
                                 <td>${groupNotice.group_notice_seq}</td>
@@ -105,8 +101,7 @@
                                 <td><fmt:formatDate value="${groupNotice.regDate}" type="date"/></td>
                                 <td>${groupNotice.cnt}</td>
                             </tr>
-                        </tbody>
-                    
+                        </tbody>             
                     </table>
 
                     <!-- 모임공지 상세 내용-->
@@ -127,35 +122,29 @@
 	                      </div>
 	                      </div>
 	                       </c:if>
-                  
                     <hr>
                     
-                    <!--  댓글 시작 -->
+                <!--  댓글 시작 -->
 				
-				<table class="table table-sm">
-				    
-                           <tbody>  
-                          
-                               <tr>
-                                   <th>     	
-                                   	 <form id="commentListForm" name="commentListForm" method="post">
-                                    	<div id="commentList">    
-										</div>
-									</form>
-                                   </th>
-                               </tr>  
-                          
-                              
+				<table class="table table-sm">			    
+                   <tbody>                 
+                         <tr>
+                            <th>     	
+                             	 <form id="commentListForm" name="commentListForm" method="post">
+                              	 <div id="commentList">    
+								</div>
+								</form>
+                             </th>
+                         </tr>  
+         
                                 <!--댓글입력 칸-->
-                       <tr>                                   	
-                           <td colspan="3">
-                           
+                      	<tr>                                   	
+                           <td colspan="3">  
                            <form name="commentForm" id="commentForm" method="post">
                                <div class="row my-3 align-items-center justify-content-center">
                                    <div class="col-2" style="text-align:right;">
                                        <label for="comments" class="form-label">댓글작성</label>
                                    </div>   
-                              		
                                    <div class="col-6">
                                    	<input type="hidden" name="group_notice_seq" value="${groupNotice.group_notice_seq}" />
                                        <textarea class="form-control" id="content" name="content" rows="4" style="resize:none;"></textarea>
@@ -166,18 +155,14 @@
                                    </div>
                                   </div>
                            </form> 
-                           
                            </td>
                        </tr>                  
-                     
-                       
+    
                    </tbody>                                 
                    <tfoot>                             
                        <tr></tr>
                    </tfoot>
            	    </table>
-
-           	     
 
                     <!--글목록 이동-->
                     <div class="row">
@@ -186,18 +171,17 @@
                         </div>
                     </div>
 			</div>
-			
         </main>  
       </div>
     </div>
 
     <%@ include file="/WEB-INF/views/footer.jsp" %>
+    
+    
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
-    
-    
     
     <!-- jquery -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -280,12 +264,9 @@
             }).open();
         }
 
-        
-    
     <!--카카오 지도 구현 스크립트 끝-->
-    
 
-		
+  	<!-- 댓글 시작 -->
 		/*
 		** 댓글리스트
 		*/
@@ -331,8 +312,7 @@ function showHTML(commentList) {
 		$("#commentList").html(html);
 		
 	}
-	
-	
+
 	
 //댓글 등록 시간 설정
 function displayTime(timeValue) {
@@ -387,12 +367,9 @@ function save_comment(group_notice_seq) {
 	});
 }
 
-
-		
+	
 	</script>
-  
-    
-    
+
 </body>
 
 </html>

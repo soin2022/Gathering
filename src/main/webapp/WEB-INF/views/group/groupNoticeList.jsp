@@ -61,9 +61,6 @@
                             </a>
                         </li>
                     </ul>
-
-
-                    </ul>
                 </div>
             </nav>
 
@@ -79,8 +76,7 @@
 				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
 				<input type="hidden" name="type" value="${pageMaker.cri.type }">
 			</form>
-		
- 
+
                 <h2 style="padding-top:5%">${group.group_name} 공지 </h2> 
                		
           			<c:forEach items="${crewList}"  var="crewListVo" varStatus="status">
@@ -90,7 +86,7 @@
 	                        <form id="insertNotice" action="/groupNoticeInsert" method="get">
 		                        <button type="submit" class="btn btn-outline-primary" style="float:right; margin-right:10px" >공지등록</button>
 		                        <input type="hidden" name="group_seq" value="${group.group_seq }">
-                        </form>  
+                            </form>  
                         </div>    
                     </div>
                     </c:if>
@@ -108,9 +104,7 @@
                         </thead>
                      
                         <tbody>
-                           <c:forEach items="${groupNotice}"  var="groupNoticeVO">
-                            <!--공개/비공개 여부 체크하는 자바스크립트 필요-->
-                         
+                           <c:forEach items="${groupNotice}"  var="groupNoticeVO">    
                            	 <tr style="cursor:pointer" onclick="location.href='groupNoticeViewAction?group_notice_seq=${groupNoticeVO.group_notice_seq}&group_seq=${group.group_seq }'">            
                                 <td style="text-align:center"> ${groupNoticeVO.group_notice_seq} </td>
                                 <td>[${groupNoticeVO.type}]${groupNoticeVO.title}</td>                             
@@ -123,8 +117,7 @@
                 </div>
 
 				<!--  검색버튼 구간 -->
-			
-             
+
                     <div class="row mb-3 align-items-center justify-content-center">
                         <div class="col-2" style="margin-left: 10%;">
                             <select class="form-select form-select-md" name="type">
@@ -143,8 +136,7 @@
                             <button class="btn btn-primary" type="button">검색</button>
                         </div>
                     </div>
-				
-				
+						
                 <!--페이징-->
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
@@ -155,8 +147,7 @@
                         </a>
                       </li>
                       </c:if>
-                      <c:forEach var="num" begin="${pageMaker.startPage}"
-									end="${pageMaker.endPage}">
+                      <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
                       <li class="page-item" ${pageMaker.cri.pageNum == num ? "active":"" }><a class="page-link" href="${num}">${num}</a></li>
                       </c:forEach>
                       <c:if test="${pageMaker.next}">
@@ -169,16 +160,17 @@
                     </ul>
                 </nav>
   			</main>
-            </div>
-		</div>
+         </div>
+	</div>
 
     <%@ include file="/WEB-INF/views/footer.jsp" %>
+    
+    
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
-    
-    
+
     <!-- 검색기능 자바스크립트 -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

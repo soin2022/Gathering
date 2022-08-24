@@ -61,27 +61,17 @@
                             </a>
                         </li>
                     </ul>
-
-
-                    </ul>
                 </div>
             </nav>
 
             <!--메인구간 -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
-
-
-
                 <h2 style="padding-top:5%">${group.group_name} 공지수정</h2>
 
-
                 <!-- 모임생성폼 폼-->
-
                 <form class="container row" id="formm" style="float: none; margin:100 auto;" action="/groupNoticeUpdateAction" method="post" enctype="multipart/form-data">
              	   <input type="hidden" name="group_notice_seq" value="${groupNotice.group_notice_seq }">
              	   <input type="hidden" name="group_seq" value="${group.group_seq }">
-
                     <div class="mb-3">
                         <!--공지타입-->
                         <div class="row mb-2">
@@ -102,8 +92,6 @@
                                     placeholder="${groupNotice.title}">
                             </div>
                         </div>
-
-                        
 
                         <!--상세내용-->
                         <div class="row mb-2">
@@ -135,21 +123,12 @@
                             <label for="input_address1" name="jungmo_place" id="jungmo_place" class="col-sm-2 col-form-label">주소</label>
                             <div class="col-auto">
                                 <input type="text" name="address" id="address" size="50"  disabled>
-                                <input class="btn btn-primary" type="button" value="주소찾기" onclick="kakaopost()">
-                                
+                                <input class="btn btn-primary" type="button" value="주소찾기" onclick="kakaopost()"> 
                                 <button class="btn btn-primary" type="button" id="searchBtn">검색</button>
                                 <div id="map" style="width:450px;height:350px;"></div>
                             </div>
                         </div> 
 
-
-
-                        <!--지도 api 들어가는곳>
-                        <!--지도 api 들어가는곳>
-                        <!--지도 api 들어가는곳>
-                        <!--지도 api 들어가는곳>
-          
-    
                         <!-- 수정 / 취소 -->
                             <div class="row">
                                 <div class="col text-center">
@@ -157,23 +136,21 @@
                                     <button class="btn btn-primary" type="button" onclick="location.href='/group/groupNoticeViewAction?group_seq=${group.group_seq }&group_notice_seq=${groupNotice.group_notice_seq}'">취소</button>
                                 </div>
                             </div>
-
-                        </div>
-
+                      </div>
                 </form>
             </main>
-
         </div>
     </div>
 
     <%@ include file="/WEB-INF/views/footer.jsp" %>
+    
+    
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
     
-    
-    
+
     <!-- jquery -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <!--autoload=false 파라미터를 이용하여 자동으로 로딩되는 것을 막습니다.-->
@@ -182,6 +159,8 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6a81e3b1d414024f75344e4e8fc907b8&libraries=services"></script>
+   
+   
     <!--버튼클릭시 지도에 표시-->
     <script>
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -255,9 +234,6 @@
         }
     </script>
     <!--카카오 지도 구현 스크립트 끝-->
-    
-    
-  
     
     
 </body>
