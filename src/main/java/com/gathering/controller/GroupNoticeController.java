@@ -58,18 +58,20 @@ public class GroupNoticeController {
 					
 				// 해당모임에 가입된 사람이면 실행	
 				
+				//크루뷰에서 모임에 가입된 사람들 정보를 가져와서 모델에 넘김 
 				List<CrewInfoVIewVO> crewList = groupService.getGroupCrews(vo.getGroup_seq());
 				model.addAttribute("crewList", crewList);	
 				
 				GroupInfoVO group = groupService.getGroupDetail(vo.getGroup_seq());
 				model.addAttribute("group", group);
 				
-		
+				//그룹내 공지 리스트 출력
 				List<GroupNoticeVO> groupNotice = groupNoticeService.getListPaging(cri);			
 				
 				System.out.println(groupNotice.toString());
 				model.addAttribute("groupNotice", groupNotice);
 				
+				//해당 공지 시퀀스와 cri를 매개변수 2개로 받아서 총 게시물 수 출력 ( 매개변수 2개라서 map으로 받아옴)
 				HashMap<String, Object> map = new HashMap<String, Object> ();
 				
 				map.put("cri", cri);
@@ -211,9 +213,7 @@ public class GroupNoticeController {
 			if(user== null) {
 				return "/alerts/mustLoginAlert";
 			} else {
-								
-						
-				
+
 						 if (!uploadFile.isEmpty()) {
 				             String fileName = uploadFile.getOriginalFilename();
 				             vo.setFilename(fileName);
@@ -227,8 +227,7 @@ public class GroupNoticeController {
 				             e.printStackTrace();
 				          } 
 				       }	
-						
-						 
+									 
 						if(jungmo_place != null) {
 						vo.setJungmo_place(jungmo_place);
 						groupNoticeService.updateGroupNotice(vo);

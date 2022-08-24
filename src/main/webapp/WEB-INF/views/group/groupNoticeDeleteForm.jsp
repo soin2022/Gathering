@@ -31,7 +31,6 @@
             <div class="col-12">
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <h2 style="padding-top:5%">사용자 비밀번호를 입력해주세요. </h2>
-
             		<div class="container my-3 mx-2">
 						  <!--Q&A비밀번호 확인-->
 						  <form action="/groupNoticeDelete" method="post">
@@ -51,10 +50,9 @@
 					</div>
             </main>
         </div>
-        </div>
-    </div>
 
       <%@ include file="/WEB-INF/views/footer.jsp" %>
+      
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->

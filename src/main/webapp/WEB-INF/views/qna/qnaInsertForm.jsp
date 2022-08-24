@@ -28,13 +28,14 @@
 <body id="page-top">
      <%@ include file="/WEB-INF/views/navibar.jsp" %>
     
-    <!--사이드바 시작구간-->
+    
     <div class="container-fluid">
         <div class="row">
+        
+        <!--사이드바 시작구간-->
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                 <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">
-                        
+                    <ul class="nav flex-column"> 
                         <li class="nav-item">
                             <a class="nav-link"  href="/qna/frequentlyQna">
                                 <span data-feather="file"></span>
@@ -46,28 +47,18 @@
                                 <span data-feather="shopping-cart"></span>
                                 나의 질문
                             </a>
-                        </li>
-                       
-                    </ul>
-
-
+                        </li>       
                     </ul>
                 </div>
             </nav>
+            
             <!--메인구간 -->
+            
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
-
-
-
                 <h2 style="padding-top:5%">1:1 질문하기 </h2>
-
-
                 <!-- 입력 폼-->
-
                 <form class="container row" id="formm" name="formm" style="float: none; margin:100 auto;" action="/qna_insert" method="post">
-
-                        
+                
                         <!--질문제목--> 
                         <div class="row mb-2">
                             <label for="input_crew_notice_title" class="col-sm-2 col-form-label">제목</label>
@@ -77,8 +68,6 @@
                             </div>
                         </div>
 
-                        
-
                         <!--상세내용-->
                         <div class="row mb-2">
                             <label for="input_crew_notice_detail" class="col-sm-2 col-form-label">상세내용</label>
@@ -87,37 +76,27 @@
                                     rows="5" placeholder="상세소개를 작성해 주세요." style="resize:none;"></textarea>
                             </div>
                         </div>
-
-                        
+          
                         <!--공개여부-->
                         <div class="row mb-2">
-
                             <label for="input_gender" class="col-sm-2 col-form-label">공개여부</label>
                             <div class="col-auto">
                                 <div class="row" style="padding-left:10px;">
-                                    <div class="form-check col-auto py-2">
-                                    
+                                    <div class="form-check col-auto py-2"> 
                                         <input class="form-check-input" type="radio" name="security"
                                             id="security1" value="공개" onclick="onActive()"   />공개
-
                                     </div>
 
-                                    <div class="form-check col-auto py-2">
-                                    	
+                                    <div class="form-check col-auto py-2">             	
                                         <input class="form-check-input" type="radio" name="security"
-                                            id="security2" value="비공개" onclick="onActive()" checked/>비공개
-                                    
-                                    </div>
-                                    
+                                            id="security2" value="비공개" onclick="onActive()" checked/>비공개                          
+                                    </div>         
                                 </div>
                             </div>
                         </div>
 
-                        
-
                         <!--비밀번호-->
-                   
-                      
+                        
                         <div class="row mb-2">
                             <label for="input_password" class="col-sm-2 col-form-label">비밀번호</label>
                             <div class="col-auto">
@@ -125,34 +104,26 @@
                             </div>
                         </div>
                      
-                      
-
-
                         <!--버튼-->
+                        
                         <div class="row">
                             <div class="col text-center">
                                 <button class="btn btn-primary" type="button" id="qna_insert" onclick="qna_save()" >등록</button>
                                 <button class="btn btn-primary" type="button" onclick="location.href='/qna/qnaList'">취소</button>
                             </div>
                         </div>
-
                 </form>
             </main>
-
         </div>
     </div>
-
     
   <%@ include file="/WEB-INF/views/footer.jsp" %>
+  
+  
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
-
-
-
-
-
 
 
 </body>
