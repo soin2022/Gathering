@@ -25,6 +25,6 @@ public interface SudaService {
 	// 수다 목록(페이징 적용)
 	public List<SudaVO> getListSudaPaging(Criteria cri);
 
-	// 공지글 총 갯수
-	public int getTotal(HashMap<String, Object> map);
+	// 수다글 총 갯수
+	public int getSudaTotal(HashMap<String, Object> map);
 }

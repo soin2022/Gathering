@@ -58,6 +58,7 @@ c:hover:after {
 				<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
 				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
 				<input type="hidden" name="type" value="${pageMaker.cri.type }">
+				<input type="hidden" name="group_seq" value="${albumVO.group_seq }">
 			</form>
 	
 	<!-- Nav바 구간-->
@@ -72,10 +73,10 @@ c:hover:after {
 				<div class="position-sticky pt-3">
 					<ul class="nav flex-column">
 						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="#"> <span data-feather="home"></span>
+							aria-current="page" href="/group/groupDetail?group_seq=${albumVO.group_seq}"> <span data-feather="home"></span>
 								모임상세
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"> <span
+						<li class="nav-item"><a class="nav-link" href="/group/groupNoticeListView?group_seq=${albumVO.group_seq}"> <span
 								data-feather="file"></span> 모임공지
 						</a></li>
 						<li class="nav-item"><a class="nav-link"
@@ -86,9 +87,6 @@ c:hover:after {
 								data-feather="users"></span> 모임수다
 						</a></li>
 					</ul>
-
-
-					</ul>
 				</div>
 			</nav>
 
@@ -97,7 +95,7 @@ c:hover:after {
 			<!--메인구간 -->
 
 
-			<input type="hidden" name="group_album_seq">
+			
 			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 			
 
@@ -125,57 +123,37 @@ c:hover:after {
 						<div
 							class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-							<c:forEach items="${albumList}" var="album">
+						<c:forEach items="${albumList}" var="album">
 								
 								<!--사진카드-->
-								<div class="col mb-5">
+						<div class="col mb-5">
 								
-									<h5>${album.title}</h5>
-									<div class="card h-100">
-										<img class="card-img-top" src="/upload/${album.filename}">
-										<!-- 이미지 -->
+								<h5>${album.title}</h5>
+							<div class="card h-100">
+								<img class="card-img-top" src="/upload/${album.filename}">
+								<!-- 이미지 -->
 
-										<div class="card-body p-3">
-											<!-- 좋아요&댓글 -->
-											<div class="text-center">
-												<!-- 클릭하면 좋아요 취소로 바낌-->
-												<c class="fromCenter" onclick="" style="cursor:pointer;">좋아요
-												 미구현 </c>
-
-												<!--
-                                                <c class="fromCenter" onclick="" style="cursor:pointer;">좋아요취소 : 0</c> 
-                                            -->
-												<input hidden="group_album_seq">
-												<div class="fromCenter" style="cursor: pointer"
-													onclick="window.open('/group/albumDetail?group_album_seq=${album.group_album_seq}','ㅋㅋ','width=30,heigth=30')">댓글
-													</div>
-
-												
-												
-
+								<div class="card-body p-3">
+									<!-- 댓글 -->
+									<div class="text-center">
+										<input hidden="group_album_seq">
+											<div class="fromCenter" style="cursor: pointer"
+											onclick="window.open('/group/albumDetail?group_album_seq=${album.group_album_seq}','ㅋㅋ','width=30,heigth=30')">댓글 입력
 											</div>
 
+												
+												
 
-
-
-										</div>
 									</div>
 								</div>
-								
-								
-								
-							</c:forEach>
+							</div>
+						</div>
+						</c:forEach>
 
 
 						</div>
 
-					</div>
-					<!-- contianer -->
-		</div>
-		</section>
-	</div>
-	</main>
-				<!--  검색버튼 구간 -->
+					</div>	<!--  검색버튼 구간 -->
 			             
                     <div class="row mb-3 align-items-center justify-content-center">
                         <div class="col-2" style="margin-left: 10%;">
@@ -184,8 +162,7 @@ c:hover:after {
 									<c:out value="${pageMaker.cri.type == null?'selected':'' }"/>>--</option>
 								<option value="T"
 									<c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }"/>>제목</option>
-								<option value="C"
-									<c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }"/>>내용</option>
+								
                             </select>
                         </div>
                         <div class="col-2">
@@ -220,6 +197,15 @@ c:hover:after {
                       </c:if>
                     </ul>
                 </nav>
+						
+				</section>
+				</main>
+		</div>
+		
+	</div>
+		
+	
+				
 
 
 

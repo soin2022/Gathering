@@ -4,22 +4,49 @@
 
 <mapper namespace="com.gathering.mapper.SudaMapper">
 
-	<!-- SudaList 출력 (페이징, 검색 제외) -->
+	
+	 <!-- sudaList (검색 )-->
+    <sql id="criteria">
+		<trim prefix="AND (" suffix=")" prefixOverrides="OR">
+			<foreach collection="typeArr" item="type">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	
+	<!-- SudaList 출력 (페이징) -->
 
 	<select id="getListSudaPaging"
 		resultType="com.gathering.dto.SudaVO">
 		
-
-
  <![CDATA[
         
-        select suda_seq , crew_seq, user_id,group_seq,content from(
+        select  *from(
         
                 select  rownum  as rn,suda_seq , crew_seq, user_id,group_seq,content
-                  
-                from suda where rownum <= #{pageNum} * #{amount}) 
+                 
+                from suda where rownum <= #{pageNum} * #{amount} ]]>
+            <if test="keyword != null">
+				<include refid="criteria"></include>
+			</if>
+	    <![CDATA[    
                 
-        where  rn > (#{pageNum} -1) * #{amount} 
+                ) 
+                
+        where  rn > (#{pageNum} -1) * #{amount} ORDER BY suda_seq DESC
     
     ]]>
 
@@ -27,9 +54,13 @@
 
 
 	<!-- 게시물 총 개숫 -->
-	<select id="getTotal" resultType="int">
+	<select id="getSudaTotal" resultType="int">
 
 		select count(*) from suda
+		<if test="keyword != null">
+			where suda_seq > 0
+			<include refid="criteria"></include>
+		</if>
 
 	</select>
 

@@ -43,9 +43,9 @@ public class SudaServiceImpl implements SudaService {
 	}
 
 	@Override
-	public int getTotal(HashMap<String, Object> map) {
+	public int getSudaTotal(HashMap<String, Object> map) {
 		
-		return sudaMapper.getTotal(map);
+		return sudaMapper.getSudaTotal(map);
 	}
 
 	@Override

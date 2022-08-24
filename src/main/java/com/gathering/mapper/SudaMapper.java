@@ -29,5 +29,5 @@ public interface SudaMapper {
 	public List<SudaVO> getListSudaPaging(Criteria cri);
 
 	// 공지글 총 갯수
-	public int getTotal(HashMap<String, Object> map);
+	public int getSudaTotal(HashMap<String, Object> map);
 }

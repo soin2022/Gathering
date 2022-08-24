@@ -66,7 +66,7 @@
 
                 <!-- 입력 폼-->
 
-                <form class="container row" id="formm" name="formm" style="float: none; margin:100 auto;" method="post">
+                <form action="/insertSuda" class="container row" id="formm" name="formm" style="float: none; margin:100 auto;" method="post">
 				<input type="hidden" name="group_seq" value="${sudaVO.group_seq}">
                         
                                                 
@@ -75,16 +75,13 @@
                         <div class="row mb-2">
                             <label for="input_crew_notice_detail" class="col-sm-2 col-form-label">수다 주제</label>
                             <div class="col-auto">
-                                <textarea type="text" class="form-control" id="content" name="content" cols="40"
+                                <textarea class="form-control" id="content" name="content" cols="40"
                                     rows="3" placeholder="주제를 작성해 주세요." style="resize:none;"></textarea>
                             </div>
                         </div>
-
-                        
-                    
-                        
-
-                     
+ 
+                   
+                   
                       
 
 
@@ -92,7 +89,7 @@
                         <div class="row">
                             <div class="col text-center">
                                 <button class="btn btn-primary" type="button" id="qna_insert" onclick="suda_save()" >등록</button>
-                                <button class="btn btn-primary" type="button" onclick="location.href='/qna/qnaList'">취소</button>
+                                <button class="btn btn-primary" type="button" onclick="location.href='/group/groupSuda?group_seq=${sudaVO.group_seq}'">취소</button>
                             </div>
                         </div>
 
@@ -109,18 +106,15 @@
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
 	<script>
-	 //Qna 작성 빈칸 체크 
+	 //수다 작성 빈칸 체크 
 	 function suda_save() {
 		
-			if(document.getElementById("content").value=="") {
-				alert("주제를 작성해 주세요.");
-				document.getElementById("content").focus();
-				return false;
-								
-			}else {
-					document.getElementById("formm").action="/insertSuda";
-					document.getElementById("formm").submit();
-			}
+		 var form =document.formm;
+			
+			
+			form.submit();
+			
+			
 		}
 	</script>
 	

@@ -73,11 +73,13 @@ public class SudaController {
 			map.put("group_seq", groupInfoVO.getGroup_seq());
 			
 
-			int total = sudaService.getTotal(map);
+			int total = sudaService.getSudaTotal(map);
 			
 			PageMakerDTO pageMake = new PageMakerDTO(cri, total);
+			
 			model.addAttribute("pageMaker", pageMake);
-			System.out.println(groupInfoVO);
+			
+			System.out.println(sudaList);
 			
 			return "/group/groupSuda";
 
@@ -87,30 +89,31 @@ public class SudaController {
 
 	// 수다 등록폼 이동
 	@RequestMapping("/group/sudaForm")
-	public String noticeCreate(SudaVO sudaVO) {
-
-		return "/group/groupSudaForm";
-
-	}
-
-	// 수다 주제 등록하기
-	@RequestMapping("/insertSuda")
-	public String sudaInsert(HttpSession session, SudaVO sudaVO) {
-		logger.info("SudaController" + sudaVO);
+	public String noticeCreate(HttpSession session,SudaVO sudaVO) {
 		UserInfoVO user = (UserInfoVO) session.getAttribute("user");
 
 		if (user == null) {
 			return "user/login";
 		} else {
+
+		return "/group/groupSudaForm";
+		}
+	}
+
+	// 수다 주제 등록하기
+	@RequestMapping("/insertSuda")
+	public String sudaInsert(HttpSession session,Model model, SudaVO sudaVO) {
+			UserInfoVO user = (UserInfoVO) session.getAttribute("user");
+		
 			sudaVO.setUser_id(user.getUser_id());
 			sudaVO.setGroup_seq(sudaVO.getGroup_seq());
 			sudaService.insertSuda(sudaVO);
 
 			System.out.println(sudaVO);
-			return "redirect:group/groupSuda";
+			return "/group/sudaForm?group_seq="+sudaVO.getGroup_seq();
 		}
 
-	} // 수다 등록하기
+	
 
 	// 수다 상세 보기
 	@RequestMapping("/sudaDetail")
@@ -129,16 +132,16 @@ public class SudaController {
 
 	}
 	
-		//수다 삭제하기
-		@RequestMapping("/sudadelete")
-		public String sudaDelete(HttpSession session, SudaVO sudaVO,Model model) {
-			UserInfoVO user = (UserInfoVO) session.getAttribute("user");
+	//수다 삭제하기
+	@RequestMapping("/sudadelete")
+	public String sudaDelete(HttpSession session, SudaVO sudaVO,Model model) {
+		UserInfoVO user = (UserInfoVO) session.getAttribute("user");
 
 			if (user == null) {
 				return "user/login";
 			} else {
 				sudaService.deleteSuda(sudaVO.getSuda_seq());
-				return "/group/groupAlbumResult";
+				return "/group/groupSuda?group_seq="+sudaVO.getGroup_seq();
 			}
 		}
 

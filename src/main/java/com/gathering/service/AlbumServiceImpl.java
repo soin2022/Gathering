@@ -63,6 +63,12 @@ public class AlbumServiceImpl implements AlbumService {
 		return albumMapper.getAlbumTotal(map);
 	}
 
+	@Override
+	public int updateAlbum(AlbumVO albumVO) {
+		
+		return albumMapper.updateAlbum(albumVO);
+	}
+
 	
 
 	

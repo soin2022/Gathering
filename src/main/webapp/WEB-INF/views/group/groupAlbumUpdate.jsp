@@ -51,9 +51,9 @@ c:hover:after {
 </head>
 
 <body id="page-top">
-	
-	<h1>${albumInfo.title}</h1>
-	
+	<form method="post">
+	<h1><input type="text" name="title" value="${albumInfo.title}"></h1>
+	</form>
 
 	<div class="table-responsive">
 		<img class="card-img-top" src="/upload/${albumInfo.filename}"
@@ -110,10 +110,9 @@ c:hover:after {
 
 	<div class="row my-3">
 		<div class="col text-center">
-			<a href="javascript:void(0);" class="btn btn-outline-primary"
-				onclick="updateConfirm(); " style="float: center">수정하러 가기</a>
+			
 				<a href="javascript:void(0);" class="btn btn-outline-primary"
-				onclick="deleteConfirm(); " style="float: center">삭제</a>
+				onclick="update(); " style="float: center">수정완료</a>
 		</div>
 		
 	</div>
@@ -247,23 +246,17 @@ c:hover:after {
 		});
 	}
 
-		function deleteConfirm() {
+		function update() {
 
-			if (!confirm("삭제 하시겠습니까?")) {
+			if (!confirm("수정 하시겠습니까?")) {
 				return false;
 			} else {
-				location.href = "/albumdelete?group_album_seq=${albumInfo.group_album_seq}";
+				location.href = "/albumupdate?group_album_seq=${albumInfo.group_album_seq}";
 			}
 
 		}
 		
-		function updateConfirm() {
-
-		location.href = "/group/albumupdate?group_album_seq=${albumInfo.group_album_seq}";
-		
-		}
-		
-		
+		update
 		
 		
 	</script>
