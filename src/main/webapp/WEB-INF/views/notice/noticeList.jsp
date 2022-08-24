@@ -54,7 +54,7 @@
 		<div class="col-10">
 			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
-				<h2 style="padding-top: 5%">운영자 공지사항</h2>
+				<h2 style="padding-top: 5%">공지사항</h2>
 
 				<div class="row mb-2 align-items-center-between my-3">
 					<div class="col-5" id="product_order_list">
@@ -81,7 +81,7 @@
 
 				<!-- 테이블 데이터 시작구간 -->
 				<div class="table-responsive">
-					<table class="table table-striped table-sm">
+					<table class="table table-hover table-striped table-sm">
 						<thead>
 							<tr>
 								<th scope="col" style="text-align: center">번호</th>
@@ -89,17 +89,15 @@
 								<th scope="col" style="text-align: center">작성일</th>
 								<th scope="col" style="text-align: center">조회수</th>
 
-							</tr>
+							</tr>	
 						</thead>
 						<tbody class="listData">
 							<c:forEach var="list" items="${noticeList}">
-								<tr>
-									<td scope="col" style="text-align: center">
+								<tr style="cursor:pointer" onclick="location.href='/notice/noticeDetail?notice_seq=${list.notice_seq}'">
+									<td style="text-align: center">
 									${list.notice_seq}</td>
-									<td scope="col" style="text-align: center"><a class="move"
-										href='${list.notice_seq}'> ${list.title} </a></td>
-									<td scope="col" style="text-align: center">
-									<fmt:formatDate value="${list.regdate}" type="date"/></td>
+									<td scope="col" style="text-align: center"> ${list.title}</td>
+									<td scope="col" style="text-align: center">	<fmt:formatDate value="${list.regdate}" type="date"/></td>
 									<td scope="col" style="text-align: center">${list.cnt}</td>
 								</tr>
 							</c:forEach>
@@ -133,33 +131,26 @@
 				</div><!-- 테이블 데이터 끝구간 -->
 
 
-
-
-
-
-				<!-- 검색 버튼 기능 구간  -->
-				<div class="row mb-3 align-items-center justify-content-center">
-
-					<div class="col-2" style="margin-left: 10%;"></div>
-
-					<div class="search_wrap">
-						<div class="search_area">
-							<select name="type">
-								<option value=""
+	
+				<!--  검색버튼 구간 -->
+                    <div class="row mb-3 align-items-center justify-content-center">
+                        <div class="col-4" style="margin-left: 10%;">
+                            <select class="form-select form-select-md" name="type">
+                               <option value=""
 									<c:out value="${pageMaker.cri.type == null?'selected':'' }"/>>--</option>
 								<option value="T"
 									<c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }"/>>제목</option>
 								<option value="C"
 									<c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }"/>>내용</option>
-
-							</select> <input type="text" name="keyword"
-								value="${pageMaker.cri.keyword}">
-							<button>Search</button>
-						</div>
-					</div>
-
-
-				</div>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" class="form-control" name="keyword" value="${pageMaker.cri.keyword}">
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-primary" type="button">검색</button>
+                        </div>
+                    </div>
 		</div>
 
 	</form>

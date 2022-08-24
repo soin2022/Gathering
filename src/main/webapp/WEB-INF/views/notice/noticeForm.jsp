@@ -122,7 +122,7 @@
 
 					<input class="btn btn-primary" style="margin-right: 10px;"
 						type="submit" value="등록">
-					<button class="btn btn-primary" type="button" id="cancel_btn">취소</button>
+					<button class="btn btn-primary" type="button" onclick="location.href='/notice/noticeList'" >취소</button>
 
 				</div>
 			</div>

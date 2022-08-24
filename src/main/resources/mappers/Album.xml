@@ -48,7 +48,7 @@
 			</foreach>
 		</trim>
 	</sql>
-<!--  게시물 목록(페이징) -->
+	<!--  게시물 목록(페이징) -->
 	<select id="getAlbumListPaging" resultType="com.gathering.dto.AlbumVO">
     
     <![CDATA[
@@ -86,7 +86,7 @@
 	
 	<!--  앨범 수정하기  -->
 	<update id="updateAlbum" parameterType="com.gathering.dto.AlbumVO">
-		update group_album SET title=#{title} where group_album_seq=#{group_album_seq}
+		update group_album SET title=#{title},filename=#{filename,jdbcType=VARCHAR} where group_album_seq=#{group_album_seq}
 	</update>
 	
 	

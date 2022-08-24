@@ -4,8 +4,6 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -17,13 +15,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gathering.dto.AlbumVO;
 import com.gathering.dto.CrewInfoVIewVO;
+import com.gathering.dto.CrewVO;
 import com.gathering.dto.GroupInfoVO;
+import com.gathering.dto.GroupNoticeVO;
 import com.gathering.dto.UserInfoVO;
 import com.gathering.mapper.AttachMapper;
 import com.gathering.paging.Criteria;
@@ -45,37 +44,7 @@ public class GroupAlbumController {
 	@Autowired
 	private GroupNoticeService groupNoticeService;
 
-	@RequestMapping("/summerUpload")
-	@ResponseBody
-	public String summerUpload(MultipartFile file, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-
-		// 파일이름 가져오기
-		String newFileName = "";
-
-		// 업로드할 폴더 경로
-		String realFolder = "c:/gatheringFileSave/";// 저장될 외부 파일 경로 //c:/team1FileSave/
-
-		// 업로드할 파일 이름
-		String originFileName = file.getOriginalFilename();
-		System.out.println("originFileName : " + originFileName);
-		long time = System.currentTimeMillis();
-		// 1개의 파일이름을 변형해서 다시 저장
-		newFileName = String.format("%d_%s", time, originFileName);
-
-		System.out.println("원본 파일명 : " + originFileName);
-		System.out.println("저장할 파일명 : " + newFileName);
-
-		String filepath = realFolder + "/" + newFileName;
-		System.out.println("파일경로 : " + filepath);
-
-		File f = new File(filepath);
-		file.transferTo(f);
-		System.out.println("/upload/" + newFileName);
-
-		return "/upload/" + newFileName;
-	}
-
+	
 	public String fileSave(MultipartFile file) {
 
 		String newFileName = "";
@@ -153,8 +122,11 @@ public class GroupAlbumController {
 		if (user == null) {
 			return "user/login";
 		} else {
-
+			
+			
 			System.out.println(albumVO);
+			
+			
 			return "/group/groupAlbumForm";
 		}
 	}
@@ -172,11 +144,21 @@ public class GroupAlbumController {
 
 	// 앨범 댓글창으로 이동하기
 	@RequestMapping("/group/albumDetail")
-	public String albumDetailView(AlbumVO albumVO, Model model) {
+	public String albumDetailView(AlbumVO albumVO, GroupNoticeVO vo,Model model) {
 
 		AlbumVO albumInfo = albumService.albumDetail(albumVO.getGroup_album_seq());
 
 		model.addAttribute("albumInfo", albumInfo);
+		
+		//모임장 체크를위한 모임원 정보
+		List<CrewInfoVIewVO> crewList = groupService.getGroupCrews(vo.getGroup_seq());
+		model.addAttribute("crewList", crewList);
+		
+		GroupNoticeVO groupNotice = groupNoticeService.groupNoticeView(vo.getGroup_notice_seq());		
+		
+		groupNoticeService.groupNoticeViewCount(vo.getGroup_notice_seq());
+		
+		model.addAttribute("groupNotice", groupNotice);
 
 		System.out.println(albumInfo);
 
@@ -193,7 +175,7 @@ public class GroupAlbumController {
 			return "user/login";
 		} else {
 			albumService.deleteAlbum(album_group_seq);
-			return "redirect:/group/gorupAlbum";
+			return "/group/groupAlbumResult";
 		}
 	}
 	
@@ -214,14 +196,16 @@ public class GroupAlbumController {
 	
 	//앨범 수정하기 
 	@RequestMapping("/albumupdate")
-	public String albumupdateFormAction(HttpSession session, AlbumVO albumVO,@RequestParam("group_album_seq")int album_group_seq) {
+	public String albumupdateFormAction(HttpSession session,AlbumVO albumVO,@RequestPart MultipartFile file1,@RequestParam("group_album_seq")int album_group_seq) {
 		UserInfoVO user = (UserInfoVO) session.getAttribute("user");
 
 		if (user == null) {
 			return "user/login";
 		} else {
+			albumVO.setFilename(fileSave(file1));
 			albumService.updateAlbum(albumVO);
-			return "redirect:/group/groupAlbumDetail?group_album_seq="+albumVO.getGroup_album_seq();
+			
+			return "redirect:/group/albumDetail?group_album_seq="+albumVO.getGroup_album_seq();
 		}
 	}
 	

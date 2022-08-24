@@ -79,24 +79,7 @@
 				}); //summernote
 	}); //function
 
-	//파일 업로드 실행 메소드
-	function sendFile(file, el) {
-		var form_data = new FormData();
-		form_data.append('file', file);
-		$.ajax({
-			data : form_data,
-			type : "POST",
-			url : 'summerUpload',
-			cache : false,
-			contentType : false,
-			enctype : 'multipart/form-data',
-			processData : false,
-			success : function(img_name) { //성공 시 url이 입력됨.
-				$(el).summernote('editor.insertImage', img_name);
-			}
-		});
-
-	}//sendFile
+	
 </script>
 <!---등록 자바스크립트 -->
 <script>

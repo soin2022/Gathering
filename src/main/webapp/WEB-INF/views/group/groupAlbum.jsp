@@ -59,13 +59,14 @@ c:hover:after {
 				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
 				<input type="hidden" name="type" value="${pageMaker.cri.type }">
 				<input type="hidden" name="group_seq" value="${albumVO.group_seq }">
+				
 			</form>
 	
 	<!-- Nav바 구간-->
 	<%@ include file="/WEB-INF/views/navibar.jsp"%>
 
 
-	<!--사이드바 시작구간-->
+	<!-- 시작구간-->
 	<div class="container-fluid">
 		<div class="row">
 			<nav id="sidebarMenu"
@@ -89,17 +90,14 @@ c:hover:after {
 					</ul>
 				</div>
 			</nav>
-
+	
 
 
 			<!--메인구간 -->
-
-
-			
-			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-			
-
-				<h2 style="padding-top: 5%">앨범</h2>
+		
+		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+		
+				<h2 style="padding-top: 5%">앨범 </h2>
 
 				<!-- 사진등록 버튼 -->
 				<div class="row mb-2">
@@ -108,22 +106,20 @@ c:hover:after {
 							<button type="button" class="btn btn-outline-primary"
 								id="album_button" style="float: right">사진등록</button>
 						</c:if>
-
-
 					</div>
 				</div>
 
 				<!--섹션 시작-->
 
-				<section class="py-2">
+		<section class="py-2">
 
-					<div class="container px-4 px-lg-5 mt-5">
+			<div class="container px-4 px-lg-5 mt-5">
 						<!--container -->
 
-						<div
+				<div
 							class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-						<c:forEach items="${albumList}" var="album">
+					<c:forEach items="${albumList}" var="album">
 								
 								<!--사진카드-->
 						<div class="col mb-5">
@@ -136,24 +132,21 @@ c:hover:after {
 								<div class="card-body p-3">
 									<!-- 댓글 -->
 									<div class="text-center">
-										<input hidden="group_album_seq">
-											<div class="fromCenter" style="cursor: pointer"
-											onclick="window.open('/group/albumDetail?group_album_seq=${album.group_album_seq}','ㅋㅋ','width=30,heigth=30')">댓글 입력
-											</div>
-
-												
-												
-
+										
+										<button type="button" class="btn btn-outline-primary" class="fromCenter" 
+											onclick="window.open('/group/albumDetail?group_album_seq=${album.group_album_seq}','ㅋㅋ','width=20,heigth=20')">댓글 입력</button>
+											
 									</div>
+											
+
 								</div>
 							</div>
 						</div>
-						</c:forEach>
+					</c:forEach>
+				</div>
+			</div>
 
-
-						</div>
-
-					</div>	<!--  검색버튼 구간 -->
+						<!--  검색버튼 구간 -->
 			             
                     <div class="row mb-3 align-items-center justify-content-center">
                         <div class="col-2" style="margin-left: 10%;">
@@ -196,13 +189,20 @@ c:hover:after {
                       </li>
                       </c:if>
                     </ul>
+               
                 </nav>
 						
-				</section>
-				</main>
-		</div>
-		
+		</section>
+	
+	</main>
+</form>		
 	</div>
+			
+</div>
+	
+		
+		
+	
 		
 	
 				
@@ -236,7 +236,24 @@ c:hover:after {
 
 							window.open(popUrl, "앨범 쓰기", popOption);
 
-						});
+		});//사진 등록버튼
+		
+		$("#album_button")
+		.on(
+				"click",
+				function(e) {
+					e.preventDefault();
+					const group_seq = '${albumVO.group_seq}';
+
+					let popUrl = "/groupAlbumForm/" + "?group_seq="
+							+ group_seq;
+					console.log(popUrl);
+					let popOption = "width = 490px, height=390px, top=300px, left=300px, scrollbars=yes";
+
+					window.open(popUrl, "앨범 쓰기", popOption);
+
+		});//댓글 등록버튼 끝
+		
 		
 		
 		let moveForm = $("#moveForm");

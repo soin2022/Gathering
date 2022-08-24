@@ -63,10 +63,11 @@
 				<!-- 정보 저장용 히든 -->
 				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
 				<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+				<input type="hidden" name="group_seq" value="${sudaVO.group_seq}">
 				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
 				<input type="hidden" name="type" value="${pageMaker.cri.type }">
-				<input type="hidden" name="group_seq" value="${sudaVO.suda_seq}">
-				<input type="hidden" name="content" value="${sudaVO.content }">
+				
+				
 			</form>
 		
  			<form method="get" id="moveForm" action="/group/groupSuda">
@@ -98,27 +99,26 @@
                            	 <tr style="cursor:pointer" onclick="location.href='/sudaDetail?suda_seq=${sudaVO.suda_seq}'">
                         		<td style="text-align:center"> ${sudaVO.suda_seq }</td>
                                 <td style="text-align:center"> ${sudaVO.content} </td>
-                              
-                                <td style="text-align:center">${sudaVO.user_id}</td>                                
+                                 <td style="text-align:center">${sudaVO.user_id}</td>                                
                                                               
                             </tr> 
                          </c:forEach>
                         </tbody>         
                     </table>
+               
+                
                 </div>
-					
-					
-				<!--  검색버튼 구간 -->
+                
+                
+                	<!--  검색버튼 구간 -->
 			
-             
                     <div class="row mb-3 align-items-center justify-content-center">
                         <div class="col-2" style="margin-left: 10%;">
                             <select class="form-select form-select-md" name="type">
                                 <option value=""
 									<c:out value="${pageMaker.cri.type == null?'selected':'' }"/>>--</option>
-								<option value="T"
-									<c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }"/>>제목</option>
-								
+								<option value="C"
+									<c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }"/>>내용</option>
                             </select>
                         </div>
                         <div class="col-2">
@@ -128,9 +128,7 @@
                             <button class="btn btn-primary" type="button">검색</button>
                         </div>
                     </div>
-				
-				
-                <!--페이징-->
+					 <!--페이징-->
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
                     <c:if test="${pageMaker.prev}">
@@ -152,9 +150,11 @@
                       </li>
                       </c:if>
                     </ul>
-                </nav>
+                </nav>              
   			</form>
+  			
   			</main>
+  			
             
             </div>
             
@@ -190,51 +190,51 @@
 
 	<!-- 페이지 등록 수정 스크립트 -->
 	<script>
-		let moveForm = $("#moveForm");
+	let moveForm = $("#moveForm");
 
-		$(".move")
-				.on(
-						"click",
-						function(e) {
-							e.preventDefault();
+	$(".move")
+			.on(
+					"click",
+					function(e) {
+						e.preventDefault();
 
-							moveForm
-									.append("<input type='hidden' name='suda_seq' value='"
-											+ $(this).attr("href") + "'>");
-							moveForm.attr("action", "/group/groupSuda");
-							moveForm.submit();
-						});
+						moveForm
+								.append("<input type='hidden' name='group_seq' value='"
+										+ $(this).attr("href") + "'>");
+						moveForm.attr("action", "/group/groupSuda");
+						moveForm.submit();
+					});
 
-		$(".pagination a").on("click", function(e) {
+	$(".pagination a").on("click", function(e) {
 
-			e.preventDefault();
-			moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-			moveForm.attr("action", "/group/groupSuda");
-			moveForm.submit();
+		e.preventDefault();
+		moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+		moveForm.attr("action", "/group/groupSuda");
+		moveForm.submit();
 
-		});
+	});
+	
+	$(".col-2 button").on("click", function(e) {
+		e.preventDefault();
 
-		$(".col-2 button").on("click", function(e) {
-			e.preventDefault();
+		let type = $(".col-2 select").val();
+		let keyword = $(".col-2 input[name='keyword']").val();
 
-			let type = $(".col-2 select").val();
-			let keyword = $(".col-2 input[name='keyword']").val();
+		if (!type) {
+			alert("검색 종류를 선택하세요.");
+			return false;
+		}
 
-			if (!type) {
-				alert("검색 종류를 선택하세요.");
-				return false;
-			}
+		if (!keyword) {
+			alert("키워드를 입력하세요.");
+			return false;
+		}
 
-			if (!keyword) {
-				alert("키워드를 입력하세요.");
-				return false;
-			}
-
-			moveForm.find("input[name='type']").val(type);
-			moveForm.find("input[name='keyword']").val(keyword);
-			moveForm.find("input[name='pageNum']").val(1);
-			moveForm.submit();
-		});
+		moveForm.find("input[name='type']").val(type);
+		moveForm.find("input[name='keyword']").val(keyword);
+		moveForm.find("input[name='pageNum']").val(1);
+		moveForm.submit();
+	});
 	</script>
 
 </body>
