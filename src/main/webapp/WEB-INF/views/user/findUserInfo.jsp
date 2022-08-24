@@ -173,8 +173,6 @@
    
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
     <!--Jquery 적용-->
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <!--스크립트 부분-->

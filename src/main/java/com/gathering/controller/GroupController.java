@@ -50,13 +50,19 @@ public class GroupController {
 	
 	// 모임 만들기 
 	@PostMapping("/group/creatNewGroup")
-	public String createGroupAction(GroupInfoVO vo, Model model) {
-		groupService.createNewGroup(vo);
-		GroupInfoVO group = groupService.getGroupByGroupName(vo);
+	public String createGroupAction(GroupInfoVO vo, Model model, HttpSession session) {
+		UserInfoVO user= (UserInfoVO)session.getAttribute("user");
 		
-		model.addAttribute("group_seq", group.getGroup_seq());
-		System.out.println(group);
-		return "/group/joinForLeader";
+		if(user == null) {
+			return "/alerts/mustLoginAlert";
+		} else {
+			groupService.createNewGroup(vo);
+			GroupInfoVO group = groupService.getGroupByGroupName(vo);
+			
+			model.addAttribute("group_seq", group.getGroup_seq());
+			System.out.println(group);
+			return "/group/joinForLeader";
+		}	
 	}
 	@PostMapping("/group/joinForLeader") // 모임장사진 등록
 	public String joinForLeader(CrewVO vo, HttpSession session, @RequestParam(value="group_seq") int group_seq, @RequestParam("image") MultipartFile uploadFile, Model model) {
@@ -229,12 +235,14 @@ public class GroupController {
 	// 모임삭제확인페이지로 이동
 	@GetMapping("/group/deleteGroupInfo")
 	public void deleteGroupInfoCheck(GroupInfoVO vo, Model model) {
+		
 		model.addAttribute("group", groupService.getGroupDetail(vo.getGroup_seq()));
 	}
 	
 	// 모임삭제하기
 	@PostMapping("/group/deleteGroupForm")
 	public String deleteGroupInfo(UserInfoVO vo, CrewVO crew, Model model ) {
+		
 		UserInfoVO user = userService.getUser(vo);
 	
 		

@@ -1,217 +1,158 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>One Page Wonder - Start Bootstrap Template</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
-        rel="stylesheet" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../css/styles.css" rel="stylesheet" />
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>One Page Wonder - Start Bootstrap Template</title>
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- Google fonts-->
+<link
+	href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
+	rel="stylesheet" />
+<link
+	href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+	rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="../css/styles.css" rel="stylesheet" />
 
 </head>
 
 <body id="page-top">
-    <!-- Nav바 구간-->
-    <%@ include file="/WEB-INF/views/navibar.jsp" %>
-    <!--메인시작구간-->
-    <div class="container-fluid">
-       <!--요안에 다 담겨야됨 -->
-        <div class="row">
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/mypage/interestGroupList">
-                                <span data-feather="home"></span>
-                                관심있는 모임
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/mypage/joinedGroup">
-                                <span data-feather="file"></span>
-                               내가 가입한 모임
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/mypage/ownedGroup">
-                                <span data-feather="shopping-cart"></span>
-                                내가 만든 모임
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/mypage/myInfo">
-                                <span data-feather="users"></span>
-                                내 정보 관리
-                            </a>
-                        </li>
-                        
-
-                    </ul>
+	<!-- Nav바 구간-->
+	<%@ include file="/WEB-INF/views/navibar.jsp"%>
+	<!--메인시작구간-->
+	<div class="container-fluid">
+		<!--요안에 다 담겨야됨 -->
+		<div class="row">
+			<nav id="sidebarMenu"
+				class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+				<div class="position-sticky pt-3">
+					<ul class="nav flex-column">
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="/mypage/interestGroupList"> <span
+								data-feather="home"></span> 관심있는 모임
+						</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/mypage/joinedGroup"> <span data-feather="file"></span>
+								내가 가입한 모임
+						</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/mypage/ownedGroup"> <span data-feather="shopping-cart"></span>
+								내가 만든 모임
+						</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/mypage/myInfo"> <span data-feather="users"></span> 내
+								정보 관리
+						</a></li>
 
 
-                    </ul>
-                </div>
-            </nav>
+					</ul>
 
-            <!--메인구간 -->
 
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+				</div>
+			</nav>
+
+			<!--메인구간 -->
+
+			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
 				<form id="moveForm" method="get">
-				<!-- 정보 저장용 히든 -->
-				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
-				<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
-				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
-				<input type="hidden" name="type" value="${pageMaker.cri.type }">
+					<!-- 정보 저장용 히든 -->
+					<input type="hidden" name="pageNum"
+						value="${pageMaker.cri.pageNum }"> <input type="hidden"
+						name="amount" value="${pageMaker.cri.amount }"> <input
+						type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
+					<input type="hidden" name="type" value="${pageMaker.cri.type }">
 				</form>
-				
-                <h2 style="padding-top:5%">관심있는 모임</h2>
 
-                <!-- 상단 버튼 세개 -->
-                
-                <div class="row mb-5">
-                    <div class="col">
-                        <button type="button" class="btn btn-outline-primary" style="float:right" onclick="deleteInterestGroup()">삭제</button>
-                        <button type="button" class="btn btn-outline-primary" style="float:right; margin-right:10px" id="unselectAll">선택해제</button>  
-                        <button type="button" class="btn btn-outline-primary" style="float:right; margin-right:10px" id="selectAll">모두선택</button>  
-                    </div>       
-                </div>
-				
+				<h2 style="padding-top: 5%">관심있는 모임</h2>
 
-<!-- 
+				<!-- 상단 버튼 세개 -->
 
- 
-                    --카테고리 검색창--
-                    <form>
-                    <div class="row mt-3">
-                        <div class="col-10">
-                        <div class="input-group">
-                            <select name="job" class="btn btn-outline-success ">
-                                <option value="">카테고리1</option>
-                                <option value="학생">학생</option>
-                                <option value="회사원">회사원</option>
-                                <option value="기타">기타</option>
-                            </select>
-                            <select name="job" class="btn btn-outline-success mx-2">
-                                <option value="">카테고리2</option>
-                                <option value="학생">학생</option>
-                                <option value="회사원">회사원</option>
-                                <option value="기타">기타</option>
-                            </select>
-                           
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            
-                                <button class="btn btn-outline-success" type="submit">Search</button>
-                            
-                        </div>
-                        </div>
+				<div class="row mb-5">
+					<div class="col">
+						<button type="button" class="btn btn-outline-primary"
+							style="float: right" onclick="deleteInterestGroup()">삭제</button>
+						<button type="button" class="btn btn-outline-primary"
+							style="float: right; margin-right: 10px" id="unselectAll">선택해제</button>
+						<button type="button" class="btn btn-outline-primary"
+							style="float: right; margin-right: 10px" id="selectAll">모두선택</button>
+					</div>
+				</div>
 
-                    </div>
-                    </form>  
-                
- --> 
 
 				<c:if test="${empty groupList}">
-					<h5 style="text-align:center">관심있는 모임리스트가 없습니다. 모임찜하기로 등록해보세요</h5>
+					<h5 style="text-align: center">관심있는 모임리스트가 없습니다. 모임찜하기로 등록해보세요</h5>
 				</c:if>
-                <!--모임리스트-->
-               	<form name="formm" id="theform" method="post">
-                <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-  					
-  					<!-- <<<<<<<모임<<<<<<<< -->
-  					<c:forEach items="${groupList}" var="group">
-                    <div class="feature col-lg-3 border rounded py-4 m-2"> 
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="${group.group_seq}" id="gruop_seq" name="group_seq" style="float:right ;">
-                        </div>
-                        
-                        <h2><a href="/group/groupDetail?group_seq=${group.group_seq}" style="text-decoration : none; color:black;">${group.group_name}</a></h2>
-                        <p>${group.brief}</p>
-                        <div class="text-muted">${group.region}</div>
-                        <div class="col-4 text-muted ">${group.kind}</div>    
-                        <div class="col-4 text-muted ">${group.member_limit}</div>  
-                        <div class="row justify-content-center">
-	                        <div class="col-auto">
-	                            <button class="btn btn-primary" type="button" onclick="location.href='/group/joinGroup?group_seq=${group.group_seq}'">모임가입</button>
-	                        </div>
-                        </div>  
-                    </div>
-                    </c:forEach>
-                    <!-- >>>>>>>카드>>>>>>>> -->
-					                   
-                </div>
-				</form> 
+				<!--모임리스트-->
+				<form name="formm" id="theform" method="post">
+					<div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
 
-				<!--페이징-->
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                    <c:if test="${pageMaker.prev}">
-                      <li class="page-item">
-                        <a class="page-link" href="${pageMaker.startPage-1}" aria-label="Previous">
-                          <span aria-hidden="true">&laquo;</span>
-                        </a>
-                      </li>
-                      </c:if>
-                      <c:forEach var="num" begin="${pageMaker.startPage}"
-									end="${pageMaker.endPage}">
-                      <li class="page-item" ${pageMaker.cri.pageNum == num ? "active":"" }><a class="page-link" href="${num}">${num}</a></li>
-                      </c:forEach>
-                      <c:if test="${pageMaker.next}">
-                      <li class="page-item">
-                        <a class="page-link" href="${pageMaker.endPage + 1 }" aria-label="Next">
-                          <span aria-hidden="true">&raquo;</span>
-                        </a>
-                      </li>
-                      </c:if>
-                    </ul>
-                </nav>
-                
+						<!-- <<<<<<<모임<<<<<<<< -->
+						<c:forEach items="${groupList}" var="group">
+							<div class="feature col-lg-3 border rounded py-4 m-2">
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox"
+										value="${group.group_seq}" id="gruop_seq" name="group_seq"
+										style="float: right;">
+								</div>
+
+								<h2>
+									<a href="/group/groupDetail?group_seq=${group.group_seq}"
+										style="text-decoration: none; color: black;">${group.group_name}</a>
+								</h2>
+								<p>${group.brief}</p>
+								<div class="text-muted">${group.region}</div>
+								<div class="col-4 text-muted ">${group.kind}</div>
+								<div class="col-4 text-muted ">${group.member_limit}</div>
+								<div class="row justify-content-center">
+									<div class="col-auto">
+										<button class="btn btn-primary" type="button"
+											onclick="location.href='/group/joinGroup?group_seq=${group.group_seq}'">모임가입</button>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+						<!-- >>>>>>>카드>>>>>>>> -->
+
+					</div>
+				</form>
+
+			</main>
 
 
 
-        </div>
-    </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    </section>
-    
-</main>
-    
-    </div>
-    </div>
 
-    <!-- Footer-->
-    <%@ include file="/WEB-INF/views/footer.jsp" %>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-    
-    
-    <!-- mypage 스크립트 -->
+
+		</div>
+	</div>
+
+	<!-- Footer-->
+	<%@ include file="/WEB-INF/views/footer.jsp"%>
+	<!-- Bootstrap core JS-->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+	<!-- mypage 스크립트 -->
 	<script type="text/javascript" src="../js/mypage.js" charset="UTF-8"></script>
-	
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
       $( document ).ready( function() {
         $( '#selectAll' ).click( function() {
           $( 'input[name=group_seq]' ).prop( 'checked', true );
@@ -222,8 +163,8 @@
       
       } );
     </script>
-    
-    <script>
+
+	<script>
 		$(document).ready(function() {
 
 			var msg = "${msg}";
@@ -239,7 +180,7 @@
 			return false;
 		}
 	</script>
-    <script>
+	<script>
 		let moveForm = $("#moveForm");
 
 		$(".move")
@@ -287,7 +228,7 @@
 		});
 	</script>
 
-    
+
 </body>
 
-</html> 
+</html>
