@@ -44,6 +44,26 @@ function createGroup(){
   
 }
 
+function imageCheck(){
+    if(document.getElementById("image").value==""){
+        alert("사진을 등록해주세요")
+        return false;
+    } else {
+        document.getElementById("joinCrewForm").action="joinForLeader";
+        document.getElementById("joinCrewForm").submit();
+    }
+}
+
+function imageCheckForCrew(){
+    if(document.getElementById("image").value==""){
+        alert("사진을 등록해주세요")
+        return false;
+    } else {
+        document.getElementById("joinCrew").action="joinGroup";
+        document.getElementById("joinCrew").submit();
+    }
+}
+
 
 function deleteGroup(){
     if(document.getElementById("user_id").value==""){

@@ -64,8 +64,6 @@
                         </li>
                     </ul>
 
-
-                    
                 </div>
             </nav>
 
@@ -107,7 +105,7 @@
                     </div>
                     <!--이름-->
                     <div class="row mb-2">
-                        <label for=name" class="col-sm-2 col-form-label">이름</label>
+                        <label for="name" class="col-sm-2 col-form-label">이름</label>
                         <div class="col-auto">
                         	<input type="hidden" id="name" name="name" value="${sessionScope.user.name}">
                            <strong> ${sessionScope.user.name} </strong>
@@ -203,55 +201,8 @@
                         </div>
                     </div>    
 
-                    <!--관심분야-->
-                    <div class="row my-3">
-                        <label for="user_interest" class="col-sm-2 col-form-label">관심분야</label>
-                        <div class="container col">
-                            <div class="row row-cols-3">
-
-                                <div class="col-5">
-                                            <input class="form-check-input" type="checkbox" value="스포츠" id="check1" name="category1">
-                                            <label class="form-check-label" for="check1">
-                                                스포츠
-                                            </label>
-                                        </div>
-                                        <div class="col-5">
-                                            <input class="form-check-input" type="checkbox" value="음악" id="check2" name="category1">
-                                            <label class="form-check-label" for="check2">
-                                                음악
-                                            </label>
-                                        </div>
-                                        <div class="col-5">
-                                            <input class="form-check-input" type="checkbox" value="여행" id="check3" name="category1">
-                                            <label class="form-check-label" for="check3">
-                                                여행
-                                            </label>
-                                        </div>
-                                        <div class="col-5">
-                                            <input class="form-check-input" type="checkbox" value="문화" id="check4" name="category1">
-                                            <label class="form-check-label" for="check4">
-                                                문화
-                                            </label>
-                                        </div>
-                                        <div class="col-5">
-                                            <input class="form-check-input" type="checkbox" value="봉사활동" id="check5" name="category1">
-                                            <label class="form-check-label" for="check5">
-                                                봉사활동
-                                            </label>
-                                        </div>
-										<div class="col-5">
-                                            <input class="form-check-input" type="checkbox" value="반려동물" id="check6" name="category1">
-                                            <label class="form-check-label" for="check6">
-                                                반려동물
-                                            </label>
-                                        </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    
                     <!-- 유저타입 1 -->
-                            <input type="hidden" name="user_type" value="1">
+                    <input type="hidden" name="user_type" value="1">
                             
                     <!--아래 버튼-->
                     <div class="row">
@@ -276,8 +227,7 @@
     
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+
     <!--카카오 지도,주소-->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript"

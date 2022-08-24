@@ -42,7 +42,6 @@
                     <!--회원ID-->
                     <div class="row mb-2">
                          <label for="user_id" class="col-sm-2 col-form-label">회원ID</label>
-                    
                         <div class="col-auto">
                             <input type="text" class="form-control" id="user_id" name="user_id" placeholder="회원ID">
                         </div>
@@ -55,30 +54,29 @@
                             <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호">
                         </div>
                     </div>
-                   <div style="text-align: center; color:red"><span>${message}</span></div>
+                    
+                    <!-- 결과메세지 -->
+                    <div style="text-align: center; color:red"><span>${message}</span></div>
+                    
+                    <!-- 버튼 -->
                     <div class="row">
                         <div class="col text-center">
-                            <input class="btn btn-primary" style="margin-right: 10px;" type="button" value="삭제" onclick="deleteGroup()"><!--메인화면으로 이동-->
+                            <input class="btn btn-primary" style="margin-right: 10px;" type="button" value="삭제" onclick="deleteGroup()">
                             <button class="btn btn-primary" type="button" onclick="history.back()">취소</button>
                         </div>
                     </div>
-
                 </div>
-                            
             </form>
 
             </main>
-        </div>
-        </div>
-    </div>
+        	</div>
 
     <!-- Footer-->
    	<%@ include file="/WEB-INF/views/footer.jsp" %>
    
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+    
     <!-- group 스크립트 -->
 	<script type="text/javascript" src="../js/group.js" charset="UTF-8"></script>
     
