@@ -106,8 +106,11 @@
 
                     <!-- 모임공지 상세 내용-->
 					
+					
 	                    <div class="col-8" style="padding-top: 10px; line-height: 3;">
+	                    	<c:if test="${groupNotice.filename != null}">
 	                        <div><img src="/images/${groupNotice.filename}" /></div>
+	                        </c:if>
 	                      	<a >${groupNotice.content}</a>
 	                    </div>
 	                      <hr>            
