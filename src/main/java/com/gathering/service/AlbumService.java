@@ -30,5 +30,6 @@ public interface AlbumService {
 	//앨범게 시글 총 갯수
 	public int getAlbumTotal(HashMap<String, Object> map);
 	
-	
+	//앨범 수정
+	public int updateAlbum(AlbumVO albumVO);
 }

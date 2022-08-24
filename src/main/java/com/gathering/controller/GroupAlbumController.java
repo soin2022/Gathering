@@ -54,7 +54,7 @@ public class GroupAlbumController {
 		String newFileName = "";
 
 		// 업로드할 폴더 경로
-		String realFolder = "c:/team1FileSave/";// 저장될 외부 파일 경로 //c:/team1FileSave/
+		String realFolder = "c:/gatheringFileSave/";// 저장될 외부 파일 경로 //c:/team1FileSave/
 
 		// 업로드할 파일 이름
 		String originFileName = file.getOriginalFilename();
@@ -87,7 +87,7 @@ public class GroupAlbumController {
 			// 중복방지 파일이름생성
 			newFileName = String.format("%d_%s", time, originFileName);
 			// 파일 저장 위치
-			String fileSaveUrl = "c:/team1FileSave/";
+			String fileSaveUrl = "c:/gatheringFileSave/";
 			// 파일생성 c:/fileSave/1.jpg
 			File f = new File(fileSaveUrl + newFileName);
 			// 파일 업로드
@@ -167,7 +167,7 @@ public class GroupAlbumController {
 
 		albumService.InsertAlbum(albumVO);
 		System.out.println(albumVO);
-		return "/group/groupAlbum";
+		return "/group/groupAlbumResult";
 	}
 
 	// 앨범 댓글창으로 이동하기
@@ -196,4 +196,33 @@ public class GroupAlbumController {
 			return "redirect:/group/gorupAlbum";
 		}
 	}
+	
+	
+	// 앨범 수정 창으로 이동하기
+		@RequestMapping("/group/albumupdate")
+		public String albumupdateForm(AlbumVO albumVO, Model model) {
+
+			AlbumVO albumInfo = albumService.albumDetail(albumVO.getGroup_album_seq());
+
+			model.addAttribute("albumInfo", albumInfo);
+
+			System.out.println(albumInfo);
+
+			return "/group/groupAlbumUpdate";
+
+		}
+	
+	//앨범 수정하기 
+	@RequestMapping("/albumupdate")
+	public String albumupdateFormAction(HttpSession session, AlbumVO albumVO,@RequestParam("group_album_seq")int album_group_seq) {
+		UserInfoVO user = (UserInfoVO) session.getAttribute("user");
+
+		if (user == null) {
+			return "user/login";
+		} else {
+			albumService.updateAlbum(albumVO);
+			return "redirect:/group/groupAlbumDetail?group_album_seq="+albumVO.getGroup_album_seq();
+		}
+	}
+	
 }

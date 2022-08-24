@@ -149,7 +149,7 @@ function Albumadd() {
 				<button class="mod_btn2" onclick="Albumadd()">
 					<span class="material-icons">post_add</span> 등록하기
 				</button>
-				<button class="mod_btn1" onclick="javascript:history.back()">
+				<button class="mod_btn1" onclick="javascript:window.close()">
 					<span class="material-icons">clear</span> 취소
 				</button>
 			</form>

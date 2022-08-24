@@ -126,15 +126,16 @@
 
 				</div>
 			</div>
-	</div>
 	</form>
+	</div>
+	
 	<form id="infoForm" action="/notice/noticeUpdate" method="get">
 		<input type="hidden" id="notice_seq" name="notice_seq"
 			value='<c:out value="${noticeInfo.notice_seq}"/>'>
 	</form>
 
 
-	</div>
+	
 
 
 

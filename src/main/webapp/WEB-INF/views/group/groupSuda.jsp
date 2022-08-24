@@ -37,10 +37,10 @@
 				<div class="position-sticky pt-3">
 					<ul class="nav flex-column">
 						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="#"> <span data-feather="home"></span>
+							aria-current="page" href="/group/groupDetail?group_seq=${sudaVO.group_seq}"> <span data-feather="home"></span>
 								모임상세
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"> <span
+						<li class="nav-item"><a class="nav-link" href="/group/groupNoticeListView?group_seq=${sudaVO.group_seq}"> <span
 								data-feather="file"></span> 모임공지
 						</a></li>
 						<li class="nav-item"><a class="nav-link"
@@ -65,6 +65,8 @@
 				<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
 				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
 				<input type="hidden" name="type" value="${pageMaker.cri.type }">
+				<input type="hidden" name="group_seq" value="${sudaVO.suda_seq}">
+				<input type="hidden" name="content" value="${sudaVO.content }">
 			</form>
 		
  			<form method="get" id="moveForm" action="/group/groupSuda">
@@ -104,8 +106,7 @@
                         </tbody>         
                     </table>
                 </div>
-					<input type="hidden" name="group_seq" value="${sudaVO.group_seq}">
-					<input type="hidden" name="content" value="${sudaVO.content }">
+					
 					
 				<!--  검색버튼 구간 -->
 			
@@ -117,8 +118,7 @@
 									<c:out value="${pageMaker.cri.type == null?'selected':'' }"/>>--</option>
 								<option value="T"
 									<c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }"/>>제목</option>
-								<option value="C"
-									<c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }"/>>내용</option>
+								
                             </select>
                         </div>
                         <div class="col-2">
@@ -199,7 +199,7 @@
 							e.preventDefault();
 
 							moveForm
-									.append("<input type='hidden' name='' value='"
+									.append("<input type='hidden' name='suda_seq' value='"
 											+ $(this).attr("href") + "'>");
 							moveForm.attr("action", "/group/groupSuda");
 							moveForm.submit();

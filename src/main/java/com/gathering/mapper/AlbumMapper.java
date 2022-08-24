@@ -25,13 +25,13 @@ public interface AlbumMapper {
 	
 	//앨범 삭제
 	public int deleteAlbum(int group_album_seq);
-	
-	
+		
 	//앨범 리스트 (페이징)
 	public List<AlbumVO> getAlbumListPaging(Criteria cri);
 		
 	//앨범게 시글 총 갯수
 	public int getAlbumTotal(HashMap<String, Object> map);
 	
-	
+	//앨범 수정
+	public int updateAlbum(AlbumVO albumVO);
 }

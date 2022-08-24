@@ -62,7 +62,7 @@
 			</if>
 	    <![CDATA[
 	                )
-	        WHERE rn > (#{pageNum} -1) * #{amount} ORDER BY group_album_seq DESC
+	        WHERE rn > (#{pageNum} -1) * #{amount} and group_seq=#{group_seq} ORDER BY group_album_seq DESC
 	    ]]>
 	</select>
 	
@@ -84,10 +84,13 @@
 	
 	</select>
 	
+	<!--  앨범 수정하기  -->
+	<update id="updateAlbum" parameterType="com.gathering.dto.AlbumVO">
+		update group_album SET title=#{title} where group_album_seq=#{group_album_seq}
+	</update>
+	
 	
 	<!-- 앨범 삭제  -->
-	
-	
 	<delete id="deleteAlbum" parameterType="com.gathering.dto.AlbumVO">
       DELETE group_album WHERE group_album_seq=#{group_album_seq}
     </delete>
