@@ -6,7 +6,7 @@ import lombok.Data;
 public class FilesVO {
 	private int file_seq;
 	private int notice_seq;
-	private String filename;
+	private String fileName;
 	
 	//추가 요소
 	

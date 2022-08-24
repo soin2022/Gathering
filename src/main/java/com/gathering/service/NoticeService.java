@@ -29,7 +29,8 @@ public interface NoticeService {
 		//공지사항 총 갯수 
 		public int getTotal(Criteria cri);
 		
-		
+		// 조회수 증가
+		public void noticeViewCount(int notice_seq);
 		
 		
 		

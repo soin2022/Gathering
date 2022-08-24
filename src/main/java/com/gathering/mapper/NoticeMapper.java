@@ -2,10 +2,9 @@ package com.gathering.mapper;
 
 import java.util.List;
 
-
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.gathering.dto.FilesVO;
 import com.gathering.dto.NoticeVO;
 import com.gathering.util.Criteria;
 
@@ -14,12 +13,12 @@ public interface NoticeMapper {
 
 	// 게시판 목록
 	public List<NoticeVO> getNoticeList(NoticeVO noticeVO);
-	
-	// 게시판 목록(페이징 적용) 
-    public List<NoticeVO> getListPaging(Criteria cri);
-    
-    // 공지글 총 갯수 
-    public int getTotal(Criteria cri);
+
+	// 게시판 목록(페이징 적용)
+	public List<NoticeVO> getListPaging(Criteria cri);
+
+	// 공지글 총 갯수
+	public int getTotal(Criteria cri);
 
 	// 게시판 등록
 	public int InsertNotice(NoticeVO noticeVO);
@@ -33,5 +32,10 @@ public interface NoticeMapper {
 	// 공지사항 삭제하기
 	public void deleteNotice(int notice_seq);
 
-	
+	// 이미지 등록 하기
+	public void imageEnroll(FilesVO filesVO);
+
+	// 조회수 증가
+	public void noticeViewCount(int notice_seq);
+
 }

@@ -69,6 +69,37 @@ public class CommentsServiceImpl implements CommentsService {
 	public List<CommentsVO> groupCommentListWithPaging(Criteria cri){
 		return commentsMapper.groupCommentListWithPaging(cri);
 	}
+
+	
+	//-----------------앨범 댓글----------------//
+	@Override
+	public int AlbumInsertComment(CommentsVO commentsVO) {
+		
+		return commentsMapper.AlbumInsertComment(commentsVO);
+	}
+
+	@Override
+	public List<CommentsVO> AlbumcommentList(int group_album_seq) {
+		
+		 return commentsMapper.AlbumcommentList(group_album_seq);
+	}
+
+	
+	//--------------------수다 댓글------------------//
+	
+	@Override
+	public int SudaInsertComment(CommentsVO commentsVO) {
+		
+		return  commentsMapper.SudaInsertComment(commentsVO);
+	}
+
+	@Override
+	public List<CommentsVO> SudacommentList(int group_seq) {
+	
+		return commentsMapper.SudacommentList(group_seq);
+	}
+	
+	
 }
 
 
