@@ -61,5 +61,34 @@
 	    ]]>
 	</select>
    
+   <!-- /////////// 앨범 댓글 /////////////////-->
+    
+    <!--  앨범 댓글 작성 -->
+     <insert id="AlbumInsertComment" parameterType="com.gathering.dto.CommentsVO" >
+      INSERT INTO comments(comment_seq, group_album_seq, user_id, content) 
+         VALUES(comment_seq.NEXTVAL, #{group_album_seq}, #{user_id}, #{content})
+  	 </insert>
+   
+
+	<!--  앨범 댓글 리스트  -->
+   <select id="AlbumcommentList"  resultType="com.gathering.dto.CommentsVO">
+      SELECT * FROM comments where group_album_seq=#{group_album_seq} ORDER BY regDate DESC
+   </select>
+   
+   
+    <!-- /////////// 수다 댓글 /////////////////-->
+	
+    <!--  수다 댓글 작성 -->
+     <insert id="SudaInsertComment" parameterType="com.gathering.dto.CommentsVO" >
+      INSERT INTO comments(comment_seq,user_id, content,suda_seq) 
+         VALUES(comment_seq.NEXTVAL,  #{user_id}, #{content},#{suda_seq})
+  	 </insert>
+   
+
+	<!--  수다 댓글 리스트  -->
+   <select id="SudacommentList"  resultType="com.gathering.dto.CommentsVO">
+      SELECT * FROM comments where suda_seq=#{suda_seq} ORDER BY regDate DESC
+   </select>
+   
    
 </mapper>

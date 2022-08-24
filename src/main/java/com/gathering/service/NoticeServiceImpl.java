@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gathering.dto.NoticeVO;
 import com.gathering.mapper.NoticeMapper;
@@ -25,11 +26,20 @@ public class NoticeServiceImpl implements NoticeService {
 
 		return noticeMapper.getListPaging(cri);
 	}
-
 	
+	@Transactional
 	@Override
 	public void InsertNotice(NoticeVO noticeVO) {
 		noticeMapper.InsertNotice(noticeVO);
+		if(noticeVO.getImageList() == null || noticeVO.getImageList().size() <= 0) {
+			return;
+		}
+		noticeVO.getImageList().forEach(attach -> {
+
+			attach.setNotice_seq(noticeVO.getNotice_seq());
+			noticeMapper.imageEnroll(attach);
+
+		});
 
 	}
 
@@ -54,8 +64,15 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int getTotal(Criteria cri) {
-		
+
 		return noticeMapper.getTotal(cri);
+	}
+
+	@Override
+	public void noticeViewCount(int notice_seq) {
+		
+		noticeMapper.noticeViewCount(notice_seq);
+		
 	}
 
 }

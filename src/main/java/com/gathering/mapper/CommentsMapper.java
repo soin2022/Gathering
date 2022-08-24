@@ -44,7 +44,22 @@ public interface CommentsMapper {
 	public List<CommentsVO> groupCommentListWithPaging(Criteria cri);
 	
 	
+	//----앨범 댓글 파트----//
 	
+	// 앨범 댓글 작성
+	public int AlbumInsertComment(CommentsVO commentsVO);
+
+	// 앨범 댓글 리스트
+	public List<CommentsVO> AlbumcommentList(int group_album_seq);
+		
+	
+	//-- 수다 댓글 파트 --//
+
+	// 수다 댓글 작성
+	public int SudaInsertComment(CommentsVO commentsVO);
+
+	// 수다 댓글 리스트
+	public List<CommentsVO> SudacommentList(int suda_seq);
 }
 
 

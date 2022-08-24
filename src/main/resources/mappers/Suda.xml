@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gathering.mapper.SudaMapper">
+
+	<!-- SudaList 출력 (페이징, 검색 제외) -->
+
+	<select id="getListSudaPaging"
+		resultType="com.gathering.dto.SudaVO">
+		
+
+
+ <![CDATA[
+        
+        select suda_seq , crew_seq, user_id,group_seq,content from(
+        
+                select  rownum  as rn,suda_seq , crew_seq, user_id,group_seq,content
+                  
+                from suda where rownum <= #{pageNum} * #{amount}) 
+                
+        where  rn > (#{pageNum} -1) * #{amount} 
+    
+    ]]>
+
+	</select>
+
+
+	<!-- 게시물 총 개숫 -->
+	<select id="getTotal" resultType="int">
+
+		select count(*) from suda
+
+	</select>
+
+
+	<!-- Suda 글쓰기 -->
+	<insert id="insertSuda" parameterType="com.gathering.dto.SudaVO">
+		INSERT INTO
+		suda(suda_seq,user_id,group_seq,content)
+		VALUES(suda_seq.NEXTVAL,#{user_id},#{group_seq},#{content})
+	</insert>
+
+
+	<!-- 수다 상세보기 -->
+	<select id="getSudaView" resultType="com.gathering.dto.SudaVO">
+
+		select * from suda where
+		suda_seq = #{suda_seq}
+
+	</select>
+
+	<!-- 수다 삭제 -->
+	<delete id="deleteSuda" parameterType="int">
+      DELETE suda WHERE suda_seq=#{suda_seq}
+    </delete>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
