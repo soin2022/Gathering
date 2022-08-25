@@ -117,7 +117,7 @@ public class GroupAlbumController {
 
 	// 등록페이지로 이동
 	@GetMapping("/groupAlbumForm")
-	public String AlbumAddForm(HttpSession session, AlbumVO albumVO) {
+	public String AlbumAddForm(HttpSession session, AlbumVO albumVO,Model model) {
 
 		UserInfoVO user = (UserInfoVO) session.getAttribute("user");
 
@@ -152,28 +152,27 @@ public class GroupAlbumController {
 	}
 	// 앨범 댓글창으로 이동하기
 	@RequestMapping("/group/albumDetail")
-	public String albumDetailView(HttpSession session,CrewInfoVIewVO vo,AlbumVO albumVO,Model model) {
+	public String albumDetailView(HttpSession session,AlbumVO albumVO,Model model) {
 		UserInfoVO user= (UserInfoVO)session.getAttribute("user");
-		
-		List<CrewInfoVIewVO> crewList = groupService.getGroupCrews(albumVO.getGroup_seq());
-		
-		
-		model.addAttribute("crewList", crewList);	
-		
-		
-		
-		System.out.println("크루 목록"+crewList);
-		
+		if(user == null) {
+			return "/alerts/mustLoginAlert";
+		} else {			
+			List<CrewInfoVIewVO> crew=groupNoticeService.getCrewList(albumVO.getGroup_seq(), user.getUser_id());	 
+			model.addAttribute("crewList",crew);
+			System.out.println("크루 목록-----"+crew);
 		
 		AlbumVO albumInfo = albumService.albumDetail(albumVO.getGroup_album_seq());
 
 		model.addAttribute("albumInfo", albumInfo);
 		
 		
-		System.out.println("앨범 정보"+albumInfo);
-
+		
+		
+		
+		System.out.println("앨범 정보------"+albumInfo);
+		
 		return "/group/groupAlbumDetail";
-
+		}
 	}
 
 	//앨범 삭제하기
@@ -195,7 +194,8 @@ public class GroupAlbumController {
 	// 앨범 수정 창으로 이동하기
 		@RequestMapping("/group/albumupdate")
 		public String albumupdateForm(AlbumVO albumVO, Model model) {
-
+			
+			
 			AlbumVO albumInfo = albumService.albumDetail(albumVO.getGroup_album_seq());
 
 			model.addAttribute("albumInfo", albumInfo);

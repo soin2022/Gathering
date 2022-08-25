@@ -61,6 +61,8 @@ public class NoticeController {
 		PageMakerDTO pageMaker = new PageMakerDTO(cri, total);
 
 		model.addAttribute("pageMaker", pageMaker);
+		
+		
 
 		return "/notice/noticeList";
 	}

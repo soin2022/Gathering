@@ -1,13 +1,10 @@
 package com.gathering.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gathering.dto.CrewVO;
-import com.gathering.dto.QnaVO;
 import com.gathering.dto.SudaVO;
 import com.gathering.mapper.SudaMapper;
 import com.gathering.paging.Criteria;
@@ -66,6 +63,13 @@ public class SudaServiceImpl implements SudaService {
 		return sudaMapper.getCrewSeq(sudaVO);
 	}
 
+	@Override
+	public void updateSuda(SudaVO sudaVO) {
+		sudaMapper.updateSuda(sudaVO);
+		
+	}
+
+	
 	
 	
 

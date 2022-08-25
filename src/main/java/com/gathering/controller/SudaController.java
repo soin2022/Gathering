@@ -105,14 +105,16 @@ public class SudaController {
 
 	// 수다 등록폼 이동
 	@RequestMapping("/group/sudaForm")
-	public String noticeCreate(HttpSession session,SudaVO sudaVO) {
+	public String noticeCreate(HttpSession session,SudaVO sudaVO,Model model) {
 		UserInfoVO user = (UserInfoVO) session.getAttribute("user");
 
 		if (user == null) {
 			return "user/login";
 		} else {
 			
-
+			List<CrewInfoVIewVO> crew=groupNoticeService.getCrewList(sudaVO.getGroup_seq(), user.getUser_id());	 
+			model.addAttribute("crewList",crew);
+			System.out.println("크루 목록-----"+crew);	
 			
 			
 			System.out.println(sudaVO);
@@ -156,6 +158,10 @@ public class SudaController {
 			return "user/login";
 
 		} else {
+			List<CrewInfoVIewVO> crew=groupNoticeService.getCrewList(sudaVO.getGroup_seq(), user.getUser_id());	 
+			model.addAttribute("crewList",crew);
+			System.out.println("크루 목록-----"+crew);
+			
 			model.addAttribute("sudaInfo",suda);
 			System.out.println(suda);
 			return "/group/groupSudaDetail";
@@ -177,7 +183,43 @@ public class SudaController {
 			}
 		}
 	
+	//수다 수정창 이동하기 
 	
+		@RequestMapping("/sudaUpdateForm")
+		public String sudaUpdate(SudaVO sudaVO, HttpSession session,Model model) {
+			
+			UserInfoVO user = (UserInfoVO) session.getAttribute("user");
+
+			if (user == null) {
+				return "user/login";
+
+			} else {
+				SudaVO suda = sudaService.getSudaView(sudaVO.getSuda_seq());
+				model.addAttribute("sudaInfo",suda);
+				System.out.println("이동"+suda);
+				return "/group/groupSudaUpdateForm";
+			}
+
+		}
+	
+	
+	//수다 수정하기 
+		@RequestMapping("/sudaUpdate")
+		public String sudaUpdateAction(SudaVO sudaVO, HttpSession session,Model model) {
+			
+			UserInfoVO user = (UserInfoVO) session.getAttribute("user");
+
+			if (user == null) {
+				return "user/login";
+
+			} else {
+				sudaService.updateSuda(sudaVO);
+				
+				System.out.println(sudaVO);
+				return "/group/groupAlbumResult";
+			}
+
+		}
 	
 
 }
