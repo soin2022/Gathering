@@ -47,6 +47,9 @@ public interface CommentsService {
 	//앨범 댓글 리스트
 	List<CommentsVO> AlbumcommentList(int group_album_seq);
 	
+	//앨범 삭제 
+	public void AlbumdeleteComment(int group_album_seq);
+	
 	
 	
 	//-----------수다 댓글 구간---------------------//
@@ -56,5 +59,9 @@ public interface CommentsService {
 
 	//앨범 댓글 리스트
 	List<CommentsVO> SudacommentList(int group_seq);
+	
+	//앨범 삭제 
+	public void SudadeleteComment(int suda_seq);
+		
 
 }

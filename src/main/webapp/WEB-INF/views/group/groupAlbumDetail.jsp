@@ -52,7 +52,7 @@ c:hover:after {
 
 <body id="page-top">
 	
-	<div style="text-align : center;"><h1 style="margin:40px 40px;">${albumInfo.title}</h1></div>
+	<div style="text-align : center;"><h1 style="margin:40px 40px;">${albumInfo.title} </h1></div>
 	
 
 	<div class="table-responsive">
@@ -110,14 +110,27 @@ c:hover:after {
 
 	<div class="row my-3">
 		 <!-- 삭제/수정 버튼 이거는 모임장한테만 보여지게 해야됨 -->
-		 
+		 <!-- 사용자용 -->
+         <c:if test="${sessionScope.user.user_id eq albumInfo.user_id }" >
 		<div class="col text-center">
 			<a href="javascript:void(0);" class="btn btn-outline-primary"
-				onclick="updateConfirm(); " style="float: center">수정하러 가기</a>
+				onclick="updateConfirm(); " style="float: center">본인: 수정하러 가기</a>
 				<a href="javascript:void(0);" class="btn btn-outline-primary"
-				onclick="deleteConfirm(); " style="float: center">삭제</a>
+				onclick="deleteConfirm(); " style="float: center">본인:삭제</a>
 		</div>
+		</c:if>
 		
+		<!-- 관리자용 -->
+		<c:forEach items="${CrewVO}"  var="crewVO" varStatus="status">
+            <c:if test="${crewVO.type eq 1  && sessionScope.user.user_id eq crewVO.user_id}">
+            <div class="col text-center">
+			<a href="javascript:void(0);" class="btn btn-outline-primary"
+				onclick="updateConfirm(); " style="float: center">관리자:수정하러 가기</a>
+				<a href="javascript:void(0);" class="btn btn-outline-primary"
+				onclick="deleteConfirm(); " style="float: center">관리자:삭제</a>
+		</div>
+		</c:if>
+		</c:forEach>
 	</div>
 
 

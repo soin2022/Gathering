@@ -65,8 +65,8 @@
 	<!-- Suda 글쓰기 -->
 	<insert id="insertSuda" parameterType="com.gathering.dto.SudaVO">
 		INSERT INTO
-		suda(suda_seq,user_id,group_seq,content)
-		VALUES(suda_seq.NEXTVAL,#{user_id},#{group_seq},#{content})
+		suda(suda_seq,user_id,crew_seq,group_seq,content)
+		VALUES(suda_seq.NEXTVAL,#{user_id},#{crew_seq},#{group_seq},#{content})
 	</insert>
 
 
@@ -83,10 +83,9 @@
       DELETE suda WHERE suda_seq=#{suda_seq}
     </delete>
     
-    <!-- 수다상세 위한 크루정보 -->
-    <select id="getCrewDetail" parameterType="int" resultType="com.gathering.dto.CrewVO">
-		SELECT * FROM crew WHERE crew_seq=#{crew_seq}
-    </select>
+   
+    
+    
 
 </mapper>
 

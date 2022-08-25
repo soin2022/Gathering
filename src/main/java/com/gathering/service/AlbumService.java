@@ -5,6 +5,9 @@ import java.util.List;
 
 
 import com.gathering.dto.AlbumVO;
+import com.gathering.dto.CrewInfoVIewVO;
+import com.gathering.dto.CrewVO;
+import com.gathering.dto.SudaVO;
 import com.gathering.paging.Criteria;
 
 public interface AlbumService {
@@ -32,4 +35,6 @@ public interface AlbumService {
 	
 	//앨범 수정
 	public int updateAlbum(AlbumVO albumVO);
+	
+	public List<CrewInfoVIewVO> getGroupCrews(int group_seq);
 }

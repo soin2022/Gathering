@@ -29,4 +29,10 @@ public interface SudaService {
 	public void deleteSuda(int suda_seq);
 	
 	
+	//크루 번호 얻기
+	public int getCrewSeq(SudaVO sudaVO);
+	
+	
+	
+	
 }

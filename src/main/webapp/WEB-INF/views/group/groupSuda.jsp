@@ -95,8 +95,8 @@
                         <tbody>
                            <c:forEach items="${sudaList}"  var="sudaVO">
                            	
-                         
-                           	 <tr style="cursor:pointer" onclick="location.href='/sudaDetail?suda_seq=${sudaVO.suda_seq}'">
+                
+                           	 <tr style="cursor:pointer" onclick="window.open('/sudaDetail?suda_seq=${sudaVO.suda_seq}','수다방','width=20,heigth=20')">
                         		<td style="text-align:center"> ${sudaVO.suda_seq }</td>
                                 <td style="text-align:center"> ${sudaVO.content} </td>
                                  <td style="text-align:center">${sudaVO.user_id}</td>                                

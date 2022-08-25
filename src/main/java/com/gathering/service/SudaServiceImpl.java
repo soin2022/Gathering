@@ -60,6 +60,13 @@ public class SudaServiceImpl implements SudaService {
 		return sudaMapper.getTotal(cri);
 	}
 
+	@Override
+	public int getCrewSeq(SudaVO sudaVO) {
+		
+		return sudaMapper.getCrewSeq(sudaVO);
+	}
+
+	
 	
 
 	

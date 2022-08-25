@@ -110,10 +110,19 @@ c:hover:after {
 	<div class="row my-3">
 	
 		<div class="col text-center">
-	<c:if test="${sessionScope.user.user_id eq sudaInfo.user_id }">
+		<c:if test="${sessionScope.user.user_id eq sudaInfo.user_id }">
 			<a href="javascript:void(0);" class="btn btn-outline-primary"
-				onclick="deleteConfirm(); " style="float: center">삭제</a>
-	</c:if>
+				onclick="deleteConfirm(); " style="float: center">사용자:삭제</a>
+				
+		</c:if>
+		<c:forEach items="${crewList}"  var="crewListVo" varStatus="status">
+  		<c:if test="${crewListVo.type eq 1  && sessionScope.user.user_id eq crewListVo.user_id}">
+			<a href="javascript:void(0);" class="btn btn-outline-primary"
+				onclick="deleteConfirm(); " style="float: center">관리자:삭제</a>
+		
+		</c:if>
+		</c:forEach>
+		
 		</div>
 	</div>
 
