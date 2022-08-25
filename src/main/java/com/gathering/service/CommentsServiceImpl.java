@@ -84,6 +84,12 @@ public class CommentsServiceImpl implements CommentsService {
 		 return commentsMapper.AlbumcommentList(group_album_seq);
 	}
 
+	@Override
+	public void AlbumdeleteComment(int group_album_seq) {
+		
+		commentsMapper.AlbumdeleteComment(group_album_seq);
+		
+	}
 	
 	//--------------------수다 댓글------------------//
 	
@@ -98,6 +104,14 @@ public class CommentsServiceImpl implements CommentsService {
 	
 		return commentsMapper.SudacommentList(group_seq);
 	}
+
+	@Override
+	public void SudadeleteComment(int suda_seq) {
+		commentsMapper.SudadeleteComment(suda_seq);
+		
+	}
+
+	
 	
 	
 }

@@ -22,8 +22,8 @@
 		parameterType="com.gathering.dto.AlbumVO">
 		
 		<![CDATA[
-		insert into group_album(group_album_seq,group_seq,title,filename,likes)
-		values(group_album_seq.NEXTVAL,#{group_seq}, #{title},#{filename},#{likes}) 
+		insert into group_album(group_album_seq,group_seq,title,filename,user_id)
+		values(group_album_seq.NEXTVAL,#{group_seq}, #{title},#{filename},#{user_id}) 
 	]]>
 	</insert>
 
@@ -54,7 +54,7 @@
     <![CDATA[
        		 SELECT * FROM(
         
-             SELECT  rownum  as rn, group_album_seq,group_seq,title,filename,likes  FROM group_album WHERE rownum <= #{pageNum} * #{amount}
+             SELECT  rownum  as rn, group_album_seq,group_seq,title,filename,user_id  FROM group_album WHERE rownum <= #{pageNum} * #{amount}
                   ]]>
 			
 			<if test="keyword != null">
@@ -95,5 +95,11 @@
       DELETE group_album WHERE group_album_seq=#{group_album_seq}
     </delete>
 	
-
+	 <!-- 모임상세를 위한 회원정보 -->
+    <select id="getGroupCrews" parameterType="int" resultType="com.gathering.dto.CrewInfoVIewVO">
+		SELECT * FROM crew_info_view WHERE group_seq=#{group_seq}
+    </select>
+	
+	
+	
 </mapper>

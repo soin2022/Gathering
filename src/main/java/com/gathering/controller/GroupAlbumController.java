@@ -22,12 +22,12 @@ import com.gathering.dto.AlbumVO;
 import com.gathering.dto.CrewInfoVIewVO;
 import com.gathering.dto.CrewVO;
 import com.gathering.dto.GroupInfoVO;
-import com.gathering.dto.GroupNoticeVO;
 import com.gathering.dto.UserInfoVO;
 import com.gathering.mapper.AttachMapper;
 import com.gathering.paging.Criteria;
 import com.gathering.paging.PageMakerDTO;
 import com.gathering.service.AlbumService;
+import com.gathering.service.CommentsService;
 import com.gathering.service.GroupNoticeService;
 import com.gathering.service.GroupService;
 
@@ -43,6 +43,8 @@ public class GroupAlbumController {
 	GroupService groupService;
 	@Autowired
 	private GroupNoticeService groupNoticeService;
+	@Autowired
+	private CommentsService commentsService;
 
 	
 	public String fileSave(MultipartFile file) {
@@ -133,34 +135,42 @@ public class GroupAlbumController {
 
 	// 사진 등록
 	@RequestMapping("/album_insert")
-	public String albumInsert(AlbumVO albumVO, @RequestPart MultipartFile file1, Model model) {
+	public String albumInsert(HttpSession session,AlbumVO albumVO, @RequestPart MultipartFile file1, Model model) {
+		UserInfoVO user = (UserInfoVO) session.getAttribute("user");
+		if(user == null) {
+			return "/alerts/mustLoginAlert";
+		} else {
+		
+		
 		// 파일이름 Vo 저장
 		albumVO.setFilename(fileSave(file1));
-
+		albumVO.setUser_id(user.getUser_id());
 		albumService.InsertAlbum(albumVO);
 		System.out.println(albumVO);
 		return "/group/groupAlbumResult";
 	}
-
+	}
 	// 앨범 댓글창으로 이동하기
 	@RequestMapping("/group/albumDetail")
-	public String albumDetailView(AlbumVO albumVO, GroupNoticeVO vo,Model model) {
-
+	public String albumDetailView(HttpSession session,CrewInfoVIewVO vo,AlbumVO albumVO,Model model) {
+		UserInfoVO user= (UserInfoVO)session.getAttribute("user");
+		
+		List<CrewInfoVIewVO> crewList = groupService.getGroupCrews(albumVO.getGroup_seq());
+		
+		
+		model.addAttribute("crewList", crewList);	
+		
+		
+		
+		System.out.println("크루 목록"+crewList);
+		
+		
 		AlbumVO albumInfo = albumService.albumDetail(albumVO.getGroup_album_seq());
 
 		model.addAttribute("albumInfo", albumInfo);
 		
-		//모임장 체크를위한 모임원 정보
-		List<CrewInfoVIewVO> crewList = groupService.getGroupCrews(vo.getGroup_seq());
-		model.addAttribute("crewList", crewList);
 		
-		GroupNoticeVO groupNotice = groupNoticeService.groupNoticeView(vo.getGroup_notice_seq());		
-		
-		groupNoticeService.groupNoticeViewCount(vo.getGroup_notice_seq());
-		
-		model.addAttribute("groupNotice", groupNotice);
-
-		System.out.println(albumInfo);
+		System.out.println("앨범 정보"+albumInfo);
 
 		return "/group/groupAlbumDetail";
 
@@ -171,9 +181,11 @@ public class GroupAlbumController {
 	public String deleteAlbum(HttpSession session, AlbumVO albumVO,@RequestParam("group_album_seq")int album_group_seq) {
 		UserInfoVO user = (UserInfoVO) session.getAttribute("user");
 
-		if (user == null) {
-			return "user/login";
+		if(user == null) {
+			return "/alerts/mustLoginAlert";
 		} else {
+			commentsService.AlbumdeleteComment(albumVO.getGroup_album_seq());
+			
 			albumService.deleteAlbum(album_group_seq);
 			return "/group/groupAlbumResult";
 		}

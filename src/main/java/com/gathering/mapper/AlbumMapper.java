@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gathering.dto.AlbumVO;
+import com.gathering.dto.CrewInfoVIewVO;
+import com.gathering.dto.CrewVO;
 import com.gathering.paging.Criteria;
 
 @Mapper
@@ -34,4 +36,6 @@ public interface AlbumMapper {
 	
 	//앨범 수정
 	public int updateAlbum(AlbumVO albumVO);
+	
+	public List<CrewInfoVIewVO> getGroupCrews(int group_seq);
 }

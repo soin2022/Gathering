@@ -51,6 +51,9 @@ public interface CommentsMapper {
 
 	// 앨범 댓글 리스트
 	public List<CommentsVO> AlbumcommentList(int group_album_seq);
+	
+	//앨범 댓글 삭제 
+	public void AlbumdeleteComment(int group_album_seq);
 		
 	
 	//-- 수다 댓글 파트 --//
@@ -60,6 +63,9 @@ public interface CommentsMapper {
 
 	// 수다 댓글 리스트
 	public List<CommentsVO> SudacommentList(int suda_seq);
+	
+	//앨범 댓글 삭제 
+	public void SudadeleteComment(int suda_seq);
 }
 
 

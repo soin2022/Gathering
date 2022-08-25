@@ -29,6 +29,9 @@ public interface SudaMapper {
 	
 	// 수다 삭제하기 
 	public void deleteSuda(int suda_seq);
+	
+	//크루 번호 얻기
+	public int getCrewSeq(SudaVO sudaVO);
 			
 	
 }

@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.gathering.dto.CrewInfoVIewVO;
-import com.gathering.dto.CrewVO;
 import com.gathering.dto.GroupInfoVO;
 import com.gathering.dto.SudaVO;
 import com.gathering.dto.UserInfoVO;
 import com.gathering.paging.Criteria;
 import com.gathering.paging.PageMakerDTO;
+import com.gathering.service.CommentsService;
 import com.gathering.service.GroupNoticeService;
 import com.gathering.service.GroupService;
 import com.gathering.service.SudaService;
@@ -37,6 +37,9 @@ public class SudaController {
 	
 	@Autowired
 	private GroupNoticeService groupNoticeService;
+	
+	@Autowired
+	private CommentsService commentsService;
 	
 
 ////////////////////////////////////////////////////////////////
@@ -78,11 +81,7 @@ public class SudaController {
 			//크루뷰에서 모임에 가입된 사람들 정보를 가져와서 모델에 넘김 
 			List<CrewInfoVIewVO> crewList = groupService.getGroupCrews(vo.getGroup_seq());
 			model.addAttribute("crewList", crewList);	
-			
-			GroupInfoVO group = groupService.getGroupDetail(vo.getGroup_seq());
-			model.addAttribute("group", group);	
-				
-				
+							
 			List<SudaVO> suda =sudaService.getListPaging(cri);
 			model.addAttribute("sudaList",suda);
 			
@@ -106,16 +105,15 @@ public class SudaController {
 
 	// 수다 등록폼 이동
 	@RequestMapping("/group/sudaForm")
-	public String noticeCreate(HttpSession session,CrewVO crewVO) {
+	public String noticeCreate(HttpSession session,SudaVO sudaVO) {
 		UserInfoVO user = (UserInfoVO) session.getAttribute("user");
 
 		if (user == null) {
 			return "user/login";
 		} else {
 			
+
 			
-			SudaVO sudaVO = new SudaVO();
-			sudaVO.setCrew_seq(crewVO.getCrew_seq());
 			
 			System.out.println(sudaVO);
 		return "/group/groupSudaForm";
@@ -126,16 +124,27 @@ public class SudaController {
 	@RequestMapping("/insertSuda")
 	public String sudaInsert(HttpSession session,Model model, SudaVO sudaVO) {
 			UserInfoVO user = (UserInfoVO) session.getAttribute("user");
-		
+			if (user == null) {
+				return "user/login";
+
+			} else {
 			sudaVO.setUser_id(user.getUser_id());
 			sudaVO.setGroup_seq(sudaVO.getGroup_seq());
+			
+			int crew_seq = sudaService.getCrewSeq(sudaVO);
+			
+			sudaVO.setCrew_seq(crew_seq);
+			
+			
+			System.out.println("수다insert"+sudaVO);
+			
 			sudaService.insertSuda(sudaVO);
 
 			System.out.println(sudaVO);
 			return "redirect:/group/groupSuda?group_seq="+sudaVO.getGroup_seq();
 		}
 
-	
+	}
 
 	// 수다 상세 보기
 	@RequestMapping("/sudaDetail")
@@ -162,9 +171,13 @@ public class SudaController {
 			if (user == null) {
 				return "user/login";
 			} else {
+				commentsService.SudadeleteComment(sudaVO.getSuda_seq());	//해당 문의글에 댓글이 묶여있음,, 댓글 먼저 삭제처리
 				sudaService.deleteSuda(sudaVO.getSuda_seq());
-				return "/group/groupSuda?group_seq="+sudaVO.getGroup_seq();
+				return "/group/groupAlbumResult";
 			}
 		}
+	
+	
+	
 
 }

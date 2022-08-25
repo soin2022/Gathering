@@ -9,7 +9,9 @@ public class AlbumVO {
 	private int group_seq;
 	private String title;
 	private String filename;
-	private int likes;
+	private String user_id;
+	
+	
 	
 	
 	
