@@ -156,6 +156,8 @@ public class GroupAlbumController {
 		UserInfoVO user= (UserInfoVO)session.getAttribute("user");
 		
 		List<CrewInfoVIewVO> crewList = groupService.getGroupCrews(albumVO.getGroup_seq());
+		
+		
 		model.addAttribute("crewList", crewList);	
 		
 		

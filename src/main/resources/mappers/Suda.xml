@@ -83,7 +83,10 @@
       DELETE suda WHERE suda_seq=#{suda_seq}
     </delete>
     
-   
+    <!-- 크루시퀀스 조회 -->
+    <select id="getCrewSeq" parameterType="com.gathering.dto.SudaVO" resultType="int">
+		SELECT crew_seq FROM crew WHERE user_id=#{user_id} and group_seq=#{group_seq}
+    </select>
     
     
 
