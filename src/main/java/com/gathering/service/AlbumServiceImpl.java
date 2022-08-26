@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gathering.dto.AlbumVO;
-import com.gathering.dto.CrewInfoVIewVO;
-import com.gathering.dto.CrewVO;
-import com.gathering.dto.SudaVO;
+import com.gathering.dto.GroupInfoVO;
 import com.gathering.mapper.AlbumMapper;
 import com.gathering.paging.Criteria;
 
@@ -72,11 +70,9 @@ public class AlbumServiceImpl implements AlbumService {
 		return albumMapper.updateAlbum(albumVO);
 	}
 
-	@Override
-	public List<CrewInfoVIewVO> getGroupCrews(int group_seq) {
-		
-		return albumMapper.getGroupCrews(group_seq);
-	}
+	
+
+	
 
 	
 	

@@ -128,13 +128,13 @@ c:hover:after {
 							<div class="card h-100">
 								<img class="card-img-top" src="/upload/${album.filename}">
 								<!-- 이미지 -->
-
+							
 								<div class="card-body p-3">
 									<!-- 댓글 -->
 									<div class="text-center">
 										
 										<button type="button" class="btn btn-outline-primary" class="fromCenter" 
-											onclick="window.open('/group/albumDetail?group_album_seq=${album.group_album_seq}','ㅋㅋ','width=20,heigth=20')">댓글 입력</button>
+											onclick="window.open('/group/albumDetail?group_album_seq=${album.group_album_seq}&group_seq=${album.group_seq}','ㅋㅋ','width=20,heigth=20')">댓글 입력</button>
 											
 									</div>
 											
@@ -237,25 +237,7 @@ c:hover:after {
 							window.open(popUrl, "앨범 쓰기", popOption);
 
 		});//사진 등록버튼
-		
-		$("#album_button")
-		.on(
-				"click",
-				function(e) {
-					e.preventDefault();
-					const group_seq = '${albumVO.group_seq}';
-
-					let popUrl = "/groupAlbumForm/" + "?group_seq="
-							+ group_seq;
-					console.log(popUrl);
-					let popOption = "width = 490px, height=390px, top=300px, left=300px, scrollbars=yes";
-
-					window.open(popUrl, "앨범 쓰기", popOption);
-
-		});//댓글 등록버튼 끝
-		
-		
-		
+					
 		let moveForm = $("#moveForm");
 
 		$(".move")

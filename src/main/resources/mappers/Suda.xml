@@ -12,7 +12,7 @@
 	 </select> 
 	 
 	 
-	 <!-- QnaList (검색 )-->
+	 <!-- sudaList (검색 )-->
     <sql id="criteria">
 		<trim prefix="AND (" suffix=")" prefixOverrides="OR">
 			<foreach collection="typeArr" item="type">
@@ -51,7 +51,7 @@
 	    ]]>
 	</select>
 	
-	<!-- qna 게시물 총 개숫 -->
+	<!-- 수다 게시물 총 개숫 -->
 	<select id="getTotal" resultType="int">
 		select count(*) from suda
 		<if test="keyword != null">
@@ -88,7 +88,12 @@
 		SELECT crew_seq FROM crew WHERE user_id=#{user_id} and group_seq=#{group_seq}
     </select>
     
-    
+    <!-- 수다 주제 수정하기 -->
+	<update id="updateSuda"	parameterType="com.gathering.dto.SudaVO">
+		
+		update suda SET content=#{content} where suda_seq=#{suda_seq}
+		
+	</update>
 
 </mapper>
 

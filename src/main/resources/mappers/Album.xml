@@ -95,10 +95,7 @@
       DELETE group_album WHERE group_album_seq=#{group_album_seq}
     </delete>
 	
-	 <!-- 모임상세를 위한 회원정보 -->
-    <select id="getGroupCrews" parameterType="int" resultType="com.gathering.dto.CrewInfoVIewVO">
-		SELECT * FROM crew_info_view WHERE group_seq=#{group_seq}
-    </select>
+	
 	
 	
 	

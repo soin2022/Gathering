@@ -86,6 +86,7 @@ c:hover:after {
 										value="${sudaInfo.suda_seq}" />
 									<textarea class="form-control" id="content" name="content"
 										rows="4" style="resize: none;"></textarea>
+										
 								</div>
 								<div class="col-2">
 									<input class="btn btn-primary"
@@ -111,15 +112,19 @@ c:hover:after {
 	
 		<div class="col text-center">
 		<c:if test="${sessionScope.user.user_id eq sudaInfo.user_id }">
+			<div class="mb-3"><a href="javascript:void(0);" class="btn btn-outline-primary"
+				onclick="UpdateFormConfirm(); " style="float: center">사용자:수정</a>
 			<a href="javascript:void(0);" class="btn btn-outline-primary"
 				onclick="deleteConfirm(); " style="float: center">사용자:삭제</a>
-				
+			</div>	
 		</c:if>
 		<c:forEach items="${crewList}"  var="crewListVo" varStatus="status">
   		<c:if test="${crewListVo.type eq 1  && sessionScope.user.user_id eq crewListVo.user_id}">
+			<div><a href="javascript:void(0);" class="btn btn-outline-primary"
+				onclick="UpdateFormConfirm(); " style="float: center">관리자:수정</a>
 			<a href="javascript:void(0);" class="btn btn-outline-primary"
 				onclick="deleteConfirm(); " style="float: center">관리자:삭제</a>
-		
+			</div>
 		</c:if>
 		</c:forEach>
 		
@@ -240,8 +245,8 @@ c:hover:after {
 			url : '/Suda_comments_insert',
 			data : $("#commentForm").serialize(), //아이디가 #아래인 폼을 읽어서 그안의 파라메타id들을 읽어서 위에 url로 보내겠다.
 			success : function(data) {
-				if (data == 'success') { // 상품평 등록 성공
-					getCommentList(); // 상품평 목록 요청함수 호출
+				if (data == 'success') { //  등록 성공
+					getCommentList(); // 
 					$("#content").val("");
 				} else if (data == 'fail') {
 					alert("댓글등록이 실패하였습니다. 다시 시도해 주세요.");
@@ -255,13 +260,11 @@ c:hover:after {
 		});
 	}
 
-		function deleteConfirm() {
+		function UpdateFormConfirm() {
 
-			if (!confirm("삭제 하시겠습니까?")) {
-				return false;
-			} else {
-				location.href = "/sudadelete?Suda_seq=${sudaInfo.suda_seq}";
-			}
+			
+				location.href = "/sudaUpdateForm?suda_seq=${sudaInfo.suda_seq}";
+			
 
 		}
 	</script>

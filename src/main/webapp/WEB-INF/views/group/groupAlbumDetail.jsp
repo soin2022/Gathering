@@ -77,6 +77,8 @@ c:hover:after {
 				<tr>
 					<td colspan="3">
 						<form name="commentForm" id="commentForm" method="post">
+							<input type="hidden" name="group_seq"
+										value="${albumInfo.group_seq}" />
 							<div class="row my-3 align-items-center justify-content-center">
 								<div class="col-2" style="text-align: right;">
 									<label for="comments" class="form-label"></label>
@@ -121,7 +123,7 @@ c:hover:after {
 		</c:if>
 		
 		<!-- 관리자용 -->
-		<c:forEach items="${CrewVO}"  var="crewVO" varStatus="status">
+		<c:forEach items="${crewList}"  var="crewVO" varStatus="status">
             <c:if test="${crewVO.type eq 1  && sessionScope.user.user_id eq crewVO.user_id}">
             <div class="col text-center">
 			<a href="javascript:void(0);" class="btn btn-outline-primary"

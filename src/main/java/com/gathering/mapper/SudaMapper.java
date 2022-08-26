@@ -33,5 +33,6 @@ public interface SudaMapper {
 	//크루 번호 얻기
 	public int getCrewSeq(SudaVO sudaVO);
 			
-	
+	//수다 수정하기 
+	public void updateSuda(SudaVO sudaVO);
 }

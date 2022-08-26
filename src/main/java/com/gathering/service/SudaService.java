@@ -1,10 +1,7 @@
 package com.gathering.service;
 
-import java.util.HashMap;
 import java.util.List;
 
-import com.gathering.dto.CrewVO;
-import com.gathering.dto.QnaVO;
 import com.gathering.dto.SudaVO;
 import com.gathering.paging.Criteria;
 
@@ -30,6 +27,9 @@ public interface SudaService {
 		
 	//크루 번호 얻기
 	public int getCrewSeq(SudaVO sudaVO);
+	
+	//수다 수정하기 
+	public void updateSuda(SudaVO sudaVO);
 	
 	
 	
