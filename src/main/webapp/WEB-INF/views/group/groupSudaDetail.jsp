@@ -121,9 +121,9 @@ c:hover:after {
 		<c:forEach items="${crewList}"  var="crewListVo" varStatus="status">
   		<c:if test="${crewListVo.type eq 1  && sessionScope.user.user_id eq crewListVo.user_id}">
 			<div><a href="javascript:void(0);" class="btn btn-outline-primary"
-				onclick="UpdateFormConfirm(); " style="float: center">관리자:수정</a>
+				onclick="UpdateFormConfirm(); " style="float: center">모임장:수정</a>
 			<a href="javascript:void(0);" class="btn btn-outline-primary"
-				onclick="deleteConfirm(); " style="float: center">관리자:삭제</a>
+				onclick="deleteConfirm(); " style="float: center">모임장:삭제</a>
 			</div>
 		</c:if>
 		</c:forEach>
