@@ -111,7 +111,7 @@ c:hover:after {
 	</div>
 
 	<div class="row my-3">
-		 <!-- 삭제/수정 버튼 이거는 모임장한테만 보여지게 해야됨 -->
+		
 		 <!-- 사용자용 -->
          <c:if test="${sessionScope.user.user_id eq albumInfo.user_id }" >
 		<div class="col text-center">
@@ -122,14 +122,14 @@ c:hover:after {
 		</div>
 		</c:if>
 		
-		<!-- 관리자용 -->
+		<!-- 모임장용 -->
 		<c:forEach items="${crewList}"  var="crewVO" varStatus="status">
             <c:if test="${crewVO.type eq 1  && sessionScope.user.user_id eq crewVO.user_id}">
             <div class="col text-center">
 			<a href="javascript:void(0);" class="btn btn-outline-primary"
-				onclick="updateConfirm(); " style="float: center">관리자:수정하러 가기</a>
+				onclick="updateConfirm(); " style="float: center">모임장:수정하러 가기</a>
 				<a href="javascript:void(0);" class="btn btn-outline-primary"
-				onclick="deleteConfirm(); " style="float: center">관리자:삭제</a>
+				onclick="deleteConfirm(); " style="float: center">모임장:삭제</a>
 		</div>
 		</c:if>
 		</c:forEach>

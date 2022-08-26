@@ -36,17 +36,17 @@
 				<div class="position-sticky pt-3">
 					<ul class="nav flex-column">
 						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="#"> <span data-feather="home"></span>
+							aria-current="page" href="/group/groupDetail?group_seq=${sudaVO.group_seq}"> <span data-feather="home"></span>
 								모임상세
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"> <span
+						<li class="nav-item"><a class="nav-link" href="/group/groupNoticeListView?group_seq=${sudaVO.group_seq}"> <span
 								data-feather="file"></span> 모임공지
 						</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="/group/groupAlbum"> <span data-feather="shopping-cart"></span>
+							href="/group/groupAlbum?group_seq=${sudaVO.group_seq}"> <span data-feather="shopping-cart"></span>
 								모임앨범
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="/group/groupSuda"> <span
+						<li class="nav-item"><a class="nav-link" href="/group/groupSuda?group_seq=${sudaVO.group_seq}"> <span
 								data-feather="users"></span> 모임수다
 						</a></li>
 					

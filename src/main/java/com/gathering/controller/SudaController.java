@@ -183,8 +183,7 @@ public class SudaController {
 			}
 		}
 	
-	//수다 수정창 이동하기 
-	
+		//수다 수정창 이동하기 
 		@RequestMapping("/sudaUpdateForm")
 		public String sudaUpdate(SudaVO sudaVO, HttpSession session,Model model) {
 			
@@ -203,7 +202,7 @@ public class SudaController {
 		}
 	
 	
-	//수다 수정하기 
+		//수다 수정하기 
 		@RequestMapping("/sudaUpdate")
 		public String sudaUpdateAction(SudaVO sudaVO, HttpSession session,Model model) {
 			

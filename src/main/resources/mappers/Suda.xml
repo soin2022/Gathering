@@ -5,7 +5,7 @@
 <mapper namespace="com.gathering.mapper.SudaMapper">
 
 	
-	<!-- suda 리스트 -->
+	<!-- 수다 리스트 -->
 	 <select id="getSudaList" resultType="com.gathering.dto.SudaVO" 
 		parameterType="com.gathering.dto.SudaVO"> 
 	 SELECT *FROM suda where group_seq=#{group_seq}
@@ -62,7 +62,7 @@
 	</select>
 	
 
-	<!-- Suda 글쓰기 -->
+	<!-- 수다 글쓰기 -->
 	<insert id="insertSuda" parameterType="com.gathering.dto.SudaVO">
 		INSERT INTO
 		suda(suda_seq,user_id,crew_seq,group_seq,content)
