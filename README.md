@@ -61,6 +61,7 @@ user_id     VARCHAR2(20),
 title       VARCHAR2(50),
 content     VARCHAR2(1000),
 cnt         NUMBER,
+regdate     DATE DEFAULT SYSDATE,
 FOREIGN KEY(user_id) REFERENCES user_info(user_id)
 );
 
