@@ -77,7 +77,7 @@ CREATE TABLE group_album (
     FOREIGN KEY(user_id) REFERENCES user_info(user_id)
 );
 
---files 테이블 추가(uploadPath, uuid 컬럼추가)
+--files 테이블에 컬럼 추가(uploadPath, uuid 컬럼추가)
 
 ALTER TABLE files add uploadPath varchar(200);
 commit;
