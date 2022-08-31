@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Gathering
 
 양식 통일
@@ -85,3 +86,6 @@ commit;
 ALTER TABLE files add uuid varchar(100);
 commit;
 
+=======
+# project_gathering
+>>>>>>> refs/remotes/final/teamfinal
